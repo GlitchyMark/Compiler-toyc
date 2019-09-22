@@ -1,5 +1,7 @@
 package compiler;
 
+import compiler.parser.FileManipulator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -8,19 +10,10 @@ public class Main
 {
     public static void main(String[] args)
     {
-        /**
-         * I have forgotten that coding in school and coding
-         * in the industry are two very different things.
-         *
-         * I have been coding for this project as if I was still
-         * in the industry, which is not wise. I apologise for this
-         * and shall try to write more practical, less future oriented
-         * code moving forward.
-         *
-         * I apologise mark.
-         */
+
+        handleArgs(args);
         FileManipulator fileMan = new FileManipulator();
-        fileMan.initFileScanner();
+        fileMan.initFileScanner(Globals.loadFilename);
         List<String> words = fileMan.getListOfTokensWhitespaceDelimited();
         List<String> lmaoWords = new ArrayList<>();
 
@@ -30,6 +23,55 @@ public class Main
             lmaoWords.add(lmao);
         }
 
-        fileMan.writeListOfTokens(lmaoWords, Optional.empty());
+        fileMan.writeListOfTokens(words, Optional.empty());
     }
+
+    private static void handleArgs(String[] args)
+    {
+        int i = 1;
+        if(args.length <= 0)
+        {
+            printUsage();
+            System.exit(0);
+        }
+        Globals.loadFilename = args[args.length - 1];
+        if(args.length > 1)
+        switch(args[0].toLowerCase())
+        {
+            case "-help":
+                printUsage();
+                return;
+            case "-v":
+                Globals.debugLevel = 0;
+                return;
+            case "-debug":
+                try
+                {
+                    Globals.debugLevel = Integer.parseInt(args[1]);
+                } catch (NumberFormatException | NullPointerException | IndexOutOfBoundsException ex) {
+                    System.out.println("Debug level number invalid.");
+                    printUsage();
+                    System.exit(1);
+                }
+                return;
+            default:
+                System.out.println(args[0] + "is not a valid command.");
+                printUsage();
+                System.exit(1);
+        }
+    }
+
+    private static void printUsage()
+    {
+        System.out.print("Usage: java [classpath] parser.tc [options] toyc_source_file\n" +
+                "where options include:\n" +
+                "-help display this usage message\n" +
+                "-debug <level> display messages that aid in tracing the\n" +
+                "compilation process. If level is:\n" +
+                "0 - all messages\n" +
+                "1 - scanner messages only\n" +
+                "-verbose display all information\n");
+    }
+
+
 }

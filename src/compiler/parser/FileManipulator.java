@@ -1,4 +1,4 @@
-package compiler;
+package compiler.parser;
 
 import java.io.IOException;
 
@@ -45,26 +45,26 @@ public class FileManipulator
     /**
      * Initializes the file scanner, asks the user to input file path
      */
-    public void initFileScanner()
+    public void initFileScanner(String filetoload)
     {
-        do
-        {
             invalidPath = false;
             //System.out.println("Enter in file inputFile of file to be compiled:");
             //filePath = scanner.next();
-            filePath = "g:\\compile\\test.txt";
+            filePath = System.getProperty("user.dir")+"\\tests\\"+filetoload;
+            System.out.println("Getting file: " + filePath);
             try
             {
                 inputFile = Paths.get(filePath);
                 fileScan = new Scanner(inputFile);
+                System.out.println("Loaded file");
             }
             catch (IOException e)
             {
                 System.out.println("ERROR: File not found");
                 System.out.println(e.getMessage());
+                System.exit(1);
                 invalidPath = true;
             }
-        } while(invalidPath);
     }
 
     public List<String> getListOfTokensWhitespaceDelimited()
@@ -91,6 +91,7 @@ public class FileManipulator
         {
             appendFileNameForLex();
             outputFile = Paths.get(pathNoFile, fileName);
+            //outputFile = Paths.get(System.getProperty("user.dir")+"\\output\\"+fileName);
         }
         else
         {
@@ -103,8 +104,10 @@ public class FileManipulator
         }
         catch(IOException e)
         {
+            e.printStackTrace();
             System.out.println("Something went wrong while writing to the text file");
         }
+        System.out.println("Tokens successfully written to " + outputFile.toString());
     }
 
     /**
