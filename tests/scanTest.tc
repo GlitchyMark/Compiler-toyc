@@ -1,5 +1,11 @@
-hello char int while <= !=
+hello= char int while <= != ! == = 
 123 "hello" /*
-* / && /* ||
-> */ */ *
+* /  /*/ || && | &
+>  done /
 // this is a comment
+done "ha"
+""
+'t'
+''
+'Tt'
+'L'

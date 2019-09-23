@@ -1,6 +1,7 @@
 package compiler;
 
 import compiler.parser.FileManipulator;
+import compiler.parser.Tokenizer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +18,9 @@ public class Main
         List<String> words = fileMan.getListOfTokensWhitespaceDelimited();
         List<String> lmaoWords = new ArrayList<>();
 
-        for(String word: words)
-        {
-            String lmao = word.concat("lmao");
-            lmaoWords.add(lmao);
-        }
+        Tokenizer testin = new Tokenizer(words);
 
-        fileMan.writeListOfTokens(words, Optional.empty());
+        fileMan.writeListOfTokens(testin.getTokens(), Optional.empty());
     }
 
     private static void handleArgs(String[] args)

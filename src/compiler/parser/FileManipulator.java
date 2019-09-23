@@ -69,9 +69,9 @@ public class FileManipulator
 
     public List<String> getListOfTokensWhitespaceDelimited()
     {
-        while(fileScan.hasNext())
+        while(fileScan.hasNextLine())
         {
-            String toBeStored = fileScan.next();
+            String toBeStored = fileScan.nextLine();
             stringList.add(toBeStored);
         }
 
