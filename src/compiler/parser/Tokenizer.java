@@ -1,5 +1,7 @@
 package compiler.parser;
 
+import compiler.Globals;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -151,7 +153,7 @@ public class Tokenizer
                 {
                     charBuff = getChar();
                 } while(charBuff != '\n');
-                tok = new Token();
+                tok = new Token(Token.Tokens.COMMENT);
             }
             else if(charBuff == '*')
             {
@@ -175,7 +177,7 @@ public class Tokenizer
                 }
                 else
                 {
-                    tok = new Token();
+                    tok = new Token(Token.Tokens.COMMENT);
                 }
             }
             else
@@ -202,16 +204,22 @@ public class Tokenizer
             {
                 lex += charBuff;
                 charBuff = getChar();
-                if(charBuff == '\'')
-                {
-                    tok = new Token(Token.Tokens.CHARLITERAL, lex);
-                    charBuff = getChar();
-                }
-                else
+                if(charBuff != '\'')
                 {
                     System.out.println("Thats not a character literal bro");
                     charBuff = getChar();
                     tok = new Token();
+                }
+                else if(charBuff =='\n')
+                {
+                    System.out.println("No newlines in character literals bro");
+                    charBuff = getChar();
+                    tok = new Token();
+                }
+                else
+                {
+                    tok = new Token(Token.Tokens.CHARLITERAL, lex);
+                    charBuff = getChar();
                 }
             }
         }
@@ -315,7 +323,7 @@ public class Tokenizer
             {
                 lex += charBuff;
                 charBuff = getChar();
-                tok = new Token(Token.Tokens.ADDOP, lex);
+                tok = new Token(Token.Tokens.MULOP, lex);
             }
             else
             {
@@ -328,20 +336,21 @@ public class Tokenizer
         {
             switch(charBuff)
             {
-                case '+': tok = new Token(Token.Tokens.ADDOP, "+");
-                case '*': tok = new Token(Token.Tokens.MULOP, "*");
-                case '-': tok = new Token(Token.Tokens.ADDOP, "-");
-                case '%': tok = new Token(Token.Tokens.MULOP, "%");
-                case '(': tok = new Token(Token.Tokens.LPAREN);
-                case ')': tok = new Token(Token.Tokens.RPAREN);
-                case '{': tok = new Token(Token.Tokens.LCURLY);
-                case '}': tok = new Token(Token.Tokens.RCURLY);
-                case '[': tok = new Token(Token.Tokens.LBRACKET);
-                case ']': tok = new Token(Token.Tokens.RBRACKET);
-                case ',': tok = new Token(Token.Tokens.COMMA);
-                case ';': tok = new Token(Token.Tokens.SEMICOLON);
-                case ':': tok = new Token(Token.Tokens.COLON);
+                case '+': tok = new Token(Token.Tokens.ADDOP, "+"); break;
+                case '*': tok = new Token(Token.Tokens.MULOP, "*"); break;
+                case '-': tok = new Token(Token.Tokens.ADDOP, "-"); break;
+                case '%': tok = new Token(Token.Tokens.MULOP, "%"); break;
+                case '(': tok = new Token(Token.Tokens.LPAREN); break;
+                case ')': tok = new Token(Token.Tokens.RPAREN); break;
+                case '{': tok = new Token(Token.Tokens.LCURLY); break;
+                case '}': tok = new Token(Token.Tokens.RCURLY); break;
+                case '[': tok = new Token(Token.Tokens.LBRACKET); break;
+                case ']': tok = new Token(Token.Tokens.RBRACKET); break;
+                case ',': tok = new Token(Token.Tokens.COMMA); break;
+                case ';': tok = new Token(Token.Tokens.SEMICOLON); break;
+                case ':': tok = new Token(Token.Tokens.COLON); break;
             }
+            charBuff = getChar();
         }
 
 
@@ -351,12 +360,20 @@ public class Tokenizer
 
     public List<String> getTokens()
     {
-        while(charBuff != '\0')
+        System.out.println("Changing input strings to tokens...");
+        do
         {
             String la = getToken().toString();
-            System.out.println(la);
-            tokens.add(la);
-        }
+            if(Globals.debugLevel == 1)
+            {
+                System.out.println("Token: " + la);
+            }
+            if(!la.equals(""))
+            {
+                tokens.add(la);
+            }
+
+        }while(charBuff != '\0');
         return tokens;
     }
 }

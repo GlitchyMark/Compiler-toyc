@@ -9,14 +9,14 @@ public class Token
         CONTINUE, BREAK, NEWLINE, ID, NUMBER, CHARLITERAL,
         STRING, RELOP, ADDOP, MULOP, ASSIGNOP,
         LPAREN, RPAREN, LCURLY, RCURLY, LBRACKET,
-        RBRACKET, COMMA, SEMICOLON, NOT, COLON, EOF, COMMENT
+        RBRACKET, COMMA, SEMICOLON, NOT, COLON, EOF, COMMENT, ERROR
     };
     Tokens tok;
     String lex;
 
     public Token()
     {
-        tok = Tokens.COMMENT;
+        tok = Tokens.ERROR;
     }
 
     public Token(Tokens tok)
@@ -29,6 +29,16 @@ public class Token
     {
         this.tok = tok;
         this.lex = lex;
+    }
+
+    public Tokens getTok()
+    {
+        return tok;
+    }
+
+    public String getLex()
+    {
+        return lex;
     }
 
     @Override
@@ -77,6 +87,7 @@ public class Token
                 case SWITCH: return "SWITCH";//done
                 case CASE: return "CASE";//done
                 case DEFAULT: return "DEFAULT";//done
+                case READ: return "READ";
                 case WRITE: return "WRITE";//done
                 case CONTINUE: return "CONTINUE";//done
                 case BREAK: return "BREAK";//done
@@ -94,7 +105,8 @@ public class Token
                 case COLON: return "COLON";
                 case EOF: return "EOF";//DONE
                 case COMMENT: return "";
-                default: return "error";
+                case ERROR: return "ERROR";
+                default: return "lexer error";
             }
         }
     }
