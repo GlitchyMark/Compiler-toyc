@@ -22,7 +22,7 @@ public class Token
     public Token(Tokens tok)
     {
         this.tok = tok;
-        lex = null;
+        lex = tok.toString();
     }
 
     public Token(Tokens tok, String lex)
@@ -91,7 +91,6 @@ public class Token
                 case WRITE: return "WRITE";//done
                 case CONTINUE: return "CONTINUE";//done
                 case BREAK: return "BREAK";//done
-                case NEWLINE: return "NEWLINE";//done
                 case ASSIGNOP: return "ASSIGNOP";//DONE
                 case LPAREN: return "LPAREN";
                 case RPAREN: return "RPAREN";
@@ -104,8 +103,10 @@ public class Token
                 case NOT: return "NOT";//DONE
                 case COLON: return "COLON";
                 case EOF: return "EOF";//DONE
-                case COMMENT: return "";
-                case ERROR: return "ERROR";
+                case NEWLINE:
+                case COMMENT:
+                case ERROR:
+                    return "";
                 default: return "lexer error";
             }
         }

@@ -11,6 +11,7 @@ public class Tokenizer
     List<String> tokens = new ArrayList<>();
     Integer currentListLoc = 0;
     Integer currentLineLoc = 0;
+    int position[] = {0, 0};
     char charBuff = ' ';
 
     public Tokenizer(List<String> preTokens)
@@ -43,6 +44,11 @@ public class Tokenizer
                 ||(ch=='+')||(ch=='-')||(ch=='*')||(ch=='/')||
                 (ch=='<')||(ch=='>')||(ch=='(')||(ch==')')||
                 (ch=='=')||(ch==';')||(ch==':'));
+    }
+
+    public void throwError(String id)
+    {
+
     }
 
     public Token getToken()
@@ -206,7 +212,7 @@ public class Tokenizer
                 charBuff = getChar();
                 if(charBuff != '\'')
                 {
-                    System.out.println("Thats not a character literal bro");
+                    System.out.println("That's not a character literal bro");
                     charBuff = getChar();
                     tok = new Token();
                 }
@@ -360,20 +366,23 @@ public class Tokenizer
 
     public List<String> getTokens()
     {
+        List<String> tkns = new ArrayList<String>();
         System.out.println("Changing input strings to tokens...");
+        Token t;
         do
         {
-            String la = getToken().toString();
-            if(Globals.debugLevel == 1)
+            t = getToken();
+            if(!t.toString().equals(""))
             {
-                System.out.println("Token: " + la);
-            }
-            if(!la.equals(""))
-            {
-                tokens.add(la);
+                String formattedTkn = "(<"+t.tok.toString()+">,\""+t.lex+"\")";
+                if(Globals.debugLevel <= 1)
+                    System.out.println("[SCANNER] " + formattedTkn);
+                tkns.add(formattedTkn);
             }
 
-        }while(charBuff != '\0');
-        return tokens;
+        }while(t.tok != Token.Tokens.EOF);
+        if(Globals.debugLevel <= 1)
+            System.out.println("[SCANNER] Total tokens: " + tkns.size());
+        return tkns;
     }
 }
