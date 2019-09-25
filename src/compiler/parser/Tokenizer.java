@@ -11,6 +11,7 @@ public class Tokenizer
     List<String> tokens = new ArrayList<>();
     Integer currentListLoc = 0;
     Integer currentLineLoc = 0;
+    Integer prevPosition[] = {0, 0};
     char charBuff = ' ';
 
     public Tokenizer(List<String> preTokens)
@@ -20,6 +21,8 @@ public class Tokenizer
 
     public char getChar()
     {
+        prevPosition[0] = currentListLoc;
+        prevPosition[1] = currentLineLoc;
         if(preTokens.get(currentListLoc).length() == currentLineLoc && ((preTokens.size() - 1) == currentListLoc))
         {
             return '\0';
@@ -47,7 +50,7 @@ public class Tokenizer
 
     public void throwError(String reason)
     {
-        System.out.println("Error: At Ln:" + (currentListLoc + 1) + " Col:" + currentLineLoc);
+        System.out.println("Error: At Ln:" + (prevPosition[0] + 1) + " Col:" + prevPosition[1]);
         System.out.println("Error: " + reason);
     }
 
