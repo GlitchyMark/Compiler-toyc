@@ -11,7 +11,6 @@ public class Tokenizer
     List<String> tokens = new ArrayList<>();
     Integer currentListLoc = 0;
     Integer currentLineLoc = 0;
-    int position[] = {0, 0};
     char charBuff = ' ';
 
     public Tokenizer(List<String> preTokens)
@@ -46,15 +45,16 @@ public class Tokenizer
                 (ch=='=')||(ch==';')||(ch==':'));
     }
 
-    public void throwError(String id)
+    public void throwError(String reason)
     {
-
+        System.out.println("Error: At Ln:" + (currentListLoc + 1) + " Col:" + currentLineLoc);
+        System.out.println("Error: " + reason);
     }
 
     public Token getToken()
     {
         String lex = "";
-        Token tok = null;
+        Token tok;
         while(Character.isWhitespace(charBuff) && (charBuff != '\0'))
         {
             if(charBuff == '\n')
@@ -178,7 +178,7 @@ public class Tokenizer
                 } while(charBuff != '\0');
                 if(charBuff == '\0')
                 {
-                    System.out.println("didn't finish your comment bro");
+                    throwError("Unfinished comment.");
                     tok = new Token();
                 }
                 else
@@ -202,7 +202,7 @@ public class Tokenizer
             }
             else if(charBuff == '\n')
             {
-                System.out.println("No newlines in character literals bro");
+                throwError("Newline in character literal");
                 charBuff = getChar();
                 tok = new Token();
             }
@@ -212,13 +212,13 @@ public class Tokenizer
                 charBuff = getChar();
                 if(charBuff != '\'')
                 {
-                    System.out.println("That's not a character literal bro");
+                    throwError("Incorrect character literal");
                     charBuff = getChar();
                     tok = new Token();
                 }
                 else if(charBuff =='\n')
                 {
-                    System.out.println("No newlines in character literals bro");
+                    throwError("Newline in character literal");
                     charBuff = getChar();
                     tok = new Token();
                 }
@@ -242,7 +242,7 @@ public class Tokenizer
             } while(charBuff != '\"' && charBuff != '\n');
             if(charBuff == '\n')
             {
-                System.out.println("No newlines in strings bro");
+                throwError("Newline before string closed");
                 charBuff = getChar();
                 tok = new Token();
             }
@@ -316,7 +316,7 @@ public class Tokenizer
             }
             else
             {
-                System.out.println("Can't use a single | bro");
+                throwError("Only one |");
                 tok = new Token();
             }
         }
@@ -333,7 +333,7 @@ public class Tokenizer
             }
             else
             {
-                System.out.println("Can't use a single & bro");
+                throwError("Only one &");
                 tok = new Token();
             }
         }
@@ -355,6 +355,9 @@ public class Tokenizer
                 case ',': tok = new Token(Token.Tokens.COMMA); break;
                 case ';': tok = new Token(Token.Tokens.SEMICOLON); break;
                 case ':': tok = new Token(Token.Tokens.COLON); break;
+                default:
+                    tok = new Token(Token.Tokens.ERROR);
+                    throwError("Unexpected character " + charBuff);
             }
             charBuff = getChar();
         }
@@ -367,7 +370,7 @@ public class Tokenizer
     public List<String> getTokens()
     {
         List<String> tkns = new ArrayList<String>();
-        System.out.println("Changing input strings to tokens...");
+        //System.out.println("Changing input strings to tokens...");
         Token t;
         do
         {
