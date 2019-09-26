@@ -184,7 +184,7 @@
     <!-- Perform any build initialization in this target -->
   </target>
 
-  <target name="run">
+  <target name="test">
           <java jar="build/jar/TC.jar" fork="true">
                 <arg value="${flags}"/>
                 <arg value="${source}"/>
