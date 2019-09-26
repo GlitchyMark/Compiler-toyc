@@ -6,10 +6,10 @@
   <property name="module.jdk.bin.compiler-temp" value="${project.jdk.bin}"/>
   <property name="module.jdk.classpath.compiler-temp" value="${project.jdk.classpath}"/>
   
-  <property name="compiler.args.compiler-temp" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  <property name="compiler.args.compiler-temp" value="-encoding UTF-8 -source 13 -target 13 ${compiler.args}"/>
   
-  <property name="compiler-temp.output.dir" value="${module.compiler-temp.basedir}/out/production/compiler-temp"/>
-  <property name="compiler-temp.testoutput.dir" value="${module.compiler-temp.basedir}/out/test/compiler-temp"/>
+  <property name="compiler-temp.output.dir" value="${module.compiler-temp.basedir}/out/production/Compiler-temp"/>
+  <property name="compiler-temp.testoutput.dir" value="${module.compiler-temp.basedir}/out/test/Compiler-temp"/>
   
   <path id="compiler-temp.module.bootclasspath">
     <!-- Paths to be included in compilation bootclasspath -->
@@ -49,9 +49,9 @@
   </path>
   
   
-  <target name="compile.module.compiler-temp" depends="compile.module.compiler-temp.production,compile.module.compiler-temp.tests" description="Compile module compiler-temp"/>
+  <target name="compile.module.compiler-temp" depends="compile.module.compiler-temp.production,compile.module.compiler-temp.tests" description="Compile module Compiler-temp"/>
   
-  <target name="compile.module.compiler-temp.production" depends="register.custom.compilers" description="Compile module compiler-temp; production classes">
+  <target name="compile.module.compiler-temp.production" depends="register.custom.compilers" description="Compile module Compiler-temp; production classes">
     <mkdir dir="${compiler-temp.output.dir}"/>
     <javac2 destdir="${compiler-temp.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.compiler-temp}/javac">
       <compilerarg line="${compiler.args.compiler-temp}"/>
@@ -69,7 +69,7 @@
     </copy>
   </target>
   
-  <target name="compile.module.compiler-temp.tests" depends="register.custom.compilers,compile.module.compiler-temp.production" description="compile module compiler-temp; test classes" unless="skip.tests"/>
+  <target name="compile.module.compiler-temp.tests" depends="register.custom.compilers,compile.module.compiler-temp.production" description="compile module Compiler-temp; test classes" unless="skip.tests"/>
   
   <target name="clean.module.compiler-temp" description="cleanup module">
     <delete dir="${compiler-temp.output.dir}"/>

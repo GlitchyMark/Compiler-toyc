@@ -51,12 +51,12 @@ public class FileManipulator
             //System.out.println("Enter in file inputFile of file to be compiled:");
             //filePath = scanner.next();
             filePath = System.getProperty("user.dir")+"\\tests\\"+filetoload;
-            System.out.println("Getting file: " + filePath);
+            //System.out.println("Getting file: " + filePath);
             try
             {
                 inputFile = Paths.get(filePath);
                 fileScan = new Scanner(inputFile);
-                System.out.println("Loaded file");
+                //System.out.println("Loaded file");
             }
             catch (IOException e)
             {
@@ -107,7 +107,7 @@ public class FileManipulator
             e.printStackTrace();
             System.out.println("Something went wrong while writing to the text file");
         }
-        System.out.println("Tokens successfully written to " + outputFile.toString());
+        //System.out.println("Tokens successfully written to " + outputFile.toString());
     }
 
     /**
