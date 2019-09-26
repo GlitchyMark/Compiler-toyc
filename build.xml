@@ -43,7 +43,7 @@
           description="execute the generated compiler (usage: -Dsource=myProgram [-Dflags=-v])" >
     <echo message="usage: -Dsource=myProgram [-Dflags=-v] (myProgram without .tc)" />
     <java fork="true" classname="${main-class}" classpath="${classpath.dir};${classes.dir}">
-      <arg line="${flags} tests/${source}.tc"/>
+      <arg line="${flags} ${source}.tc"/>
     </java>
   </target>
 
