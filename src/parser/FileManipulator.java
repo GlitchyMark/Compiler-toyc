@@ -1,4 +1,4 @@
-package compiler.parser;
+package parser;
 
 import java.io.IOException;
 
@@ -13,6 +13,8 @@ import java.util.Optional;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import compiler.Globals;
 
 public class FileManipulator
 {

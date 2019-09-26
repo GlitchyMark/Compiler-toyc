@@ -1,4 +1,6 @@
-package compiler.parser;
+package parser;
+
+import compiler.Globals;
 
 public class Token
 {

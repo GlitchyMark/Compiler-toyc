@@ -1,13 +1,14 @@
-package compiler;
+package parser;
 
-import compiler.parser.FileManipulator;
-import compiler.parser.Tokenizer;
+import parser.FileManipulator;
+import parser.Tokenizer;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import compiler.Globals;
 
-public class Main
+public class tc
 {
     public static void main(String[] args)
     {

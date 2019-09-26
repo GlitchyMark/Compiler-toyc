@@ -34,13 +34,11 @@
   <patternset id="library.patterns">
     <include name="*.war"/>
     <include name="*.swc"/>
-    <include name="*.apk"/>
     <include name="*.zip"/>
     <include name="*.egg"/>
     <include name="*.ane"/>
     <include name="*.jar"/>
     <include name="*.ear"/>
-    <include name="*.klib"/>
   </patternset>
   <patternset id="compiler.resources">
     <exclude name="**/?*.java"/>
@@ -56,38 +54,17 @@
   
   <!-- JDK definitions -->
   
-  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
-  <path id="jdk.classpath.1.8">
-    <fileset dir="${jdk.home.1.8}">
-      <include name="jre/lib/charsets.jar"/>
-      <include name="jre/lib/deploy.jar"/>
-      <include name="jre/lib/ext/access-bridge-64.jar"/>
-      <include name="jre/lib/ext/cldrdata.jar"/>
-      <include name="jre/lib/ext/dnsns.jar"/>
-      <include name="jre/lib/ext/jaccess.jar"/>
-      <include name="jre/lib/ext/jfxrt.jar"/>
-      <include name="jre/lib/ext/localedata.jar"/>
-      <include name="jre/lib/ext/nashorn.jar"/>
-      <include name="jre/lib/ext/sunec.jar"/>
-      <include name="jre/lib/ext/sunjce_provider.jar"/>
-      <include name="jre/lib/ext/sunmscapi.jar"/>
-      <include name="jre/lib/ext/sunpkcs11.jar"/>
-      <include name="jre/lib/ext/zipfs.jar"/>
-      <include name="jre/lib/javaws.jar"/>
-      <include name="jre/lib/jce.jar"/>
-      <include name="jre/lib/jfr.jar"/>
-      <include name="jre/lib/jfxswt.jar"/>
-      <include name="jre/lib/jsse.jar"/>
-      <include name="jre/lib/management-agent.jar"/>
-      <include name="jre/lib/plugin.jar"/>
-      <include name="jre/lib/resources.jar"/>
-      <include name="jre/lib/rt.jar"/>
+  <property name="jdk.bin.android_api_27_platform" value="${jdk.home.android_api_27_platform}/../../../../../../Program Files/Java/jdk1.8.0_162/bin"/>
+  <path id="jdk.classpath.android_api_27_platform">
+    <fileset dir="${jdk.home.android_api_27_platform}">
+      <include name="platforms/android-27/android.jar"/>
+      <include name="platforms/android-27/data/res"/>
     </fileset>
   </path>
   
-  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
-  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
-  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  <property name="project.jdk.home" value="${jdk.home.android_api_27_platform}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.android_api_27_platform}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.android_api_27_platform"/>
   <!-- Register Custom Compiler Taskdefs -->
   <property name="javac2.home" value="${idea.home}/lib"/>
   <path id="javac2.classpath">
@@ -105,85 +82,7 @@
   
   <!-- Modules -->
   
-  
-  <!-- Module compiler-temp -->
-  
-  <dirname property="module.compiler-temp.basedir" file="${ant.file}"/>
-  
-  
-  <property name="module.jdk.home.compiler-temp" value="${project.jdk.home}"/>
-  <property name="module.jdk.bin.compiler-temp" value="${project.jdk.bin}"/>
-  <property name="module.jdk.classpath.compiler-temp" value="${project.jdk.classpath}"/>
-  
-  <property name="compiler.args.compiler-temp" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
-  
-  <property name="compiler-temp.output.dir" value="${module.compiler-temp.basedir}/out/production/compiler-temp"/>
-  <property name="compiler-temp.testoutput.dir" value="${module.compiler-temp.basedir}/out/test/compiler-temp"/>
-  
-  <path id="compiler-temp.module.bootclasspath">
-    <!-- Paths to be included in compilation bootclasspath -->
-  </path>
-  
-  <path id="compiler-temp.module.production.classpath">
-    <path refid="${module.jdk.classpath.compiler-temp}"/>
-  </path>
-  
-  <path id="compiler-temp.runtime.production.module.classpath">
-    <pathelement location="${compiler-temp.output.dir}"/>
-  </path>
-  
-  <path id="compiler-temp.module.classpath">
-    <path refid="${module.jdk.classpath.compiler-temp}"/>
-    <pathelement location="${compiler-temp.output.dir}"/>
-  </path>
-  
-  <path id="compiler-temp.runtime.module.classpath">
-    <pathelement location="${compiler-temp.testoutput.dir}"/>
-    <pathelement location="${compiler-temp.output.dir}"/>
-  </path>
-  
-  
-  <patternset id="excluded.from.module.compiler-temp">
-    <patternset refid="ignored.files"/>
-  </patternset>
-  
-  <patternset id="excluded.from.compilation.compiler-temp">
-    <patternset refid="excluded.from.module.compiler-temp"/>
-  </patternset>
-  
-  <path id="compiler-temp.module.sourcepath">
-    <dirset dir="${module.compiler-temp.basedir}">
-      <include name="src"/>
-    </dirset>
-  </path>
-  
-  
-  <target name="compile.module.compiler-temp" depends="compile.module.compiler-temp.production,compile.module.compiler-temp.tests" description="Compile module compiler-temp"/>
-  
-  <target name="compile.module.compiler-temp.production" depends="register.custom.compilers" description="Compile module compiler-temp; production classes">
-    <mkdir dir="${compiler-temp.output.dir}"/>
-    <javac2 destdir="${compiler-temp.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.compiler-temp}/javac">
-      <compilerarg line="${compiler.args.compiler-temp}"/>
-      <bootclasspath refid="compiler-temp.module.bootclasspath"/>
-      <classpath refid="compiler-temp.module.production.classpath"/>
-      <src refid="compiler-temp.module.sourcepath"/>
-      <patternset refid="excluded.from.compilation.compiler-temp"/>
-    </javac2>
-    
-    <copy todir="${compiler-temp.output.dir}">
-      <fileset dir="${module.compiler-temp.basedir}/src">
-        <patternset refid="compiler.resources"/>
-        <type type="file"/>
-      </fileset>
-    </copy>
-  </target>
-  
-  <target name="compile.module.compiler-temp.tests" depends="register.custom.compilers,compile.module.compiler-temp.production" description="compile module compiler-temp; test classes" unless="skip.tests"/>
-  
-  <target name="clean.module.compiler-temp" description="cleanup module">
-    <delete dir="${compiler-temp.output.dir}"/>
-    <delete dir="${compiler-temp.testoutput.dir}"/>
-  </target>
+  <import file="${basedir}/.idea/module_compiler-temp.xml"/>
   
   <target name="init" description="Build initialization">
     <!-- Perform any build initialization in this target -->
