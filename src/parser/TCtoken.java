@@ -161,7 +161,7 @@ public class TCtoken
                 do
                 {
                     charBuff = getChar();
-                } while(charBuff != '\n');
+                } while(charBuff != '\n' && charBuff != '\0');
                 tok = new TCscanner(TCscanner.Tokens.COMMENT);
             }
             else if(charBuff == '*')
