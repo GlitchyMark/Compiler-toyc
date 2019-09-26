@@ -1,6 +1,6 @@
 package compiler;
 
-public class Globals
+public class TCGlobals
 {
     public static int debugLevel = 5;
     public static String loadFilename;

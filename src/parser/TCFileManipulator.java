@@ -14,9 +14,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import compiler.Globals;
-
-public class FileManipulator
+public class TCFileManipulator
 {
     Scanner scanner = new Scanner(System.in);
     Scanner fileScan = null;
@@ -39,7 +37,7 @@ public class FileManipulator
     //used for loop control when invalid inputFile exists
     boolean invalidPath;
 
-    public FileManipulator()
+    public TCFileManipulator()
     {
 
     }

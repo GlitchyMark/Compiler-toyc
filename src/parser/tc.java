@@ -1,12 +1,9 @@
 package parser;
 
-import parser.FileManipulator;
-import parser.Tokenizer;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import compiler.Globals;
+import compiler.TCGlobals;
 
 public class tc
 {
@@ -14,12 +11,12 @@ public class tc
     {
 
         handleArgs(args);
-        FileManipulator fileMan = new FileManipulator();
-        fileMan.initFileScanner(Globals.loadFilename);
+        TCFileManipulator fileMan = new TCFileManipulator();
+        fileMan.initFileScanner(TCGlobals.loadFilename);
         List<String> words = fileMan.getListOfTokensWhitespaceDelimited();
         List<String> lmaoWords = new ArrayList<>();
 
-        Tokenizer testin = new Tokenizer(words);
+        TCtoken testin = new TCtoken(words);
 
         fileMan.writeListOfTokens(testin.getTokens(), Optional.empty());
     }
@@ -32,7 +29,7 @@ public class tc
             printUsage();
             System.exit(0);
         }
-        Globals.loadFilename = args[args.length - 1];
+        TCGlobals.loadFilename = args[args.length - 1];
         if(args.length > 1)
         switch(args[0].toLowerCase())
         {
@@ -41,12 +38,12 @@ public class tc
                 return;
             case "-v":
             case "-verbose":
-                Globals.debugLevel = 0;
+                TCGlobals.debugLevel = 0;
                 return;
             case "-debug":
                 try
                 {
-                    Globals.debugLevel = Integer.parseInt(args[1]);
+                    TCGlobals.debugLevel = Integer.parseInt(args[1]);
                 } catch (NumberFormatException | NullPointerException | IndexOutOfBoundsException ex) {
                     System.out.println("Debug level number invalid.");
                     printUsage();

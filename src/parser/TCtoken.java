@@ -1,11 +1,11 @@
 package parser;
 
-import compiler.Globals;
+import compiler.TCGlobals;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tokenizer
+public class TCtoken
 {
     List<String> preTokens;
     List<String> tokens = new ArrayList<>();
@@ -14,7 +14,7 @@ public class Tokenizer
     Integer prevPosition[] = {0, 0};
     char charBuff = ' ';
 
-    public Tokenizer(List<String> preTokens)
+    public TCtoken(List<String> preTokens)
     {
         this.preTokens = preTokens;
     }
@@ -54,10 +54,10 @@ public class Tokenizer
         System.out.println("[SCANNER] Error: " + reason);
     }
 
-    public Token getToken()
+    public TCscanner getToken()
     {
         String lex = "";
-        Token tok;
+        TCscanner tok;
         while(Character.isWhitespace(charBuff) && (charBuff != '\0'))
         {
             if(charBuff == '\n')
@@ -76,22 +76,22 @@ public class Tokenizer
 
             switch(lex)
             {
-                case "int": return new Token(Token.Tokens.INT);
-                case "char": tok = new Token(Token.Tokens.CHAR); break;
-                case "return": tok = new Token(Token.Tokens.RETURN); break;
-                case "if": tok = new Token(Token.Tokens.IF); break;
-                case "else": tok = new Token(Token.Tokens.ELSE); break;
-                case "for": tok = new Token(Token.Tokens.FOR); break;
-                case "do": tok = new Token(Token.Tokens.DO); break;
-                case "while": tok = new Token(Token.Tokens.WHILE); break;
-                case "switch": tok = new Token(Token.Tokens.SWITCH); break;
-                case "case": tok = new Token(Token.Tokens.CASE); break;
-                case "default": tok = new Token(Token.Tokens.DEFAULT); break;
-                case "write": tok = new Token(Token.Tokens.WRITE); break;
-                case "read": tok = new Token(Token.Tokens.READ); break;
-                case "continue": tok = new Token(Token.Tokens.CONTINUE); break;
-                case "break": tok = new Token(Token.Tokens.BREAK); break;
-                default: tok = new Token(Token.Tokens.ID, lex);
+                case "int": return new TCscanner(TCscanner.Tokens.INT);
+                case "char": tok = new TCscanner(TCscanner.Tokens.CHAR); break;
+                case "return": tok = new TCscanner(TCscanner.Tokens.RETURN); break;
+                case "if": tok = new TCscanner(TCscanner.Tokens.IF); break;
+                case "else": tok = new TCscanner(TCscanner.Tokens.ELSE); break;
+                case "for": tok = new TCscanner(TCscanner.Tokens.FOR); break;
+                case "do": tok = new TCscanner(TCscanner.Tokens.DO); break;
+                case "while": tok = new TCscanner(TCscanner.Tokens.WHILE); break;
+                case "switch": tok = new TCscanner(TCscanner.Tokens.SWITCH); break;
+                case "case": tok = new TCscanner(TCscanner.Tokens.CASE); break;
+                case "default": tok = new TCscanner(TCscanner.Tokens.DEFAULT); break;
+                case "write": tok = new TCscanner(TCscanner.Tokens.WRITE); break;
+                case "read": tok = new TCscanner(TCscanner.Tokens.READ); break;
+                case "continue": tok = new TCscanner(TCscanner.Tokens.CONTINUE); break;
+                case "break": tok = new TCscanner(TCscanner.Tokens.BREAK); break;
+                default: tok = new TCscanner(TCscanner.Tokens.ID, lex);
             }
         }
 
@@ -134,7 +134,7 @@ public class Tokenizer
                     charBuff = getChar();
                 }
             }
-            tok = new Token(Token.Tokens.NUMBER, lex);
+            tok = new TCscanner(TCscanner.Tokens.NUMBER, lex);
         }
 
         else if(charBuff == '=')
@@ -145,11 +145,11 @@ public class Tokenizer
             {
                 lex += charBuff;
                 charBuff = getChar();
-                tok = new Token(Token.Tokens.RELOP, lex);
+                tok = new TCscanner(TCscanner.Tokens.RELOP, lex);
             }
             else
             {
-                tok = new Token(Token.Tokens.ASSIGNOP);
+                tok = new TCscanner(TCscanner.Tokens.ASSIGNOP);
             }
         }
 
@@ -162,7 +162,7 @@ public class Tokenizer
                 {
                     charBuff = getChar();
                 } while(charBuff != '\n');
-                tok = new Token(Token.Tokens.COMMENT);
+                tok = new TCscanner(TCscanner.Tokens.COMMENT);
             }
             else if(charBuff == '*')
             {
@@ -182,16 +182,16 @@ public class Tokenizer
                 if(charBuff == '\0')
                 {
                     throwError("Unfinished comment.");
-                    tok = new Token();
+                    tok = new TCscanner();
                 }
                 else
                 {
-                    tok = new Token(Token.Tokens.COMMENT);
+                    tok = new TCscanner(TCscanner.Tokens.COMMENT);
                 }
             }
             else
             {
-                tok = new Token(Token.Tokens.MULOP, "/");
+                tok = new TCscanner(TCscanner.Tokens.MULOP, "/");
             }
         }
 
@@ -200,14 +200,14 @@ public class Tokenizer
             charBuff = getChar();
             if(charBuff == '\'')
             {
-                tok = new Token(Token.Tokens.CHARLITERAL, "");
+                tok = new TCscanner(TCscanner.Tokens.CHARLITERAL, "");
                 charBuff = getChar();
             }
             else if(charBuff == '\n')
             {
                 throwError("Newline in character literal");
                 charBuff = getChar();
-                tok = new Token();
+                tok = new TCscanner();
             }
             else
             {
@@ -217,17 +217,17 @@ public class Tokenizer
                 {
                     throwError("Incorrect character literal");
                     charBuff = getChar();
-                    tok = new Token();
+                    tok = new TCscanner();
                 }
                 else if(charBuff =='\n')
                 {
                     throwError("Newline in character literal");
                     charBuff = getChar();
-                    tok = new Token();
+                    tok = new TCscanner();
                 }
                 else
                 {
-                    tok = new Token(Token.Tokens.CHARLITERAL, lex);
+                    tok = new TCscanner(TCscanner.Tokens.CHARLITERAL, lex);
                     charBuff = getChar();
                 }
             }
@@ -247,11 +247,11 @@ public class Tokenizer
             {
                 throwError("Newline before string closed");
                 charBuff = getChar();
-                tok = new Token();
+                tok = new TCscanner();
             }
             else
             {
-                tok = new Token(Token.Tokens.STRING, lex);
+                tok = new TCscanner(TCscanner.Tokens.STRING, lex);
                 charBuff = getChar();
             }
         }
@@ -264,11 +264,11 @@ public class Tokenizer
             {
                 lex += charBuff;
                 charBuff = getChar();
-                tok = new Token(Token.Tokens.RELOP, lex);
+                tok = new TCscanner(TCscanner.Tokens.RELOP, lex);
             }
             else
             {
-                tok = new Token(Token.Tokens.NOT);
+                tok = new TCscanner(TCscanner.Tokens.NOT);
             }
         }
 
@@ -281,7 +281,7 @@ public class Tokenizer
                 lex+= charBuff;
             }
             charBuff = getChar();
-            tok = new Token(Token.Tokens.RELOP, lex);
+            tok = new TCscanner(TCscanner.Tokens.RELOP, lex);
         }
 
         else if(charBuff == '>')
@@ -293,18 +293,18 @@ public class Tokenizer
                 lex+= charBuff;
             }
             charBuff = getChar();
-            tok = new Token(Token.Tokens.RELOP, lex);
+            tok = new TCscanner(TCscanner.Tokens.RELOP, lex);
         }
 
         else if(charBuff == '\n')
         {
             charBuff = getChar();
-            tok = new Token(Token.Tokens.NEWLINE);
+            tok = new TCscanner(TCscanner.Tokens.NEWLINE);
         }
 
         else if(charBuff == '\0')
         {
-            tok = new Token(Token.Tokens.EOF);
+            tok = new TCscanner(TCscanner.Tokens.EOF);
         }
 
         else if(charBuff == '|')
@@ -315,12 +315,12 @@ public class Tokenizer
             {
                 lex += charBuff;
                 charBuff = getChar();
-                tok = new Token(Token.Tokens.ADDOP, lex);
+                tok = new TCscanner(TCscanner.Tokens.ADDOP, lex);
             }
             else
             {
                 throwError("Only one |");
-                tok = new Token();
+                tok = new TCscanner();
             }
         }
 
@@ -332,12 +332,12 @@ public class Tokenizer
             {
                 lex += charBuff;
                 charBuff = getChar();
-                tok = new Token(Token.Tokens.MULOP, lex);
+                tok = new TCscanner(TCscanner.Tokens.MULOP, lex);
             }
             else
             {
                 throwError("Only one &");
-                tok = new Token();
+                tok = new TCscanner();
             }
         }
 
@@ -345,21 +345,21 @@ public class Tokenizer
         {
             switch(charBuff)
             {
-                case '+': tok = new Token(Token.Tokens.ADDOP, "+"); break;
-                case '*': tok = new Token(Token.Tokens.MULOP, "*"); break;
-                case '-': tok = new Token(Token.Tokens.ADDOP, "-"); break;
-                case '%': tok = new Token(Token.Tokens.MULOP, "%"); break;
-                case '(': tok = new Token(Token.Tokens.LPAREN); break;
-                case ')': tok = new Token(Token.Tokens.RPAREN); break;
-                case '{': tok = new Token(Token.Tokens.LCURLY); break;
-                case '}': tok = new Token(Token.Tokens.RCURLY); break;
-                case '[': tok = new Token(Token.Tokens.LBRACKET); break;
-                case ']': tok = new Token(Token.Tokens.RBRACKET); break;
-                case ',': tok = new Token(Token.Tokens.COMMA); break;
-                case ';': tok = new Token(Token.Tokens.SEMICOLON); break;
-                case ':': tok = new Token(Token.Tokens.COLON); break;
+                case '+': tok = new TCscanner(TCscanner.Tokens.ADDOP, "+"); break;
+                case '*': tok = new TCscanner(TCscanner.Tokens.MULOP, "*"); break;
+                case '-': tok = new TCscanner(TCscanner.Tokens.ADDOP, "-"); break;
+                case '%': tok = new TCscanner(TCscanner.Tokens.MULOP, "%"); break;
+                case '(': tok = new TCscanner(TCscanner.Tokens.LPAREN); break;
+                case ')': tok = new TCscanner(TCscanner.Tokens.RPAREN); break;
+                case '{': tok = new TCscanner(TCscanner.Tokens.LCURLY); break;
+                case '}': tok = new TCscanner(TCscanner.Tokens.RCURLY); break;
+                case '[': tok = new TCscanner(TCscanner.Tokens.LBRACKET); break;
+                case ']': tok = new TCscanner(TCscanner.Tokens.RBRACKET); break;
+                case ',': tok = new TCscanner(TCscanner.Tokens.COMMA); break;
+                case ';': tok = new TCscanner(TCscanner.Tokens.SEMICOLON); break;
+                case ':': tok = new TCscanner(TCscanner.Tokens.COLON); break;
                 default:
-                    tok = new Token(Token.Tokens.ERROR);
+                    tok = new TCscanner(TCscanner.Tokens.ERROR);
                     throwError("Unexpected character " + charBuff);
             }
             charBuff = getChar();
@@ -374,20 +374,20 @@ public class Tokenizer
     {
         List<String> tkns = new ArrayList<String>();
         //System.out.println("Changing input strings to tokens...");
-        Token t;
+        TCscanner t;
         do
         {
             t = getToken();
             if(!t.toString().equals(""))
             {
                 String formattedTkn = "(<"+t.tok.toString()+">,\""+t.lex+"\")";
-                if(Globals.debugLevel <= 1)
+                if(TCGlobals.debugLevel <= 1)
                     System.out.println("[SCANNER] " + formattedTkn);
                 tkns.add(formattedTkn);
             }
 
-        }while(t.tok != Token.Tokens.EOF);
-        if(Globals.debugLevel <= 1)
+        }while(t.tok != TCscanner.Tokens.EOF);
+        if(TCGlobals.debugLevel <= 1)
             System.out.println("[SCANNER] Total tokens: " + tkns.size());
         return tkns;
     }

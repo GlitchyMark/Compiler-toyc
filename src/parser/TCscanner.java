@@ -1,8 +1,6 @@
 package parser;
 
-import compiler.Globals;
-
-public class Token
+public class TCscanner
 {
     public static enum Tokens
     {
@@ -16,18 +14,18 @@ public class Token
     Tokens tok;
     String lex;
 
-    public Token()
+    public TCscanner()
     {
         tok = Tokens.ERROR;
     }
 
-    public Token(Tokens tok)
+    public TCscanner(Tokens tok)
     {
         this.tok = tok;
         lex = tok.toString();
     }
 
-    public Token(Tokens tok, String lex)
+    public TCscanner(Tokens tok, String lex)
     {
         this.tok = tok;
         this.lex = lex;
