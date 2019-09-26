@@ -38,6 +38,7 @@ public class Main
             case "-help":
                 printUsage();
                 return;
+            case "-v":
             case "-verbose":
                 Globals.debugLevel = 0;
                 return;
