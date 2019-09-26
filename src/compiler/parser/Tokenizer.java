@@ -50,8 +50,8 @@ public class Tokenizer
 
     public void throwError(String reason)
     {
-        System.out.println("Error: At Ln:" + (prevPosition[0] + 1) + " Col:" + prevPosition[1]);
-        System.out.println("Error: " + reason);
+        System.out.println("[SCANNER] Error: At Ln:" + (prevPosition[0] + 1) + " Col:" + prevPosition[1]);
+        System.out.println("[SCANNER] Error: " + reason);
     }
 
     public Token getToken()
