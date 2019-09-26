@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="compiler-temp" default="all">
+<project name="compiler-temp" default="jar">
 
 
   <property file="compiler-temp.properties"/>
@@ -91,19 +91,6 @@
   <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
   <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
   <!-- Register Custom Compiler Taskdefs -->
-  <property name="javac2.home" value="${idea.home}/lib"/>
-  <path id="javac2.classpath">
-    <fileset dir="${javac2.home}">
-      <include name="javac2.jar"/>
-      <include name="jdom.jar"/>
-      <include name="asm-all*.jar"/>
-      <include name="forms-*.jar"/>
-    </fileset>
-  </path>
-  <target name="register.custom.compilers">
-    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
-    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
-  </target>
 
   <!-- Modules -->
 
@@ -159,18 +146,15 @@
     </dirset>
   </path>
 
-
-  <target name="compile.module.compiler-temp" depends="compile.module.compiler-temp.production,compile.module.compiler-temp.tests" description="Compile module compiler-temp"/>
-
-  <target name="compile.module.compiler-temp.production" depends="register.custom.compilers" description="Compile module compiler-temp; production classes">
+  <target name="compile.module.compiler-temp.production" description="Compile module compiler-temp; production classes">
     <mkdir dir="${compiler-temp.output.dir}"/>
-    <javac2 destdir="${compiler-temp.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.compiler-temp}/javac">
+    <javac destdir="${compiler-temp.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.compiler-temp}/javac">
       <compilerarg line="${compiler.args.compiler-temp}"/>
       <bootclasspath refid="compiler-temp.module.bootclasspath"/>
       <classpath refid="compiler-temp.module.production.classpath"/>
       <src refid="compiler-temp.module.sourcepath"/>
       <patternset refid="excluded.from.compilation.compiler-temp"/>
-    </javac2>
+    </javac>
 
     <copy todir="${compiler-temp.output.dir}">
       <fileset dir="${module.compiler-temp.basedir}/src">
@@ -179,8 +163,6 @@
       </fileset>
     </copy>
   </target>
-
-  <target name="compile.module.compiler-temp.tests" depends="register.custom.compilers,compile.module.compiler-temp.production" description="compile module compiler-temp; test classes" unless="skip.tests"/>
 
   <target name="jar">
           <mkdir dir="build/jar"/>
@@ -196,6 +178,8 @@
     <delete dir="${compiler-temp.testoutput.dir}"/>
   </target>
 
+  <target name="compile" depends="compile.module.compiler-temp.production"/>
+
   <target name="init" description="Build initialization">
     <!-- Perform any build initialization in this target -->
   </target>
@@ -209,9 +193,4 @@
 
   <target name="clean" depends="clean.module.compiler-temp" description="cleanup all"/>
 
-  <target name="test" depends="compile.module.compiler-temp.tests" description="run it"/>
-
-  <target name="build.modules" depends="init, clean, compile.module.compiler-temp" description="build all modules"/>
-
-  <target name="all" depends="build.modules" description="build all"/>
 </project>
