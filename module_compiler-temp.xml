@@ -69,7 +69,6 @@
     </copy>
   </target>
   
-  <target name="compile.module.compiler-temp.tests" depends="register.custom.compilers,compile.module.compiler-temp.production" description="compile module compiler-temp; test classes" unless="skip.tests"/>
   
   <target name="clean.module.compiler-temp" description="cleanup module">
     <delete dir="${compiler-temp.output.dir}"/>
