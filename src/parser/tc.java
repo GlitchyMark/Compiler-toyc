@@ -1,6 +1,5 @@
 package parser;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import compiler.TCGlobals;
@@ -14,7 +13,6 @@ public class tc
         TCFileManipulator fileMan = new TCFileManipulator();
         fileMan.initFileScanner(TCGlobals.loadFilename);
         List<String> words = fileMan.getListOfTokensWhitespaceDelimited();
-        List<String> lmaoWords = new ArrayList<>();
 
         TCtoken testin = new TCtoken(words);
 
@@ -66,7 +64,8 @@ public class tc
                 "compilation process. If level is:\n" +
                 "0 - all messages\n" +
                 "1 - scanner messages only\n" +
-                "-verbose display all information\n");
+                "-verbose display all information\n" +
+                "Note: path to toyc_source_file is already created in tests/");
     }
 
 
