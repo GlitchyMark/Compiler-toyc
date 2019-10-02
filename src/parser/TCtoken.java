@@ -91,6 +91,7 @@ public class TCtoken
                 case "read": tok = new TCscanner(TCscanner.Tokens.READ); break;
                 case "continue": tok = new TCscanner(TCscanner.Tokens.CONTINUE); break;
                 case "break": tok = new TCscanner(TCscanner.Tokens.BREAK); break;
+                case "newline": tok = new TCscanner(TCscanner.Tokens.NEWLINE); break;
                 default: tok = new TCscanner(TCscanner.Tokens.ID, lex);
             }
         }
