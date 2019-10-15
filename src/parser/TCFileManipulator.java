@@ -1,5 +1,9 @@
+/*EGRE 591 -- Compiler Construction
+ *By Mark Johnston and George Constantine
+ */
 package parser;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.nio.charset.StandardCharsets;
@@ -47,24 +51,27 @@ public class TCFileManipulator
      */
     public void initFileScanner(String filetoload)
     {
-            invalidPath = false;
-            //System.out.println("Enter in file inputFile of file to be compiled:");
-            //filePath = scanner.next();
-            filePath = System.getProperty("user.dir")+"\\tests\\"+filetoload;
-            //System.out.println("Getting file: " + filePath);
-            try
-            {
-                inputFile = Paths.get(filePath);
-                fileScan = new Scanner(inputFile);
-                //System.out.println("Loaded file");
-            }
-            catch (IOException e)
-            {
-                System.out.println("ERROR: File not found");
-                System.out.println(e.getMessage());
-                System.exit(1);
-                invalidPath = true;
-            }
+        invalidPath = false;
+        //System.out.println("Enter in file inputFile of file to be compiled:");
+        //filePath = scanner.next();
+        //filePath = System.getProperty("user.dir")+"\\tests\\"+filetoload;
+        filePath = filetoload;
+        if(!(new File(filetoload)).exists())
+            filePath = Paths.get(System.getProperty("user.dir"),"tests", filetoload).toString();
+        System.out.println("Getting file: " + filePath);
+        try
+        {
+            inputFile = Paths.get(filePath);
+            fileScan = new Scanner(inputFile);
+            //System.out.println("Loaded file");
+        }
+        catch (IOException e)
+        {
+            System.out.println("ERROR: File not found");
+            System.out.println(e.getMessage());
+            System.exit(1);
+            invalidPath = true;
+        }
     }
 
     public List<String> getListOfTokensWhitespaceDelimited()
