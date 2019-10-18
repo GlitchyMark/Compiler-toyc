@@ -375,9 +375,10 @@ public class TCtoken
         return tok;
     }
 
-    public List<String> getTokens()
+    public TokenListWrapper getTokens()
     {
         List<String> tkns = new ArrayList<String>();
+        List<TCscanner> tokens = new ArrayList<>();
         //System.out.println("Changing input strings to tokens...");
         TCscanner t;
         do
@@ -389,11 +390,13 @@ public class TCtoken
                 if(TCGlobals.debugLevel <= 1)
                     System.out.println("[SCANNER] " + formattedTkn);
                 tkns.add(formattedTkn);
+                tokens.add(t);
             }
 
         }while(t.tok != TCscanner.Tokens.EOF);
         if(TCGlobals.debugLevel <= 1)
             System.out.println("[SCANNER] Total tokens: " + tkns.size());
-        return tkns;
+        TokenListWrapper tk = new TokenListWrapper(tkns, tokens);
+        return tk;
     }
 }

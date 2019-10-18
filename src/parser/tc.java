@@ -18,8 +18,10 @@ public class tc
         List<String> words = fileMan.getListOfTokensWhitespaceDelimited();
 
         TCtoken testin = new TCtoken(words);
+        TCparser parse = new TCparser(testin.getTokens().getTokenList());
+        parse.toyCProgram();
 
-        fileMan.writeListOfTokens(testin.getTokens(), Optional.empty());
+        fileMan.writeListOfTokens(testin.getTokens().getStringList(), Optional.empty());
     }
 
     private static void handleArgs(String[] args)

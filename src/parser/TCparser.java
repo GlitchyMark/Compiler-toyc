@@ -1,4 +1,4 @@
-package compiler;
+package parser;
 
 import parser.TCscanner;
 
@@ -15,6 +15,8 @@ public class TCparser
     {
         this.tokens = tokens;
          tok = tokens.get(0);
+         //just there for last getNextToken call, ensures no out of bounds shit
+         tokens.add(null);
     }
 
     public  TCscanner getNextToken()
@@ -164,6 +166,8 @@ public class TCparser
 
         if(tok.getTok().equals(TCscanner.Tokens.RPAREN))
         {
+            //consume rparen
+            getNextToken();
             return;
         }
         else
@@ -270,50 +274,61 @@ public class TCparser
 
         while(tokStatementCheck())
         {
-            if(tok.getTok().equals(TCscanner.Tokens.BREAK))
-            {
-                //breakStatement call here
-            }
-            else if(tok.getTok().equals(TCscanner.Tokens.ID))
-            {
-                expressionStatement();
-            }
-            else if(tok.getTok().equals(TCscanner.Tokens.LCURLY) )
-            {
-                //compound statement call here
-            }
-            else if(tok.getTok().equals(TCscanner.Tokens.IF))
-            {
-                //if statement call here
-            }
-            else if(tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
-            {
-                //null statement call here
-            }
-            else if(tok.getTok().equals(TCscanner.Tokens.RETURN))
-            {
-                //returnStatement call here
-            }
-            else if(tok.getTok().equals(TCscanner.Tokens.WHILE))
-            {
-                //whileStatement call here
-            }
-            else if(tok.getTok().equals(TCscanner.Tokens.READ))
-            {
-                //read statemnet call here
-            }
-            else if(tok.getTok().equals(TCscanner.Tokens.WRITE))
-            {
-                //write statement call here
-            }
-            else if(tok.getTok().equals(TCscanner.Tokens.NEWLINE))
-            {
-                //newline statemnet call here
-            }
-            else
-            {
-                logError();
-            }
+            statement();
+        }
+
+        if(tok.getTok().equals(TCscanner.Tokens.RCURLY))
+        {
+            //consume r curly
+            getNextToken();
+        }
+    }
+
+    public void statement()
+    {
+        if(tok.getTok().equals(TCscanner.Tokens.BREAK))
+        {
+            breakStatement();
+        }
+        else if(tok.getTok().equals(TCscanner.Tokens.ID))
+        {
+            expressionStatement();
+        }
+        else if(tok.getTok().equals(TCscanner.Tokens.LCURLY) )
+        {
+            compoundStatement();
+        }
+        else if(tok.getTok().equals(TCscanner.Tokens.IF))
+        {
+            ifStatement();
+        }
+        else if(tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
+        {
+            nullStatement();
+        }
+        else if(tok.getTok().equals(TCscanner.Tokens.RETURN))
+        {
+            returnStatement();
+        }
+        else if(tok.getTok().equals(TCscanner.Tokens.WHILE))
+        {
+            whileStatement();
+        }
+        else if(tok.getTok().equals(TCscanner.Tokens.READ))
+        {
+            readStatement();
+        }
+        else if(tok.getTok().equals(TCscanner.Tokens.WRITE))
+        {
+            writeStatement();
+        }
+        else if(tok.getTok().equals(TCscanner.Tokens.NEWLINE))
+        {
+            newlineStatement();
+        }
+        else
+        {
+            logError();
         }
     }
 
@@ -455,7 +470,10 @@ public class TCparser
             //consumes identifier
             getNextToken();
             //TODO: finish this loose thread
-            //functioncall call here
+            if(tok.getTok().equals(TCscanner.Tokens.LPAREN))
+            {
+                functionCall();
+            }
         }
         else if(tok.getTok().equals(TCscanner.Tokens.NUMBER))
         {
@@ -510,11 +528,343 @@ public class TCparser
         {
             logError();
         }
-
     }
 
+    public void breakStatement()
+    {
+        if(tok.getTok().equals(TCscanner.Tokens.BREAK))
+        {
+            //consume break
+            getNextToken();
+        }
+        else
+        {
+            logError();
+        }
 
+        if(tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
+        {
+            //consume semicolon
+            getNextToken();
+        }
+        else
+        {
+            logError();
+        }
+        return;
+    }
 
+    public void ifStatement()
+    {
+        if(tok.getTok().equals(TCscanner.Tokens.IF))
+        {
+            //consume if
+            getNextToken();
+        }
+        else
+        {
+            logError();
+        }
+
+        if(tok.getTok().equals(TCscanner.Tokens.LPAREN))
+        {
+            //consume lparen
+            getNextToken();
+            expression();
+        }
+        else
+        {
+            logError();
+        }
+
+        if(tok.getTok().equals(TCscanner.Tokens.RPAREN))
+        {
+            //consume rparen
+            getNextToken();
+            statement();
+        }
+        else
+        {
+            logError();
+        }
+
+        if(tok.getTok().equals(TCscanner.Tokens.ELSE))
+        {
+            //consume else
+            getNextToken();
+            if(tokStatementCheck())
+            {
+                statement();
+            }
+        }
+        return;
+    }
+
+    public void nullStatement()
+    {
+        if(tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
+        {
+            //consume semicolon
+            getNextToken();
+        }
+        else
+        {
+            logError();
+        }
+    }
+
+    public void returnStatement()
+    {
+        if(tok.getTok().equals(TCscanner.Tokens.RETURN))
+        {
+            //consume return
+            getNextToken();
+        }
+        else
+        {
+            logError();
+        }
+
+        if(tokPrimaryCheck())
+        {
+            expression();
+        }
+        if (tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
+        {
+            //consume semicolon
+            getNextToken();
+            return;
+        }
+        else
+        {
+            logError();
+        }
+    }
+
+    public void whileStatement()
+    {
+        if(tok.getTok().equals(TCscanner.Tokens.WHILE))
+        {
+            //consume while
+            getNextToken();
+        }
+        else
+        {
+            logError();
+        }
+
+        if(tok.getTok().equals(TCscanner.Tokens.LPAREN))
+        {
+            //consume lparen
+            getNextToken();
+            expression();
+        }
+        else
+        {
+            logError();
+        }
+
+        if(tok.getTok().equals(TCscanner.Tokens.RPAREN))
+        {
+            //consume rparen
+            getNextToken();
+            statement();
+        }
+        else
+        {
+            logError();
+        }
+    }
+
+    public void readStatement()
+    {
+        if(tok.getTok().equals(TCscanner.Tokens.READ))
+        {
+            //consume read
+            getNextToken();
+        }
+        else
+        {
+            logError();
+        }
+
+        if(tok.getTok().equals(TCscanner.Tokens.LPAREN))
+        {
+            //consume lparen
+            getNextToken();
+        }
+        else
+        {
+            logError();
+        }
+
+        if(tok.getTok().equals(TCscanner.Tokens.ID))
+        {
+            //consume ID
+            getNextToken();
+            while(tok.getTok().equals(TCscanner.Tokens.COMMA))
+            {
+                //consume comma
+                getNextToken();
+                if(tok.getTok().equals(TCscanner.Tokens.ID))
+                {
+                    //consume ID
+                    getNextToken();
+                }
+                else
+                {
+                    logError();
+                }
+            }
+        }
+        else
+        {
+            logError();
+        }
+
+        if(tok.getTok().equals(TCscanner.Tokens.RPAREN))
+        {
+            //consume Rparen
+            getNextToken();
+        }
+        else
+        {
+            logError();
+        }
+
+        if(tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
+        {
+            //consume semicolon
+            getNextToken();
+        }
+        else
+        {
+            logError();
+        }
+    }
+
+    public void writeStatement()
+    {
+        if(tok.getTok().equals(TCscanner.Tokens.WRITE))
+        {
+            //consume write
+            getNextToken();
+        }
+        else
+        {
+            logError();
+        }
+
+        if(tok.getTok().equals(TCscanner.Tokens.LPAREN))
+        {
+            //consume lparen
+            getNextToken();
+            actualParameters();
+        }
+        else
+        {
+            logError();
+        }
+
+        if(tok.getTok().equals(TCscanner.Tokens.RPAREN))
+        {
+            //consume rparen
+            getNextToken();
+        }
+        else
+        {
+            logError();
+        }
+
+        if(tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
+        {
+            //consume semicolon
+            getNextToken();
+            return;
+        }
+        else
+        {
+            logError();
+        }
+    }
+
+    public void newlineStatement()
+    {
+        if(tok.getTok().equals(TCscanner.Tokens.NEWLINE))
+        {
+            //consume new line
+            getNextToken();
+        }
+        else
+        {
+            logError();
+        }
+
+        if(tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
+        {
+            //consume semicolion
+            getNextToken();
+            return;
+        }
+        else
+        {
+            logError();
+        }
+    }
+
+    public void actualParameters()
+    {
+        if(tokPrimaryCheck())
+        {
+            expression();
+            while(tok.getTok().equals(TCscanner.Tokens.COMMA))
+            {
+                //consume comma
+                getNextToken();
+                if(tokPrimaryCheck())
+                {
+                    expression();
+                }
+                else
+                {
+                    logError();
+                }
+            }
+        }
+        else
+        {
+            logError();
+        }
+    }
+
+    public void functionCall()
+    {
+        if(tok.getTok().equals(TCscanner.Tokens.LPAREN))
+        {
+            //consume lparen
+            getNextToken();
+        }
+        else
+        {
+            logError();
+        }
+
+        if(tokPrimaryCheck())
+        {
+            expression();
+        }
+
+        if(tok.getTok().equals(TCscanner.Tokens.RPAREN))
+        {
+            //consume rparen
+            getNextToken();
+        }
+        else
+        {
+            logError();
+        }
+
+    }
 
 
     public boolean tokPrimaryCheck()
@@ -534,6 +884,7 @@ public class TCparser
 
     public void logError()
     {
+        System.out.println("INDEX OF ERROR: " + index + " TOKEN: " + tok.getTok().toString());
         System.out.println("ERROR");
     }
 }
