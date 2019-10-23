@@ -11,7 +11,7 @@ public class FunctionDefinition extends GrammarDef {
     void parseDefinition() {
         if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
         {
-            functionHeader();
+            new FunctionHeader(parser);
         }
         else
         {
@@ -20,7 +20,7 @@ public class FunctionDefinition extends GrammarDef {
 
         if(parser.tok.getTok().equals(TCscanner.Tokens.LCURLY))
         {
-            functionBody();
+            new FunctionBody(parser);
             return;
         }
         else

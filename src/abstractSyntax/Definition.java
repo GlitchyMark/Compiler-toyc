@@ -27,6 +27,7 @@ String buffer;
 
         if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
         {
+            buffer = parser.tok.getLex() + ", " + buffer;
             //consumes ID
             parser.getNextToken();
         }
@@ -38,14 +39,17 @@ String buffer;
 
         if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
         {
-            parser.printer.printspaces("funcDef(");
+            parser.printer.printlnspaces("funcDef(" + buffer + ", ");
+            parser.printer.indent();
             new Definition(parser);
+            parser.printer.println(")");
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
         {
-            parser.printer.printspaces("funcDef(");
+            parser.printer.printspaces("varDef(" + buffer);
             //Consumes semicolon
             parser.getNextToken();
+            parser.printer.println(")");
             return;
         }
         else
