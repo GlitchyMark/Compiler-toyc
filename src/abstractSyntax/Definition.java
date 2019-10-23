@@ -13,7 +13,7 @@ public class Definition extends GrammarDef {
         {
             type();
         }
-        else if(tok.getTok().equals(TCscanner.Tokens.CHAR))
+        else if(parser.tok.getTok().equals(TCscanner.Tokens.CHAR))
         {
             type();
         }
