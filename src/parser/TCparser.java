@@ -1,16 +1,16 @@
 package parser;
 
-import parser.TCscanner;
 import java.util.List;
-import compiler.AbstractSyntax.*;
+import abstractSyntax.Printer;
+import abstractSyntax.Program;
 
 public class TCparser
 {
     private Integer index = 1;
-    List<TCscanner> tokens;
-    TCscanner tok;
-    List<String> fileprinting;
-    PrettyPrint pretty;
+    public List<TCscanner> tokens;
+    public TCscanner tok;
+    public Printer printer;
+
     public TCparser(List<TCscanner> tokens)
     {
         this.tokens = tokens;
@@ -25,24 +25,12 @@ public class TCparser
         index++;
         return tok;
     }
-    void print(String s)
-    {
-        int index = fileprinting.size()-1;
-        fileprinting.set(index, fileprinting.get(index)+s);
-    }
-    void println(String s)
-    {
-        fileprinting.set(index, fileprinting.get(index)+s);
-        fileprinting.add(pretty.spaces());
-    }
     //TODO: Stretched to thin right now, but for all that is holy,
     //TODO: at some point soon, make a better boolean check than this
     public void toyCProgram()
     {
-        println("program(");
-        pretty.indent();
-        println()
-        while(tok.getTok().equals(TCscanner.Tokens.INT) || tok.getTok().equals(TCscanner.Tokens.CHAR))
+        Program p;
+        /*while(tok.getTok().equals(TCscanner.Tokens.INT) || tok.getTok().equals(TCscanner.Tokens.CHAR))
         {
             if (tok.getTok().equals(TCscanner.Tokens.INT))
             {
@@ -62,10 +50,10 @@ public class TCparser
         else
         {
             logError();
-        }
+        }*/
     }
 
-    public void definition()
+    /*public void definition()
     {
         if(tok.getTok().equals(TCscanner.Tokens.INT))
         {
@@ -586,7 +574,7 @@ public class TCparser
         }
         else
         {
-            logError();
+            logError("'(' expected");
         }
 
         if(tok.getTok().equals(TCscanner.Tokens.RPAREN))
@@ -876,7 +864,7 @@ public class TCparser
             logError();
         }
 
-    }
+    }*/
 
 
     public boolean tokPrimaryCheck()
@@ -892,12 +880,6 @@ public class TCparser
                 || tok.getTok().equals(TCscanner.Tokens.SEMICOLON) || tok.getTok().equals(TCscanner.Tokens.RETURN) || tok.getTok().equals(TCscanner.Tokens.WHILE)
                 || tok.getTok().equals(TCscanner.Tokens.READ) || tok.getTok().equals(TCscanner.Tokens.WRITE) || tok.getTok().equals(TCscanner.Tokens.NEWLINE)
                 || tok.getTok().equals(TCscanner.Tokens.ID));
-    }
-
-    public void logError()
-    {
-        System.out.println("INDEX OF ERROR: " + index + " TOKEN: " + tok.getTok().toString());
-        System.out.println("ERROR");
     }
 }
 
