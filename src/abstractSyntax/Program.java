@@ -7,8 +7,11 @@ public class Program extends GrammarDef{
         super(tcp);
     }
 
+    @Override
     void parseDefinition()
     {
+        parser.printer.println("prog(");
+        parser.printer.indent();
         while(parser.tok.getTok().equals(TCscanner.Tokens.INT) || parser.tok.getTok().equals(TCscanner.Tokens.CHAR))
         {
             if (parser.tok.getTok().equals(TCscanner.Tokens.INT))
@@ -20,6 +23,7 @@ public class Program extends GrammarDef{
                 //Definition();
             }
         }
+        parser.printer.println(")");
         if(parser.tok.getTok().equals(TCscanner.Tokens.EOF))
         {
             parser.getNextToken();

@@ -21,6 +21,12 @@ public class Printer {
         fileprinting.set(index, fileprinting.get(index)+s);
         fileprinting.add("");
     }
+    void printlnspaces(String s)
+    {
+        int index = fileprinting.size()-1;
+        fileprinting.set(index, fileprinting.get(index)+spaces()+s);
+        fileprinting.add("");
+    }
 
     int getStringLength()
     {
