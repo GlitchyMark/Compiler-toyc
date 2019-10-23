@@ -1,6 +1,6 @@
 package abstractSyntax;
 
-import parser.TCparser;
+import parser.*;
 
 public abstract class GrammarDef {
     TCparser parser;
