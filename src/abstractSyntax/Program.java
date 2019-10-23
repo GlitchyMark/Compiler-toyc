@@ -16,11 +16,11 @@ public class Program extends GrammarDef{
         {
             if (parser.tok.getTok().equals(TCscanner.Tokens.INT))
             {
-                //Definition();
+                Definition d;
             }
             else if (parser.tok.getTok().equals(TCscanner.Tokens.CHAR))
             {
-                //Definition();
+                Definition d;
             }
         }
         parser.printer.println(")");
