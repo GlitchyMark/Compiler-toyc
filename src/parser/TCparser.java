@@ -1,16 +1,16 @@
 package parser;
 
 import parser.TCscanner;
-
 import java.util.List;
+import compiler.AbstractSyntax.*;
 
 public class TCparser
 {
     private Integer index = 1;
     List<TCscanner> tokens;
     TCscanner tok;
-
-
+    List<String> fileprinting;
+    PrettyPrint pretty;
     public TCparser(List<TCscanner> tokens)
     {
         this.tokens = tokens;
@@ -25,11 +25,23 @@ public class TCparser
         index++;
         return tok;
     }
-
+    void print(String s)
+    {
+        int index = fileprinting.size()-1;
+        fileprinting.set(index, fileprinting.get(index)+s);
+    }
+    void println(String s)
+    {
+        fileprinting.set(index, fileprinting.get(index)+s);
+        fileprinting.add(pretty.spaces());
+    }
     //TODO: Stretched to thin right now, but for all that is holy,
     //TODO: at some point soon, make a better boolean check than this
     public void toyCProgram()
     {
+        println("program(");
+        pretty.indent();
+        println()
         while(tok.getTok().equals(TCscanner.Tokens.INT) || tok.getTok().equals(TCscanner.Tokens.CHAR))
         {
             if (tok.getTok().equals(TCscanner.Tokens.INT))
