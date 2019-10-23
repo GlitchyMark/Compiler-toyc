@@ -29,7 +29,7 @@ public class TCparser
     //TODO: at some point soon, make a better boolean check than this
     public void toyCProgram()
     {
-        Program p;
+        new Program(this);
         /*while(tok.getTok().equals(TCscanner.Tokens.INT) || tok.getTok().equals(TCscanner.Tokens.CHAR))
         {
             if (tok.getTok().equals(TCscanner.Tokens.INT))

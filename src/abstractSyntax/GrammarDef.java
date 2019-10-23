@@ -7,7 +7,7 @@ public abstract class GrammarDef {
     boolean error = false;
     int errorpos;
     String errormsg;
-    GrammarDef(TCparser tcp)
+    public GrammarDef(TCparser tcp)
     {
         parser = tcp;
         parseDefinition();

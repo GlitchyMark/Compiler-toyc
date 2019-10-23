@@ -3,7 +3,7 @@ package abstractSyntax;
 import parser.*;
 
 public class Program extends GrammarDef{
-    Program(TCparser tcp) {
+    public Program(TCparser tcp) {
         super(tcp);
     }
 
@@ -16,11 +16,11 @@ public class Program extends GrammarDef{
         {
             if (parser.tok.getTok().equals(TCscanner.Tokens.INT))
             {
-                Definition d;
+                new Definition(parser);
             }
             else if (parser.tok.getTok().equals(TCscanner.Tokens.CHAR))
             {
-                Definition d;
+                new Definition(parser);
             }
         }
         parser.printer.println(")");
