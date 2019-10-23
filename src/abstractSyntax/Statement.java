@@ -16,43 +16,43 @@ public class Statement extends GrammarDef
         parser.printer.indent();
         if(parser.tok.getTok().equals(TCscanner.Tokens.BREAK))
         {
-            //breakStatement();
+            new BreakStatement(parser);
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
         {
-            //expressionStatement();
+            new ExpressionStatement(parser);
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.LCURLY) )
         {
-            //compoundStatement();
+            new CompoundStatement(parser);
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.IF))
         {
-            //ifStatement();
+            new IfStatement(parser);
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
         {
-            //nullStatement();
+            new NullStatement(parser);
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.RETURN))
         {
-            //returnStatement();
+            new ReturnStatement(parser);
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.WHILE))
         {
-            //whileStatement();
+            new WhileStatement(parser);
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.READ))
         {
-            //readStatement();
+            new ReadStatement(parser);
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.WRITE))
         {
-            //writeStatement();
+            new WriteStatement(parser);
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.NEWLINE))
         {
-            //newlineStatement();
+            new NewLineStatement(parser);
         }
         else
         {
