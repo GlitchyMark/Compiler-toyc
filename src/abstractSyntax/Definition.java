@@ -6,20 +6,23 @@ public class Definition extends GrammarDef {
     public Definition(TCparser tcp) {
         super(tcp);
     }
-
+String buffer;
     @Override
     void parseDefinition() {
         if(parser.tok.getTok().equals(TCscanner.Tokens.INT))
         {
-            type();
+            buffer = "int";
+            new Type(parser);
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.CHAR))
         {
-            type();
+            buffer = "char";
+            new Type(parser);
         }
         else
         {
-            logError();
+            buffer = "NULL";
+            logError("");
         }
 
         if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
@@ -32,12 +35,15 @@ public class Definition extends GrammarDef {
             logError();
         }
 
+
         if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
         {
-            functionDefinition();
+            parser.printer.printspaces("funcDef(");
+            new Definition(parser);
         }
-        else if(tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
+        else if(parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
         {
+            parser.printer.printspaces("funcDef(");
             //Consumes semicolon
             parser.getNextToken();
             return;
