@@ -64,10 +64,6 @@ public class TCtoken
         TCscanner tok;
         while(Character.isWhitespace(charBuff) && (charBuff != '\0'))
         {
-            if(charBuff == '\n')
-            {
-                break;
-            }
             charBuff = getChar();
         }
         if(Character.isLetter(charBuff))
@@ -301,11 +297,7 @@ public class TCtoken
             tok = new TCscanner(TCscanner.Tokens.RELOP, lex);
         }
 
-        else if(charBuff == '\n')
-        {
-            charBuff = getChar();
-            tok = new TCscanner(TCscanner.Tokens.NEWLINE);
-        }
+
 
         else if(charBuff == '\0')
         {
