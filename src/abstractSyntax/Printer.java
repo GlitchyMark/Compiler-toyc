@@ -9,26 +9,17 @@ public class Printer {
         fileprinting.add("");
     }
 
-    void printspaces(String s)
-    {
-        int index = fileprinting.size()-1;
-        fileprinting.set(index, fileprinting.get(index)+spaces()+s);
-    }
     void print(String s)
     {
         int index = fileprinting.size()-1;
-        fileprinting.set(index, fileprinting.get(index)+s);
+        String curs = fileprinting.get(index);
+        fileprinting.set(index, (curs.length() > 0 ? "" : spaces()) + curs + s);
     }
     void println(String s)
     {
         int index = fileprinting.size()-1;
-        fileprinting.set(index, fileprinting.get(index)+s);
-        fileprinting.add("");
-    }
-    void printlnspaces(String s)
-    {
-        int index = fileprinting.size()-1;
-        fileprinting.set(index, fileprinting.get(index)+spaces()+s);
+        String curs = fileprinting.get(index);
+        fileprinting.set(index, (curs.length() > 0 ? "" : spaces()) + curs + s);
         fileprinting.add("");
     }
 

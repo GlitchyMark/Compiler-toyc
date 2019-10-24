@@ -12,10 +12,10 @@ public class BreakStatement extends GrammarDef
     @Override
     void parseDefinition()
     {
-        parser.printer.println("breakState()");
         if(parser.tok.getTok().equals(TCscanner.Tokens.BREAK))
         {
             //consume break
+            parser.printer.println("breakState()");
             parser.getNextToken();
         }
         else

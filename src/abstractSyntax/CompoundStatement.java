@@ -12,6 +12,10 @@ public class CompoundStatement extends GrammarDef
     @Override
     void parseDefinition()
     {
+        String buffer = "";
+
+        parser.printer.println("blockState(");
+        parser.printer.indent();
         if(parser.tok.getTok().equals(TCscanner.Tokens.LCURLY))
         {
             //consume l curly
@@ -26,10 +30,12 @@ public class CompoundStatement extends GrammarDef
         {
             if(parser.tok.getTok().equals(TCscanner.Tokens.INT))
             {
+                buffer = "int";
                 new Type(parser);
             }
             else if(parser.tok.getTok().equals(TCscanner.Tokens.CHAR))
             {
+                buffer = "char";
                 new Type(parser);
             }
             else
@@ -39,6 +45,8 @@ public class CompoundStatement extends GrammarDef
 
             if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
             {
+                buffer = parser.tok.getLex() + ", " + buffer;
+                parser.printer.print("varDef(" + buffer + ")");
                 //consume ID
                 parser.getNextToken();
             }
@@ -54,13 +62,21 @@ public class CompoundStatement extends GrammarDef
             }
             else
             {
-                logError("; expected");
+                logError("';' expected");
             }
+            parser.printer.outdent();
+            parser.printer.println(")");
         }
+
+        if(parser.tokStatementCheck())
+            parser.printer.println(",");
 
         while(parser.tokStatementCheck())
         {
             new Statement(parser);
+
+            if(parser.tokStatementCheck())
+                parser.printer.println(",");
         }
 
         if(parser.tok.getTok().equals(TCscanner.Tokens.RCURLY))

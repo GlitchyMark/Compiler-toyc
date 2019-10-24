@@ -16,7 +16,7 @@ public abstract class GrammarDef {
     }
 
     abstract void parseDefinition();
-
+    String errorlex;
     void checkError()
     {
         if(error)//print error here
@@ -24,7 +24,7 @@ public abstract class GrammarDef {
             parser.printer.printStack();
             for(int i = 0; errorpos > i; i++)
                 System.out.print(" ");
-            System.out.println("^ " + errormsg);
+            System.out.println("^ " + errormsg + ". Got lex " + errorlex + ".");
             System.exit(-1);
         }
     }
@@ -34,5 +34,6 @@ public abstract class GrammarDef {
         error = true;
         errorpos = parser.printer.getStringLength();
         errormsg = msg;
+        errorlex = parser.tok.getLex();
     }
 }
