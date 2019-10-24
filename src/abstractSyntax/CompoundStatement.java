@@ -64,8 +64,6 @@ public class CompoundStatement extends GrammarDef
             {
                 logError("';' expected");
             }
-            parser.printer.outdent();
-            parser.printer.println(")");
         }
 
         if(parser.tokStatementCheck())
@@ -88,6 +86,9 @@ public class CompoundStatement extends GrammarDef
         {
             logError("} expected");
         }
+        parser.printer.outdent();
+        parser.printer.println("");
+        parser.printer.print(")");
     }
 
     @Override

@@ -34,8 +34,8 @@ public class ExpressionStatement extends GrammarDef
         {
             logError("semicolon expected");
         }
-        parser.printer.println("");
         parser.printer.outdent();
+        parser.printer.println("");
         parser.printer.print(")");
     }
 

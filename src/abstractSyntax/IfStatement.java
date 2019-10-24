@@ -64,6 +64,7 @@ public class IfStatement extends GrammarDef
         }
 
         parser.printer.outdent();
+        parser.printer.println("");
         parser.printer.print(")");
 
         return;
