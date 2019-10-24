@@ -8,22 +8,32 @@ public class TCparser
 {
     private Integer index = 1;
     public List<TCscanner> tokens;
+    public TCtoken tct;
     public TCscanner tok;
     public Printer printer = new Printer();
 
-    public TCparser(List<TCscanner> tokens)
+    public TCparser(TCtoken tct)
     {
-        this.tokens = tokens;
-         tok = tokens.get(0);
+         this.tct = tct;
+         tok = tct.getToken();
          //just there for last getNextToken call, ensures no out of bounds shit
-         tokens.add(null);
     }
 
     public  TCscanner getNextToken()
     {
-        tok = tokens.get(index);
+        tok = tct.getToken();
         index++;
         return tok;
+    }
+
+    public String getCurrentLine()
+    {
+        return tct.getCurrentLine();
+    }
+
+    public Integer getCurrentLineLoc()
+    {
+        return tct.getCurrentLineLoc();
     }
     //TODO: Stretched to thin right now, but for all that is holy,
     //TODO: at some point soon, make a better boolean check than this

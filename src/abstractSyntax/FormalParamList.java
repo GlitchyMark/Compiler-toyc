@@ -55,4 +55,10 @@ public class FormalParamList extends GrammarDef {
             parser.printer.printlnspaces("varDef(" + buffer + "),");
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing FormalParamList";
+    }
 }

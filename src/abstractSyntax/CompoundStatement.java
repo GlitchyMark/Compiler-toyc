@@ -73,4 +73,10 @@ public class CompoundStatement extends GrammarDef
             logError("} expected");
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing CompoundStatement";
+    }
 }

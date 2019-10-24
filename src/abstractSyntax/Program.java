@@ -35,4 +35,10 @@ public class Program extends GrammarDef{
             logError("EOF character missing");
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing ToyCProgram";
+    }
 }

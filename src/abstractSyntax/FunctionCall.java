@@ -37,4 +37,10 @@ public class FunctionCall extends GrammarDef
             logError(") expected");
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing FunctionCall";
+    }
 }

@@ -36,4 +36,10 @@ public class Term extends GrammarDef
         }
         return;
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing term";
+    }
 }

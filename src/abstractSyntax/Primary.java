@@ -76,4 +76,10 @@ public class Primary extends GrammarDef
             logError("expecting primary");
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing Primary";
+    }
 }

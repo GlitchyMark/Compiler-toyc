@@ -57,4 +57,10 @@ String buffer;
             logError("missing '(' or ';'");
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing Definition";
+    }
 }

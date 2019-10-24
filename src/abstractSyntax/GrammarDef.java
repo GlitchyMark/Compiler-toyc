@@ -11,6 +11,7 @@ public abstract class GrammarDef {
     {
         parser = tcp;
         parseDefinition();
+        System.out.println("[PARSER] " + toString());
         checkError();
     }
 
@@ -32,6 +33,6 @@ public abstract class GrammarDef {
     {
         error = true;
         errorpos = parser.printer.getStringLength();
-        errormsg = errormsg;
+        errormsg = msg;
     }
 }

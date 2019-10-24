@@ -55,4 +55,10 @@ public class IfStatement extends GrammarDef
         }
         return;
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing IfStatement";
+    }
 }

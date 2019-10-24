@@ -11,4 +11,10 @@ public class Type extends GrammarDef {
     void parseDefinition() {
         parser.getNextToken();
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing Type";
+    }
 }

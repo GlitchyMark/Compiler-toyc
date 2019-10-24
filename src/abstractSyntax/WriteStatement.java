@@ -54,4 +54,10 @@ public class WriteStatement extends GrammarDef
             logError("; expected");
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing WriteStatement";
+    }
 }

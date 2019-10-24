@@ -37,4 +37,10 @@ public class RelopExpression extends GrammarDef
         }
         return;
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing RelopExpression";
+    }
 }

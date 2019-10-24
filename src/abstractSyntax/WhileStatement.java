@@ -44,4 +44,10 @@ public class WhileStatement extends GrammarDef
             logError(") expected");
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing WhileStatement";
+    }
 }

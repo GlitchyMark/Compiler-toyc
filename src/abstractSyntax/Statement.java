@@ -60,4 +60,10 @@ public class Statement extends GrammarDef
         }
         parser.printer.println(")");
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing Statement";
+    }
 }

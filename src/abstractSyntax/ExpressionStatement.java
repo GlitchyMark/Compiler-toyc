@@ -34,4 +34,10 @@ public class ExpressionStatement extends GrammarDef
         }
         parser.printer.println(")");
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing ExpressionStatement";
+    }
 }

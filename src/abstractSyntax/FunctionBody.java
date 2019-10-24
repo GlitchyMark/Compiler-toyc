@@ -16,4 +16,10 @@ public class FunctionBody extends GrammarDef{
             logError("missing '{'");
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing FunctionBody";
+    }
 }

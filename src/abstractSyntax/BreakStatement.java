@@ -34,4 +34,10 @@ public class BreakStatement extends GrammarDef
         }
         return;
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing BreakStatement";
+    }
 }

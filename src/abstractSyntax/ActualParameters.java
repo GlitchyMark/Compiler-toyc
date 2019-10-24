@@ -30,4 +30,10 @@ public class ActualParameters extends GrammarDef
             }
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing ActualParameters";
+    }
 }

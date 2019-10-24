@@ -18,7 +18,7 @@ public class tc
         List<String> words = fileMan.getListOfTokensWhitespaceDelimited();
 
         TCtoken testin = new TCtoken(words);
-        TCparser parse = new TCparser(testin.getTokens().getTokenList());
+        TCparser parse = new TCparser(testin);
         parse.toyCProgram();
         parse.printer.printStack();
 

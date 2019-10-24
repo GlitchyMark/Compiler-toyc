@@ -36,4 +36,10 @@ public class SimpleExpression extends GrammarDef
         }
         return;
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing SimpleExpression";
+    }
 }

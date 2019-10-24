@@ -17,6 +17,7 @@ public class TCtoken
     Integer currentLineLoc = 0;
     Integer prevPosition[] = {0, 0};
     char charBuff = ' ';
+    boolean endFile = true;
 
     public TCtoken(List<String> preTokens)
     {
@@ -42,6 +43,16 @@ public class TCtoken
         currentLineLoc++;
 
         return c;
+    }
+
+    public String getCurrentLine()
+    {
+        return preTokens.get(currentListLoc);
+    }
+
+    public Integer getCurrentLineLoc()
+    {
+        return currentLineLoc;
     }
 
     public boolean isInAlphabet(char ch)
@@ -363,7 +374,14 @@ public class TCtoken
         }
 
 
-
+        if(!tok.toString().equals("") && endFile)
+        {
+            String formattedTkn = "(<"+tok.toString()+">,\""+tok.lex+"\")";
+            if(tok.getTok().equals(TCscanner.Tokens.EOF))
+                endFile = false;
+            if(TCGlobals.debugLevel <= 1)
+                System.out.println("[SCANNER] " + formattedTkn);
+        }
         return tok;
     }
 

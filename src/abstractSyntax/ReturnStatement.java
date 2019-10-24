@@ -37,4 +37,10 @@ public class ReturnStatement extends GrammarDef
             logError("; expected");
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return "reducing ReturnStatement";
+    }
 }
