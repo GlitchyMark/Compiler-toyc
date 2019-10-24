@@ -1,9 +1,13 @@
 package abstractSyntax;
 
-import java.util.List;
+import java.util.*;
 
 public class Printer {
-    List<String> fileprinting;
+    List<String> fileprinting = new ArrayList<String>();
+
+    public Printer(){
+        fileprinting.add("");
+    }
 
     void printspaces(String s)
     {
@@ -47,5 +51,11 @@ public class Printer {
     }
     public void outdent() {
         pos -= INDENTSIZE;
+    }
+
+    public void printStack()
+    {
+        for(int i = 0; i < fileprinting.size(); i++)
+            System.out.println(fileprinting.get(i));
     }
 }

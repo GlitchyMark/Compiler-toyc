@@ -20,9 +20,11 @@ public abstract class GrammarDef {
     {
         if(error)//print error here
         {
+            parser.printer.printStack();
             for(int i = 0; errorpos > i; i++)
                 System.out.print(" ");
             System.out.println("^ " + errormsg);
+            System.exit(-1);
         }
     }
 

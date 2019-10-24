@@ -9,7 +9,7 @@ public class TCparser
     private Integer index = 1;
     public List<TCscanner> tokens;
     public TCscanner tok;
-    public Printer printer;
+    public Printer printer = new Printer();
 
     public TCparser(List<TCscanner> tokens)
     {

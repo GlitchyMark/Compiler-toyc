@@ -20,6 +20,7 @@ public class tc
         TCtoken testin = new TCtoken(words);
         TCparser parse = new TCparser(testin.getTokens().getTokenList());
         parse.toyCProgram();
+        parse.printer.printStack();
 
         fileMan.writeListOfTokens(testin.getTokens().getStringList(), Optional.empty());
     }
