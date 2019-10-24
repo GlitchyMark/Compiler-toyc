@@ -147,7 +147,7 @@ public class Printer {
 
 
         for(int i = 0; i < strbuilder.size(); i++)
-            strbuilder.get(i).line = strbuilder.get(i).line.replace( "\u2001", ")").replace("\u2002","(");
+            strbuilder.get(i).line = strbuilder.get(i).line.replace( "\u2001", ")").replace("\u2002","(").trim();
         for(int i = 0; i < strbuilder.size(); i++) {
             if(strbuilder.get(i).line.trim().length() == 0)
                 continue;
