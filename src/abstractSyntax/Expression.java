@@ -28,7 +28,9 @@ public class Expression extends GrammarDef
                 //consume assignop
                 parser.printer.print(" =, ");
                 parser.getNextToken();
+                parser.printer.print("expr(");
                 new RelopExpression(parser);
+                parser.printer.print("),");
             }
             else
             {
