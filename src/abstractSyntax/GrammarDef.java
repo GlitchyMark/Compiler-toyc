@@ -1,5 +1,6 @@
 package abstractSyntax;
 
+import compiler.TCGlobals;
 import parser.*;
 
 public abstract class GrammarDef {
@@ -11,7 +12,8 @@ public abstract class GrammarDef {
     {
         parser = tcp;
         parseDefinition();
-        System.out.println("[PARSER] " + toString());
+        if(TCGlobals.debugLevel >= 2)
+            System.out.println("[PARSER] " + toString());
     }
 
     abstract void parseDefinition();
