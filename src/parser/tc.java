@@ -22,7 +22,7 @@ public class tc
         parse.toyCProgram();
         parse.printer.printStack();
 
-        fileMan.writeListOfTokens(testin.getTokens().getStringList(), Optional.empty());
+        //fileMan.writeListOfTokens(testin.getTokens().getStringList(), Optional.empty());
     }
 
     private static void handleArgs(String[] args)
