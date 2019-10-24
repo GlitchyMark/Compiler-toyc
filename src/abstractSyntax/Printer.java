@@ -103,16 +103,19 @@ public class Printer {
             strbuilder.add(new Line(split[1], strbuilder.get(strbuilder.size()-1).spaces+1));
         }
         int iterator = 0;
-        while(strbuilder.get(iterator).line.contains(")"))
+        while(iterator < strbuilder.size())
         {
-            String split[] = strbuilder.get(iterator).line.split("\\)", 2);
-            strbuilder.get(iterator).line = split[0] + ")";
-
-            strbuilder.add(iterator+1, new Line(split[1], strbuilder.get(iterator).spaces-1));
-            for(int i = iterator; i < strbuilder.size(); i++)
-                strbuilder.get(i).spaces--;
+            if(strbuilder.get(iterator).line.contains(")"))
+            {
+                String split[] = strbuilder.get(iterator).line.split("\\)", 2);
+                strbuilder.get(iterator).line = split[0] + ")";
+                strbuilder.add(iterator + 1, new Line(split[1], strbuilder.get(iterator).spaces - 1));
+                for (int i = iterator; i < strbuilder.size(); i++)
+                    strbuilder.get(i).spaces--;
+            }
             iterator++;
         }
+
         for(int i = 0; i < strbuilder.size(); i++) {
             for (int j = 0; j < strbuilder.get(i).spaces; j++)
                 System.out.print("  ");
