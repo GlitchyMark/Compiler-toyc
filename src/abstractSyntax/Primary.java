@@ -36,14 +36,14 @@ public class Primary extends GrammarDef
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.STRING))
         {
-            parser.printer.print(" \"" + parser.tok.getLex() +"\", ");
+            parser.printer.print(" \"" + parser.tok.getLex().replace(")", "\u2001").replace("(", "\u2002") +"\", ");
             //consume string
             parser.getNextToken();
             return;
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.CHARLITERAL))
         {
-            parser.printer.print(" " + parser.tok.getLex() +", ");
+            parser.printer.print(" " + parser.tok.getLex().replace(")", "\u2001").replace("(", "\u2002")  +", ");
             //consume char
             parser.getNextToken();
             return;
