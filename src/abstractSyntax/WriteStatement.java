@@ -26,7 +26,7 @@ public class WriteStatement extends GrammarDef
         {
             //consume lparen
             parser.getNextToken();
-            //actualParameters();
+            new ActualParameters(parser);
         }
         else
         {
