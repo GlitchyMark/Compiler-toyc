@@ -25,12 +25,9 @@ public class ReturnStatement extends GrammarDef
 
         if(parser.tokPrimaryCheck())
         {
-            parser.printer.println("");
-            parser.printer.indent();
+            parser.printer.println("expr(");
             new Expression(parser);
-            parser.printer.outdent();
-            parser.printer.println("");
-            parser.printer.println(")");
+            parser.printer.print(")");
         }
         if (parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
         {

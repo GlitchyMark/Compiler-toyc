@@ -26,6 +26,11 @@ public class TCparser
         return tok;
     }
 
+    public Integer getCurrentListLoc()
+    {
+        return tct.getCurrentListLoc();
+    }
+
     public String getCurrentLine()
     {
         return tct.getCurrentLine();

@@ -28,8 +28,9 @@ public class WhileStatement extends GrammarDef
         {
             //consume lparen
             parser.getNextToken();
+            parser.printer.println("expr(");
             new Expression(parser);
-            parser.printer.println(",");
+            parser.printer.print(")");
         }
         else
         {

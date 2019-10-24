@@ -16,8 +16,9 @@ public class ExpressionStatement extends GrammarDef
         parser.printer.indent();
         if(parser.tokPrimaryCheck())
         {
+            parser.printer.println("expr(");
             new Expression(parser);
-            parser.printer.println("");
+            parser.printer.print(")");
         }
         else
         {

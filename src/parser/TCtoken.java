@@ -55,6 +55,11 @@ public class TCtoken
         return prevPosition[1];
     }
 
+    public Integer getCurrentListLoc()
+    {
+        return currentListLoc;
+    }
+
     public boolean isInAlphabet(char ch)
     {
         return(Character.isLetterOrDigit(ch)
