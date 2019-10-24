@@ -61,6 +61,9 @@ public class Printer {
         String line;
     };
 
+    /**
+     * May god have mercy on whatever poor soul who must tread these lands
+     */
     public void printStack()
     {
         builder = builder.replace( ",)", ")").replace( ", )", ")").replace( "(,", "(");
