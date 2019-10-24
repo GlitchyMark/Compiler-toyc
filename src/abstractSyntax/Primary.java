@@ -72,14 +72,18 @@ public class Primary extends GrammarDef
         {
             //consume addop
             parser.getNextToken();
+            parser.printer.print("minus( ");
             new Primary(parser);
+            parser.printer.print(")");
             return;
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.NOT))
         {
             //consume not
             parser.getNextToken();
+            parser.printer.print("not(");
             new Primary(parser);
+            parser.printer.print(")");
             return;
         }
         else
