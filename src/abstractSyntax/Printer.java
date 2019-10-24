@@ -151,7 +151,7 @@ public class Printer {
         for(int i = 0; i < strbuilder.size(); i++) {
             if(strbuilder.get(i).line.trim().length() == 0)
                 continue;
-            System.out.print(i + ": ");
+            System.out.print(String.format("%0"+ (int)(Math.log(strbuilder.size())-1) +"d", i) + ": ");
             for (int j = 0; j < strbuilder.get(i).spaces; j++)
                 System.out.print("  ");
             System.out.println(strbuilder.get(i).line);
