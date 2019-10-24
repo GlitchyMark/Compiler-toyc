@@ -47,6 +47,7 @@ public class WhileStatement extends GrammarDef
             logError(") expected");
         }
         parser.printer.outdent();
+        parser.printer.println("");
         parser.printer.print(")");
     }
 

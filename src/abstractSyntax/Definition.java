@@ -43,8 +43,8 @@ String buffer;
             parser.printer.indent();
             new FunctionDefinition(parser);
             parser.printer.outdent();
+            parser.printer.println("");
             parser.printer.print(")");
-            parser.printer.println(")");
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
         {

@@ -82,6 +82,7 @@ public class ReadStatement extends GrammarDef
             logError("; expected");
         }
         parser.printer.outdent();
+        parser.printer.println("");
         parser.printer.print(")");
     }
 

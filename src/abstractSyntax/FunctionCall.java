@@ -19,7 +19,7 @@ public class FunctionCall extends GrammarDef
         }
         else
         {
-            logError("( expected");
+            logError("'(' expected");
         }
 
         if(parser.tokPrimaryCheck())

@@ -24,6 +24,9 @@ public class Primary extends GrammarDef
                 parser.printer.indent();
                 parser.printer.print(thing);
                 new FunctionCall(parser);
+                parser.printer.outdent();
+                parser.printer.println("");
+                parser.printer.print(")");
             }else
                 parser.printer.print(" " + thing +", ");
         }

@@ -23,7 +23,9 @@ public class Program extends GrammarDef{
                 new Definition(parser);
             }
         }
-        parser.printer.println(")");
+        parser.printer.outdent();
+        parser.printer.println("");
+        parser.printer.print("");
         if(parser.tok.getTok().equals(TCscanner.Tokens.EOF))
         {
             parser.getNextToken();
