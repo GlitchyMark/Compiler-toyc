@@ -14,7 +14,7 @@ public class Primary extends GrammarDef
     {
         if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
         {
-            String ident = parser.tok.getLex();
+            String thing = parser.tok.getLex();
             //consumes identifier
             parser.getNextToken();
             //TODO: finish this loose thread
@@ -22,28 +22,28 @@ public class Primary extends GrammarDef
             {
                 parser.printer.println("funcCall(");
                 parser.printer.indent();
-                parser.printer.print(ident);
+                parser.printer.print(thing);
                 new FunctionCall(parser);
             }else
-                parser.printer.print(ident);
+                parser.printer.print(" " + thing +", ");
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.NUMBER))
         {
-            parser.printer.print(parser.tok.getLex());
+            parser.printer.print(" " + parser.tok.getLex() +", ");
             //consume number
             parser.getNextToken();
             return;
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.STRING))
         {
-            parser.printer.print(parser.tok.getLex());
+            parser.printer.print(" " + parser.tok.getLex() +", ");
             //consume string
             parser.getNextToken();
             return;
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.CHARLITERAL))
         {
-            parser.printer.print(parser.tok.getLex());
+            parser.printer.print(" " + parser.tok.getLex() +", ");
             //consume char
             parser.getNextToken();
             return;

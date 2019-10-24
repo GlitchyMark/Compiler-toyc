@@ -26,6 +26,7 @@ public class Term extends GrammarDef
             if(parser.tok.getTok().equals(TCscanner.Tokens.MULOP))
             {
                 //consume mulop
+                parser.printer.print(" " + parser.tok.getLex() + ", ");
                 parser.getNextToken();
                 new Primary(parser);
             }

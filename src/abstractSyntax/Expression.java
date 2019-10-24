@@ -26,6 +26,7 @@ public class Expression extends GrammarDef
             if(parser.tok.getTok().equals(TCscanner.Tokens.ASSIGNOP))
             {
                 //consume assignop
+                parser.printer.print(" =, ");
                 parser.getNextToken();
                 new RelopExpression(parser);
             }

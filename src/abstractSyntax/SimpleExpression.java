@@ -26,6 +26,7 @@ public class SimpleExpression extends GrammarDef
             if(parser.tok.getTok().equals(TCscanner.Tokens.ADDOP))
             {
                 //consume addop
+                parser.printer.print(" " + parser.tok.getLex() + ", ");
                 parser.getNextToken();
                 new Term(parser);
             }

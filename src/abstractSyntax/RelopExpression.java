@@ -27,6 +27,7 @@ public class RelopExpression extends GrammarDef
             if(parser.tok.getTok().equals(TCscanner.Tokens.RELOP))
             {
                 //consume relop
+                parser.printer.print(" " + parser.tok.getLex() + ", ");
                 parser.getNextToken();
                 new SimpleExpression(parser);
             }
