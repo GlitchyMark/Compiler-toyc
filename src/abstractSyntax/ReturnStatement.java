@@ -28,8 +28,9 @@ public class ReturnStatement extends GrammarDef
             parser.printer.println("");
             parser.printer.indent();
             new Expression(parser);
-            parser.printer.println(",");
             parser.printer.outdent();
+            parser.printer.println("");
+            parser.printer.println(")");
         }
         if (parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
         {

@@ -62,6 +62,7 @@ public class Primary extends GrammarDef
             if (parser.tok.getTok().equals(TCscanner.Tokens.RPAREN))
             {
                 //consume right paren
+                //parser.printer.outdent();
                 parser.getNextToken();
                 return;
             }
@@ -70,7 +71,7 @@ public class Primary extends GrammarDef
                 logError("expected ')'");
             }
             parser.printer.outdent();
-            parser.printer.println("");
+            parser.printer.println("hello");
             parser.printer.print(")");
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.ADDOP))

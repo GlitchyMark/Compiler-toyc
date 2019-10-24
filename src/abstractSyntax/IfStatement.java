@@ -29,7 +29,9 @@ public class IfStatement extends GrammarDef
             //consume lparen
             parser.getNextToken();
             new Expression(parser);
-            parser.printer.println(",");
+            parser.printer.println("");
+            parser.printer.outdent();
+            parser.printer.println(")");
         }
         else
         {
