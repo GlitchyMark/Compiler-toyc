@@ -16,7 +16,9 @@ public class TCtoken
     Integer currentListLoc = 0;
     Integer currentLineLoc = 0;
     Integer prevPosition[] = {0, 0};
+    Integer errorPos[] = {0, 0};
     char charBuff = ' ';
+    TCscanner tok;
     boolean endFile = true;
 
     public TCtoken(List<String> preTokens)
@@ -52,12 +54,17 @@ public class TCtoken
 
     public Integer getCurrentLineLoc()
     {
-        return prevPosition[1];
+        return errorPos[1];
+    }
+
+    public List<String> getPreTokens()
+    {
+        return preTokens;
     }
 
     public Integer getCurrentListLoc()
     {
-        return currentListLoc;
+        return errorPos[0];
     }
 
     public boolean isInAlphabet(char ch)
@@ -77,7 +84,8 @@ public class TCtoken
     public TCscanner getToken()
     {
         String lex = "";
-        TCscanner tok;
+        errorPos[0] = prevPosition[0];
+        errorPos[1] = prevPosition[1];
         while(Character.isWhitespace(charBuff) && (charBuff != '\0'))
         {
             charBuff = getChar();
@@ -92,7 +100,7 @@ public class TCtoken
 
             switch(lex)
             {
-                case "int": return new TCscanner(TCscanner.Tokens.INT);
+                case "int": tok = new TCscanner(TCscanner.Tokens.INT); break;
                 case "char": tok = new TCscanner(TCscanner.Tokens.CHAR); break;
                 case "return": tok = new TCscanner(TCscanner.Tokens.RETURN); break;
                 case "if": tok = new TCscanner(TCscanner.Tokens.IF); break;

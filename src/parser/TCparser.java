@@ -10,6 +10,7 @@ public class TCparser
     public List<TCscanner> tokens;
     public TCtoken tct;
     public TCscanner tok;
+    public TCscanner prevTok;
     public Printer printer = new Printer();
 
     public TCparser(TCtoken tct)
@@ -21,6 +22,7 @@ public class TCparser
 
     public  TCscanner getNextToken()
     {
+        prevTok = tok;
         tok = tct.getToken();
         index++;
         return tok;

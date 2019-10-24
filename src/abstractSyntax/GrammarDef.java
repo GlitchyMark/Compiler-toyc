@@ -20,8 +20,9 @@ public abstract class GrammarDef {
     {
         //parser.printer.printStack();
         System.out.println("SYNTAX ERROR on(or near) line: " + lineNum);
-        System.out.println(errorSrc.trim());
-        for(int i = 0; parser.getCurrentLineLoc() > i; i++)
+        String nwErrorSrc = errorSrc.trim();
+        System.out.println(nwErrorSrc);
+        for(int i = 0; parser.getCurrentLineLoc() - (errorSrc.length() - nwErrorSrc.length()) > i; i++)
             System.out.print(" ");
         System.out.println("^ " + errormsg);
         System.exit(-1);
@@ -30,7 +31,7 @@ public abstract class GrammarDef {
     public void logError(String msg)
     {
         lineNum = parser.getCurrentListLoc();
-        errorSrc = parser.getCurrentLine();
+        errorSrc = parser.tct.getPreTokens().get(lineNum);
         errormsg = msg;
         reportError();
     }

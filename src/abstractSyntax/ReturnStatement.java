@@ -33,7 +33,6 @@ public class ReturnStatement extends GrammarDef
         {
             //consume semicolon
             parser.getNextToken();
-            return;
         }
         else
         {
