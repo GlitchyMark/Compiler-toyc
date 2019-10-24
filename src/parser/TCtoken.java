@@ -178,15 +178,25 @@ public class TCtoken
             }
             else if(charBuff == '*')
             {
+                int commentlevel = 0;
                 do
                 {
                     charBuff = getChar();
+
+                    if(charBuff == '/') {
+                        charBuff = getChar();
+                        if (charBuff == '*') {
+                            commentlevel++;
+                            charBuff = getChar();
+                        }
+                    }
                     if(charBuff == '*')
                     {
                         charBuff = getChar();
                         if(charBuff == '/')
                         {
                             charBuff = getChar();
+                            if(commentlevel-- <= 0)
                             break;
                         }
                     }
