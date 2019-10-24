@@ -180,7 +180,7 @@ public class TCtoken
                 {
                     charBuff = getChar();
                 } while(charBuff != '\n' && charBuff != '\0');
-                tok = new TCscanner(TCscanner.Tokens.COMMENT);
+                tok = getToken();
             }
             else if(charBuff == '*')
             {
@@ -214,7 +214,7 @@ public class TCtoken
                 }
                 else
                 {
-                    tok = new TCscanner(TCscanner.Tokens.COMMENT);
+                    tok = getToken();
                 }
             }
             else
