@@ -15,7 +15,7 @@ public class FunctionHeader extends GrammarDef{
         }
         else
         {
-            logError();
+            logError("missing '('");
         }
 
         if(parser.tok.getTok().equals(TCscanner.Tokens.INT))
@@ -41,7 +41,7 @@ public class FunctionHeader extends GrammarDef{
         }
         else
         {
-            logError();
+            logError("missing ')'");
         }
     }
 }

@@ -15,7 +15,7 @@ public class FunctionDefinition extends GrammarDef {
         }
         else
         {
-            logError();
+            logError("missing '('");
         }
 
         if(parser.tok.getTok().equals(TCscanner.Tokens.LCURLY))
@@ -25,7 +25,7 @@ public class FunctionDefinition extends GrammarDef {
         }
         else
         {
-            logError();
+            logError("missing '{'");
         }
     }
 }

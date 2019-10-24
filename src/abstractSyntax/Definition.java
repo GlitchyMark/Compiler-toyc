@@ -33,7 +33,7 @@ String buffer;
         }
         else
         {
-            logError();
+            logError("missing id");
         }
 
 
@@ -41,7 +41,7 @@ String buffer;
         {
             parser.printer.printlnspaces("funcDef(" + buffer + ", ");
             parser.printer.indent();
-            new Definition(parser);
+            new FunctionDefinition(parser);
             parser.printer.println(")");
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
@@ -54,7 +54,7 @@ String buffer;
         }
         else
         {
-            logError();
+            logError("missing '(' or ';'");
         }
     }
 }

@@ -13,7 +13,7 @@ public class FunctionBody extends GrammarDef{
             new CompoundStatement(parser);
             return;
         } else {
-            logError();
+            logError("missing '{'");
         }
     }
 }
