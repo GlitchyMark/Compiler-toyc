@@ -18,5 +18,5 @@ int main() {
     newline;
     i = i + 1;
   }
-  return "as(df";
+  return;
 }
