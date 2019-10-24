@@ -70,7 +70,13 @@ public class Printer {
         {
             String split[] = strbuilder.get(strbuilder.size()-1).line.split("\\(", 2);
             strbuilder.get(strbuilder.size()-1).line = split[0] + "(";
-            strbuilder.add(new Line(split[1], strbuilder.get(strbuilder.size()-1).spaces+1));
+            String secstr = split[1];
+            if(secstr.trim().startsWith(","))
+            {
+                strbuilder.get(strbuilder.size()-1).line += ",";
+                secstr = secstr.substring(1);
+            }
+            strbuilder.add(new Line(secstr, strbuilder.get(strbuilder.size()-1).spaces+1));
         }
         int iterator = 0;
         while(iterator < strbuilder.size())
@@ -89,6 +95,8 @@ public class Printer {
             iterator++;
         }
         System.out.println(builder);//TODO REMOVE
+        for(int i = 0; i < strbuilder.size(); i++)
+            strbuilder.get(i).line = strbuilder.get(i).line.replace( "\u2001", ")").replace("\u2002","(");
         for(int i = 0; i < strbuilder.size(); i++) {
             if(strbuilder.get(i).line.trim().length() == 0)
                 continue;
