@@ -51,6 +51,8 @@ public class Primary extends GrammarDef
         else if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
         {
             //consume left paren
+            parser.printer.println("expr(");
+            parser.printer.indent();
             parser.getNextToken();
             new Expression(parser);
 
@@ -64,6 +66,9 @@ public class Primary extends GrammarDef
             {
                 logError("expected ')'");
             }
+            parser.printer.outdent();
+            parser.printer.println("");
+            parser.printer.print(")");
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.ADDOP))
         {
