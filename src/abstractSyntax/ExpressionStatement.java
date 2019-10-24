@@ -18,7 +18,7 @@ public class ExpressionStatement extends GrammarDef
         {
             parser.printer.print("expr(");
             new Expression(parser);
-            parser.printer.print(")");
+            parser.printer.print("),");
         }
         else
         {
