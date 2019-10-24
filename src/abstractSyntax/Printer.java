@@ -110,6 +110,18 @@ public class Printer {
             if (strbuilder.get(i).line.trim().length() == 0)
                 strbuilder.remove(i);
         }
+        for(int i = 0; i < strbuilder.size(); i++) {
+            if (strbuilder.get(i).line.trim().equals(",")) {
+                if (i + 1 < strbuilder.size()) {
+                    strbuilder.get(i).line += strbuilder.get(i + 1);
+                    strbuilder.get(i + 1).line = "";
+                }
+            }
+        }
+        for(int i = strbuilder.size() - 1; i >= 0; i--) {
+            if (strbuilder.get(i).line.trim().length() == 0)
+                strbuilder.remove(i);
+        }
         for(int i = 0; i < strbuilder.size(); i++)
         {
             if(strbuilder.get(i).line.startsWith(",")) {
@@ -136,6 +148,7 @@ public class Printer {
         for(int i = 0; i < strbuilder.size(); i++) {
             if(strbuilder.get(i).line.trim().length() == 0)
                 continue;
+            System.out.print(i + ": ");
             for (int j = 0; j < strbuilder.get(i).spaces; j++)
                 System.out.print("  ");
             System.out.println(strbuilder.get(i).line);
