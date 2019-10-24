@@ -16,14 +16,14 @@ public class Printer {
         String curs = fileprinting.get(index);
         fileprinting.set(index, (curs.length() > 0 ? "" : spaces()) + curs + s);*/
     }
-    void println(String s)
+    /*void println(String s)
     {
         builder += s;
         /*int index = fileprinting.size()-1;
         String curs = fileprinting.get(index);
         fileprinting.set(index, (curs.length() > 0 ? "" : spaces()) + curs + s);
         fileprinting.add("");*/
-    }
+    //}
 
     /*int getStringLength()
     {
@@ -128,5 +128,7 @@ public class Printer {
         }
 
         System.out.println("Leftover spaces: " + Integer.toString(strbuilder.get(strbuilder.size()-1).spaces));//TODO REMOVE
+
+        
     }
 }

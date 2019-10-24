@@ -26,7 +26,7 @@ public class FormalParamList extends GrammarDef {
         } else {
             logError("missing id token");
         }
-        parser.printer.println("varDef(" + buffer + "), ");
+        parser.printer.print("varDef(" + buffer + "), ");
 
         while (parser.tok.getTok().equals(TCscanner.Tokens.COMMA)) {
             buffer = "";
@@ -52,7 +52,7 @@ public class FormalParamList extends GrammarDef {
                 //consume ID
                parser. getNextToken();
             }
-            parser.printer.println("varDef(" + buffer + "),");
+            parser.printer.print("varDef(" + buffer + "),");
         }
     }
 

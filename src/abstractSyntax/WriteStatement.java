@@ -12,8 +12,7 @@ public class WriteStatement extends GrammarDef
     @Override
     void parseDefinition()
     {
-        parser.printer.println("writeState(");
-        parser.printer.indent();
+        parser.printer.print("writeState(");
         if(parser.tok.getTok().equals(TCscanner.Tokens.WRITE))
         {
             //consume write
@@ -49,15 +48,13 @@ public class WriteStatement extends GrammarDef
         {
             //consume semicolon
             parser.getNextToken();
-            parser.printer.outdent();
-            parser.printer.println("");
-            parser.printer.print(")");
-            return;
+            //return;
         }
         else
         {
             logError("; expected");
         }
+        parser.printer.print(")");
     }
 
     @Override

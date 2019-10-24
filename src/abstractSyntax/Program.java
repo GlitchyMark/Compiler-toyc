@@ -10,8 +10,7 @@ public class Program extends GrammarDef{
     @Override
     void parseDefinition()
     {
-        parser.printer.println("prog(");
-        parser.printer.indent();
+        parser.printer.print("prog(");
         while(parser.tok.getTok().equals(TCscanner.Tokens.INT) || parser.tok.getTok().equals(TCscanner.Tokens.CHAR))
         {
             if (parser.tok.getTok().equals(TCscanner.Tokens.INT))
@@ -23,9 +22,7 @@ public class Program extends GrammarDef{
                 new Definition(parser);
             }
         }
-        parser.printer.outdent();
-        parser.printer.println("");
-        parser.printer.print("");
+        parser.printer.print(")");
         if(parser.tok.getTok().equals(TCscanner.Tokens.EOF))
         {
             parser.getNextToken();

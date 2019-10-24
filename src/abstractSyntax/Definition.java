@@ -39,19 +39,15 @@ String buffer;
 
         if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
         {
-            parser.printer.println("funcDef(" + buffer + ", ");
-            parser.printer.indent();
+            parser.printer.print("funcDef(" + buffer + ", ");
             new FunctionDefinition(parser);
-            parser.printer.outdent();
-            parser.printer.println("");
             parser.printer.print(")");
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
         {
-            parser.printer.print("varDef(" + buffer);
+            parser.printer.print("varDef(" + buffer + ")");
             //Consumes semicolon
             parser.getNextToken();
-            parser.printer.println("");
             return;
         }
         else

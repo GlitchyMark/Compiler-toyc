@@ -12,11 +12,11 @@ public class ExpressionStatement extends GrammarDef
     @Override
     void parseDefinition()
     {
-        parser.printer.println("exprState(");
+        parser.printer.print("exprState(");
         parser.printer.indent();
         if(parser.tokPrimaryCheck())
         {
-            parser.printer.println("expr(");
+            parser.printer.print("expr(");
             new Expression(parser);
             parser.printer.print(")");
         }
@@ -35,8 +35,6 @@ public class ExpressionStatement extends GrammarDef
         {
             logError("semicolon expected");
         }
-        parser.printer.outdent();
-        parser.printer.println("");
         parser.printer.print(")");
     }
 

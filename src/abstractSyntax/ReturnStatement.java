@@ -25,7 +25,7 @@ public class ReturnStatement extends GrammarDef
 
         if(parser.tokPrimaryCheck())
         {
-            parser.printer.println("expr(");
+            parser.printer.print("expr(");
             new Expression(parser);
             parser.printer.print(")");
         }

@@ -14,8 +14,7 @@ public class CompoundStatement extends GrammarDef
     {
         String buffer = "";
 
-        parser.printer.println("blockState(");
-        parser.printer.indent();
+        parser.printer.print("blockState(");
         if(parser.tok.getTok().equals(TCscanner.Tokens.LCURLY))
         {
             //consume l curly
@@ -52,7 +51,7 @@ public class CompoundStatement extends GrammarDef
             }
             else
             {
-                logError("");
+                logError("missing 'ID'");
             }
 
             if(parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
@@ -66,15 +65,15 @@ public class CompoundStatement extends GrammarDef
             }
         }
 
-        if(parser.tokStatementCheck())
-            parser.printer.println(",");
+        if(buffer.length() > 0)
+            parser.printer.print(",");
 
         while(parser.tokStatementCheck())
         {
             new Statement(parser);
 
             if(parser.tokStatementCheck())
-                parser.printer.println(",");
+                parser.printer.print(",");
         }
 
         if(parser.tok.getTok().equals(TCscanner.Tokens.RCURLY))
@@ -86,8 +85,6 @@ public class CompoundStatement extends GrammarDef
         {
             logError("} expected");
         }
-        parser.printer.outdent();
-        parser.printer.println("");
         parser.printer.print(")");
     }
 

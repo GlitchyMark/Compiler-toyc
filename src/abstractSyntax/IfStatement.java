@@ -12,8 +12,7 @@ public class IfStatement extends GrammarDef
     @Override
     void parseDefinition()
     {
-        parser.printer.println("ifState(");
-        parser.printer.indent();
+        parser.printer.print("ifState(");
         if(parser.tok.getTok().equals(TCscanner.Tokens.IF))
         {
             //consume if
@@ -28,7 +27,7 @@ public class IfStatement extends GrammarDef
         {
             //consume lparen
             parser.getNextToken();
-            parser.printer.println("expr(");
+            parser.printer.print("expr(");
             new Expression(parser);
             parser.printer.print(")");
         }
@@ -42,15 +41,16 @@ public class IfStatement extends GrammarDef
             //consume rparen
             parser.getNextToken();
             new Statement(parser);
-            if(parser.tok.getTok().equals(TCscanner.Tokens.ELSE))
-                parser.printer.println(",");
-            else
-                parser.printer.println("");
         }
         else
         {
             logError("')' expected");
         }
+
+        if(parser.tok.getTok().equals(TCscanner.Tokens.ELSE))
+            parser.printer.print(",");
+        else
+            parser.printer.print("");
 
         if(parser.tok.getTok().equals(TCscanner.Tokens.ELSE))
         {
@@ -61,9 +61,6 @@ public class IfStatement extends GrammarDef
                 new Statement(parser);
             }
         }
-
-        parser.printer.outdent();
-        parser.printer.println("");
         parser.printer.print(")");
 
         return;

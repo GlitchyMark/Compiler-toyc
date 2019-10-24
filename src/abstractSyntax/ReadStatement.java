@@ -12,7 +12,7 @@ public class ReadStatement extends GrammarDef
     @Override
     void parseDefinition()
     {
-        parser.printer.println("readState(");
+        parser.printer.print("readState(");
         parser.printer.indent();
         if(parser.tok.getTok().equals(TCscanner.Tokens.READ))
         {
@@ -41,7 +41,7 @@ public class ReadStatement extends GrammarDef
             parser.getNextToken();
             while(parser.tok.getTok().equals(TCscanner.Tokens.COMMA))
             {
-                parser.printer.println(",");
+                parser.printer.print(",");
                 parser.printer.print(parser.tok.getLex());
                 //consume comma
                 parser.getNextToken();
@@ -55,7 +55,6 @@ public class ReadStatement extends GrammarDef
                     logError("ID expected");
                 }
             }
-            parser.printer.println("");
         }
         else
         {
@@ -81,8 +80,6 @@ public class ReadStatement extends GrammarDef
         {
             logError("; expected");
         }
-        parser.printer.outdent();
-        parser.printer.println("");
         parser.printer.print(")");
     }
 

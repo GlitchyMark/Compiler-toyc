@@ -20,12 +20,9 @@ public class Primary extends GrammarDef
             //TODO: finish this loose thread
             if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
             {
-                parser.printer.println("funcCall(");
-                parser.printer.indent();
+                parser.printer.print("funcCall(");
                 parser.printer.print(thing);
                 new FunctionCall(parser);
-                parser.printer.outdent();
-                parser.printer.println("");
                 parser.printer.print(")");
             }else
                 parser.printer.print(" " + thing +", ");
@@ -54,7 +51,7 @@ public class Primary extends GrammarDef
         else if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
         {
             //consume left paren
-            parser.printer.println("expr(");
+            parser.printer.print("expr(");
             parser.getNextToken();
             new Expression(parser);
             parser.printer.print(")");
