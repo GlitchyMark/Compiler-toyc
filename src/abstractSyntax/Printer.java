@@ -28,6 +28,12 @@ public class Printer {
         int index = fileprinting.size()-1;
         return fileprinting.get(index).length();
     }
+    void trim(int i)
+    {
+        int index = fileprinting.size()-1;
+        String curs = fileprinting.get(index);
+        fileprinting.set(index, curs.substring(0, curs.length()-(i+1)));
+    }
     //Pretty printer
     private int pos = 0;
     final static int INDENTSIZE=2;
