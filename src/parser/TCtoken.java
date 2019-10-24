@@ -12,7 +12,6 @@ import java.util.List;
 public class TCtoken
 {
     List<String> preTokens;
-    List<String> tokens = new ArrayList<>();
     Integer currentListLoc = 0;
     Integer currentLineLoc = 0;
     Integer prevPosition[] = {0, 0};
@@ -43,13 +42,7 @@ public class TCtoken
 
         char c = preTokens.get(currentListLoc).charAt(currentLineLoc);
         currentLineLoc++;
-
         return c;
-    }
-
-    public String getCurrentLine()
-    {
-        return preTokens.get(currentListLoc);
     }
 
     public Integer getCurrentLineLoc()
