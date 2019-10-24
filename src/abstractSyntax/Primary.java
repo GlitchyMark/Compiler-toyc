@@ -19,7 +19,7 @@ public class Primary extends GrammarDef
             //TODO: finish this loose thread
             if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
             {
-                //functionCall();
+                new FunctionCall(parser);
             }
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.NUMBER))
@@ -44,7 +44,7 @@ public class Primary extends GrammarDef
         {
             //consume left paren
             parser.getNextToken();
-            //expression();
+            new Expression(parser);
 
             if (parser.tok.getTok().equals(TCscanner.Tokens.RPAREN))
             {
