@@ -31,7 +31,7 @@ public class ActualParameters extends GrammarDef
                 }
                 else
                 {
-                    logError(", expected");
+                    logError("primary expected");
                 }
             }
         }
