@@ -13,6 +13,7 @@ public class ExpressionStatement extends GrammarDef
     void parseDefinition()
     {
         parser.printer.println("exprState(");
+        parser.printer.indent();
         if(parser.tokPrimaryCheck())
         {
             new Expression(parser);
@@ -32,6 +33,7 @@ public class ExpressionStatement extends GrammarDef
         {
             logError("semicolon expected");
         }
+        parser.printer.outdent();
         parser.printer.println(")");
     }
 

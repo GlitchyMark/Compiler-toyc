@@ -39,14 +39,14 @@ String buffer;
 
         if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
         {
-            parser.printer.printlnspaces("funcDef(" + buffer + ", ");
+            parser.printer.println("funcDef(" + buffer + ", ");
             parser.printer.indent();
             new FunctionDefinition(parser);
             parser.printer.println(")");
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
         {
-            parser.printer.printspaces("varDef(" + buffer);
+            parser.printer.print("varDef(" + buffer);
             //Consumes semicolon
             parser.getNextToken();
             parser.printer.println(")");

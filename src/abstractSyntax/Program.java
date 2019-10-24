@@ -29,9 +29,10 @@ public class Program extends GrammarDef{
             parser.getNextToken();
             return;
         }
+
         else
         {
-            logError("unexpected token '" + parser.tok.getLex() + "'. expected EOF");
+            logError("EOF token missing");
         }
     }
 
