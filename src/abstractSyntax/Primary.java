@@ -36,7 +36,7 @@ public class Primary extends GrammarDef
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.STRING))
         {
-            parser.printer.print(" " + parser.tok.getLex() +", ");
+            parser.printer.print(" \"" + parser.tok.getLex() +"\", ");
             //consume string
             parser.getNextToken();
             return;

@@ -49,10 +49,6 @@ public class Printer {
     public void indent() {
         //pos += INDENTSIZE;
     }
-    public void outdent() {
-        //pos -= INDENTSIZE;
-        //assert (pos >= 0);
-    }
 
     class Line
     {
@@ -67,32 +63,6 @@ public class Printer {
 
     public void printStack()
     {
-        //for(int i = 0; i < fileprinting.size(); i++)
-        //    System.out.println(fileprinting.get(i));
-        /*String split[] = builder.split("\\(");
-
-        for(int i = 0; i < split.length-1; i++)
-        {
-            for (int j = 0; j < i; j++)
-                split[i] = "  " + split[i];
-
-            split[i] = split[i] + ((i == split.length-2) ? "" : "(") + "\n";
-        }
-        String splitbuild = "";
-        for(int i = 0; i < split.length; i++)
-            splitbuild += split[i];
-
-        String split2[] = splitbuild.split("\\)");
-        for(int i = 0; i < split2.length; i++)
-        {
-            if(split2[i].length() < i*2)
-                continue;
-            split2[i] = split2[i].substring(i*2);
-            split2[i] = split2[i] + ((i == split.length-2) ? "" : ")") + "\n";
-        }
-        for(int i = 0; i < split2.length; i++)
-        System.out.print(split2[i]);*/
-
         List<Line> strbuilder = new ArrayList<Line>();
         strbuilder.add(new Line(builder, 0));
 
@@ -129,6 +99,6 @@ public class Printer {
 
         System.out.println("Leftover spaces: " + Integer.toString(strbuilder.get(strbuilder.size()-1).spaces));//TODO REMOVE
 
-        
+
     }
 }

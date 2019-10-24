@@ -27,13 +27,13 @@ public class ReturnStatement extends GrammarDef
         {
             parser.printer.print("expr(");
             new Expression(parser);
-            parser.printer.print(")");
+            parser.printer.print("),");
         }
         if (parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
         {
             //consume semicolon
             parser.getNextToken();
-            return;
+            //return;
         }
         else
         {
