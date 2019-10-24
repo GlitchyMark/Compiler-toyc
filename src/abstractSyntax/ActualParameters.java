@@ -17,7 +17,7 @@ public class ActualParameters extends GrammarDef
             parser.printer.print(",");
             parser.printer.print("expr(");
             new Expression(parser);
-            parser.printer.print(")");
+            parser.printer.print("),");
             while(parser.tok.getTok().equals(TCscanner.Tokens.COMMA))
             {
                 //consume comma
@@ -27,7 +27,7 @@ public class ActualParameters extends GrammarDef
                     parser.printer.print(",");
                     parser.printer.print("expr(");
                     new Expression(parser);
-                    parser.printer.print(")");
+                    parser.printer.print("),");
                 }
                 else
                 {

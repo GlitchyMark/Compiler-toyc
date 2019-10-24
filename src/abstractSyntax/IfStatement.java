@@ -29,7 +29,7 @@ public class IfStatement extends GrammarDef
             parser.getNextToken();
             parser.printer.print("expr(");
             new Expression(parser);
-            parser.printer.print(")");
+            parser.printer.print("),");
         }
         else
         {
