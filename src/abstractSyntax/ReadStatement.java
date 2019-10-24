@@ -41,12 +41,12 @@ public class ReadStatement extends GrammarDef
             parser.getNextToken();
             while(parser.tok.getTok().equals(TCscanner.Tokens.COMMA))
             {
-                parser.printer.print(",");
-                parser.printer.print(parser.tok.getLex());
+                parser.printer.print(", ");
                 //consume comma
                 parser.getNextToken();
                 if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
                 {
+                    parser.printer.print(parser.tok.getLex());
                     //consume ID
                     parser.getNextToken();
                 }
