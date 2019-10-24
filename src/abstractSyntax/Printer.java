@@ -118,6 +118,7 @@ public class Printer {
             }
             iterator++;
         }
+        System.out.println(builder);//TODO REMOVE
         for(int i = 0; i < strbuilder.size(); i++) {
             if(strbuilder.get(i).line.trim().length() == 0)
                 continue;
@@ -125,5 +126,7 @@ public class Printer {
                 System.out.print("  ");
             System.out.println(strbuilder.get(i).line);
         }
+
+        System.out.println("Leftover spaces: " + Integer.toString(strbuilder.get(strbuilder.size()-1).spaces));//TODO REMOVE
     }
 }
