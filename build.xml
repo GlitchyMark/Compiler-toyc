@@ -41,9 +41,9 @@
 
   <target name="test" depends="compile"
           description="execute the generated compiler (usage: -Dsource=myProgram [-Dflags=-v])" >
-    <echo message="usage: -Dsource=myProgram [-Dflags=-v] (myProgram without .tc)" />
+    <echo message="usage: -Dsource=myProgram [-Dflags=-v]" />
     <java fork="true" classname="${main-class}" classpath="${classpath.dir};${classes.dir}">
-      <arg line="${flags} ${source}.tc"/>
+      <arg line="${flags} ${source}"/>
     </java>
   </target>
 
