@@ -73,9 +73,6 @@ public class Primary extends GrammarDef
             {
                 logError("expected ')'");
             }
-            parser.printer.outdent();
-            parser.printer.println("hello");
-            parser.printer.print(")");
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.ADDOP))
         {
