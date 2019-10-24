@@ -1,5 +1,7 @@
 package abstractSyntax;
 
+import compiler.TCGlobals;
+
 import java.util.*;
 
 public class Printer {
@@ -153,9 +155,12 @@ public class Printer {
             if(strbuilder.get(i).line.trim().length() == 0)
                 continue;
             //System.out.print(String.format("%0"+ (int)(Math.log(strbuilder.size())-1) +"d", i) + ": ");
-            for (int j = 0; j < strbuilder.get(i).spaces; j++)
-                System.out.print("  ");
-            System.out.println(strbuilder.get(i).line);
+
+            if(TCGlobals.debugLevel <= 2) {
+                for (int j = 0; j < strbuilder.get(i).spaces; j++)
+                    System.out.print("  ");
+                System.out.println(strbuilder.get(i).line);
+            }
         }
 
 //        System.out.println("Leftover spaces: " + Integer.toString(strbuilder.get(strbuilder.size()-1).spaces));//TODO REMOVE

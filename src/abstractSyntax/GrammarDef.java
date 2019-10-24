@@ -12,7 +12,7 @@ public abstract class GrammarDef {
     {
         parser = tcp;
         parseDefinition();
-        if(TCGlobals.debugLevel >= 2)
+        if(TCGlobals.debugLevel <= 2)
             System.out.println("[PARSER] " + toString());
     }
 
