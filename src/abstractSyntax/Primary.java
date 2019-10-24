@@ -54,7 +54,7 @@ public class Primary extends GrammarDef
             }
             else
             {
-                logError("expected (");
+                logError("expected )");
             }
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.ADDOP))

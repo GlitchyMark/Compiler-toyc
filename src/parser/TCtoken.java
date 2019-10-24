@@ -52,7 +52,7 @@ public class TCtoken
 
     public Integer getCurrentLineLoc()
     {
-        return currentLineLoc;
+        return prevPosition[1];
     }
 
     public boolean isInAlphabet(char ch)
