@@ -42,6 +42,8 @@ String buffer;
             parser.printer.println("funcDef(" + buffer + ", ");
             parser.printer.indent();
             new FunctionDefinition(parser);
+            parser.printer.outdent();
+            parser.printer.print(")");
             parser.printer.println(")");
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
@@ -49,7 +51,7 @@ String buffer;
             parser.printer.print("varDef(" + buffer);
             //Consumes semicolon
             parser.getNextToken();
-            parser.printer.println(")");
+            parser.printer.println("");
             return;
         }
         else
