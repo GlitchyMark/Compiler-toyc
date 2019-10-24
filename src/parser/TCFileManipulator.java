@@ -55,6 +55,7 @@ public class TCFileManipulator
         //System.out.println("Enter in file inputFile of file to be compiled:");
         //filePath = scanner.next();
         //filePath = System.getProperty("user.dir")+"\\tests\\"+filetoload;
+
         filePath = filetoload;
         if(!(new File(filetoload)).exists())
             filePath = Paths.get(System.getProperty("user.dir"),"tests", filetoload).toString();
