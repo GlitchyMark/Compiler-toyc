@@ -105,19 +105,22 @@ public class Printer {
         int iterator = 0;
         while(iterator < strbuilder.size())
         {
-            if(strbuilder.get(iterator).line.contains(")") && !strbuilder.get(iterator).line.trim().equals(")"))
+            if(strbuilder.get(iterator).line.contains(")"))
             {
                 String split[] = strbuilder.get(iterator).line.split("\\)", 2);
                 strbuilder.get(iterator).line = split[0];
-                strbuilder.add(iterator + 1, new Line(")", strbuilder.get(iterator).spaces - 1));
-                strbuilder.add(iterator + 2, new Line(split[1], strbuilder.get(iterator).spaces - 1));
+
+                strbuilder.add(iterator + 1, new Line(")", strbuilder.get(iterator).spaces));
+                strbuilder.add(iterator + 2, new Line(split[1], strbuilder.get(iterator).spaces));
                 for (int i = iterator; i < strbuilder.size(); i++)
                     strbuilder.get(i).spaces--;
+                iterator++;
             }
             iterator++;
         }
-
         for(int i = 0; i < strbuilder.size(); i++) {
+            if(strbuilder.get(i).line.trim().length() == 0)
+                continue;
             for (int j = 0; j < strbuilder.get(i).spaces; j++)
                 System.out.print("  ");
             System.out.println(strbuilder.get(i).line);
