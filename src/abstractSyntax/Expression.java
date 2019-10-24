@@ -31,7 +31,7 @@ public class Expression extends GrammarDef
             }
             else
             {
-                logError("= expected");
+                logError("'=' expected");
             }
         }
         return;

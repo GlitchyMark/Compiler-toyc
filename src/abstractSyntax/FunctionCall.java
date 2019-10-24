@@ -12,8 +12,6 @@ public class FunctionCall extends GrammarDef
     @Override
     void parseDefinition()
     {
-        parser.printer.println("funcCall(");
-        parser.printer.indent();
         if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
         {
             //consume lparen

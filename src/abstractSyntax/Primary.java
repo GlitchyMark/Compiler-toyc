@@ -20,6 +20,9 @@ public class Primary extends GrammarDef
             //TODO: finish this loose thread
             if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
             {
+                parser.printer.println("funcCall(");
+                parser.printer.indent();
+                parser.printer.println(ident + ",");
                 new FunctionCall(parser);
             }else
                 parser.printer.print(ident);
