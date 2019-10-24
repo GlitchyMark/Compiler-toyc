@@ -106,19 +106,7 @@ public class Printer {
 
         System.out.println(builder);//TODO REMOVE
 
-        for(int i = strbuilder.size() - 1; i >= 0; i--) {
-            if (strbuilder.get(i).line.trim().length() == 0)
-                strbuilder.remove(i);
-        }
-        for(int i = 0; i < strbuilder.size(); i++) {
-            if (strbuilder.get(i).line.trim().equals(",")) {
-                if (i + 1 < strbuilder.size()) {
-                    strbuilder.get(i).line += strbuilder.get(i + 1);
-                    strbuilder.get(i + 1).line = "";
-                }
-            }
-        }
-        for(int i = strbuilder.size() - 1; i >= 0; i--) {
+        for(int i = strbuilder.size() - 1; i >= 0; i--) {//Remove empty lines
             if (strbuilder.get(i).line.trim().length() == 0)
                 strbuilder.remove(i);
         }
@@ -143,6 +131,21 @@ public class Printer {
                 }
             }
         }
+
+        for(int i = strbuilder.size() - 1; i >= 0; i--) {//Remove empty lines
+            if (strbuilder.get(i).line.trim().length() == 0)
+                strbuilder.remove(i);
+        }
+        for(int i = 0; i < strbuilder.size(); i++) {
+            if (strbuilder.get(i).line.startsWith(",")) {
+                if (i > 0) {
+                    strbuilder.get(i - 1).line += ",";
+                    strbuilder.get(i).line = strbuilder.get(i).line.substring(1);
+                }
+            }
+        }
+
+
         for(int i = 0; i < strbuilder.size(); i++)
             strbuilder.get(i).line = strbuilder.get(i).line.replace( "\u2001", ")").replace("\u2002","(");
         for(int i = 0; i < strbuilder.size(); i++) {
