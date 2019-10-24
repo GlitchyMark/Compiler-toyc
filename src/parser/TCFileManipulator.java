@@ -56,6 +56,7 @@ public class TCFileManipulator
         //filePath = scanner.next();
         //filePath = System.getProperty("user.dir")+"\\tests\\"+filetoload;
         filePath = filetoload;
+
         if(!(new File(filetoload)).exists())
             filePath = Paths.get(System.getProperty("user.dir"),"tests", filetoload).toString();
         System.out.println("Getting file: " + filePath);
