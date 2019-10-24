@@ -12,14 +12,14 @@ public class Statement extends GrammarDef
     @Override
     void parseDefinition()
     {
-        parser.printer.println("Definition(");
-        parser.printer.indent();
         if(parser.tok.getTok().equals(TCscanner.Tokens.BREAK))
         {
+            parser.printer.println("breakState()");
             new BreakStatement(parser);
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
         {
+
             new ExpressionStatement(parser);
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.LCURLY) )
@@ -58,7 +58,6 @@ public class Statement extends GrammarDef
         {
             logError("No statement");
         }
-        parser.printer.println(")");
     }
 
     @Override

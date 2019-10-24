@@ -1,3 +1,5 @@
+int main(){
+
 int i = 5; //some testing file
 int j = 2;
 
@@ -50,3 +52,4 @@ else
 }
 
 return 0;
+}
