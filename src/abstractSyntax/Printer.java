@@ -98,14 +98,14 @@ public class Printer {
 
         while(strbuilder.get(strbuilder.size()-1).line.contains("("))
         {
-            String split[] = strbuilder.get(strbuilder.size()-1).line.split("\\(", 1);
+            String split[] = strbuilder.get(strbuilder.size()-1).line.split("\\(", 2);
             strbuilder.get(strbuilder.size()-1).line = split[0] + "(";
             strbuilder.add(new Line(split[1], strbuilder.get(strbuilder.size()-1).spaces+1));
         }
         int iterator = 0;
         while(strbuilder.get(iterator).line.contains(")"))
         {
-            String split[] = strbuilder.get(iterator).line.split("\\)", 1);
+            String split[] = strbuilder.get(iterator).line.split("\\)", 2);
             strbuilder.get(iterator).line = split[0] + ")";
 
             strbuilder.add(iterator+1, new Line(split[1], strbuilder.get(iterator).spaces-1));
