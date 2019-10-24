@@ -84,7 +84,7 @@ public class Printer {
 
                 strbuilder.add(iterator + 1, new Line(")", strbuilder.get(iterator).spaces));
                 strbuilder.add(iterator + 2, new Line(split[1], strbuilder.get(iterator).spaces));
-                for (int i = iterator; i < strbuilder.size(); i++)
+                for (int i = iterator+1; i < strbuilder.size(); i++)
                     strbuilder.get(i).spaces--;
                 iterator++;
             }
