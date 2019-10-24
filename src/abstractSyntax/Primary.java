@@ -57,6 +57,9 @@ public class Primary extends GrammarDef
             parser.printer.println("expr(");
             parser.printer.indent();
             parser.getNextToken();
+            parser.printer.outdent();
+            parser.printer.println("");
+            parser.printer.print(")");
             new Expression(parser);
 
             if (parser.tok.getTok().equals(TCscanner.Tokens.RPAREN))

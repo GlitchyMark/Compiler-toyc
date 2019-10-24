@@ -28,7 +28,7 @@ public class ExpressionStatement extends GrammarDef
         {
             //consume semicolon
             parser.getNextToken();
-            return;
+            //return;
         }
         else
         {

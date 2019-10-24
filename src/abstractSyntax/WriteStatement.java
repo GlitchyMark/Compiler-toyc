@@ -49,15 +49,15 @@ public class WriteStatement extends GrammarDef
         {
             //consume semicolon
             parser.getNextToken();
+            parser.printer.outdent();
+            parser.printer.println("");
+            parser.printer.print(")");
             return;
         }
         else
         {
             logError("; expected");
         }
-        parser.printer.outdent();
-        parser.printer.println("");
-        parser.printer.print(")");
     }
 
     @Override
