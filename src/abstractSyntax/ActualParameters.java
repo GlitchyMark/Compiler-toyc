@@ -14,6 +14,7 @@ public class ActualParameters extends GrammarDef
     {
         if(parser.tokPrimaryCheck())
         {
+            parser.printer.println(",");
             new Expression(parser);
             while(parser.tok.getTok().equals(TCscanner.Tokens.COMMA))
             {

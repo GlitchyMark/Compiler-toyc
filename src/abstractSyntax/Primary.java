@@ -22,7 +22,7 @@ public class Primary extends GrammarDef
             {
                 parser.printer.println("funcCall(");
                 parser.printer.indent();
-                parser.printer.println(ident + ",");
+                parser.printer.print(ident);
                 new FunctionCall(parser);
             }else
                 parser.printer.print(ident);
