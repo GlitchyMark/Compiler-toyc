@@ -8,6 +8,7 @@ int isEven(int n){
 int main() {
   int i;
   i = 1;
+  h = "df";
   while (i <= 10) {
     write(i);
     if ( isEven(i) )
@@ -17,5 +18,5 @@ int main() {
     newline;
     i = i + 1;
   }
-  return;
+  return "asdf";
 }
