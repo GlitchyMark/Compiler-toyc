@@ -14,6 +14,7 @@ public class NewLineStatement extends GrammarDef
     {
         if(parser.tok.getTok().equals(TCscanner.Tokens.NEWLINE))
         {
+            parser.printer.print("newLineState()");
             //consume new line
             parser.getNextToken();
         }

@@ -12,6 +12,7 @@ public class ReturnStatement extends GrammarDef
     @Override
     void parseDefinition()
     {
+        parser.printer.print("returnState(");
         if(parser.tok.getTok().equals(TCscanner.Tokens.RETURN))
         {
             //consume return
@@ -24,7 +25,11 @@ public class ReturnStatement extends GrammarDef
 
         if(parser.tokPrimaryCheck())
         {
+            parser.printer.println("");
+            parser.printer.indent();
             new Expression(parser);
+            parser.printer.println(",");
+            parser.printer.outdent();
         }
         if (parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
         {
@@ -36,6 +41,7 @@ public class ReturnStatement extends GrammarDef
         {
             logError("; expected");
         }
+        parser.printer.print(")");
     }
 
     @Override

@@ -14,7 +14,7 @@ public class NullStatement extends GrammarDef
     {
         if(parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
         {
-            parser.printer.println("breakState()");
+            parser.printer.print("breakState()");
             //consume semicolon
             parser.getNextToken();
         }

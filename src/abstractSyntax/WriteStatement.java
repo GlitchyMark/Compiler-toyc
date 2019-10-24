@@ -12,6 +12,8 @@ public class WriteStatement extends GrammarDef
     @Override
     void parseDefinition()
     {
+        parser.printer.println("writeState(");
+        parser.printer.indent();
         if(parser.tok.getTok().equals(TCscanner.Tokens.WRITE))
         {
             //consume write
@@ -53,6 +55,8 @@ public class WriteStatement extends GrammarDef
         {
             logError("; expected");
         }
+        parser.printer.outdent();
+        parser.printer.print(")");
     }
 
     @Override

@@ -12,6 +12,8 @@ public class WhileStatement extends GrammarDef
     @Override
     void parseDefinition()
     {
+        parser.printer.println("whileState(");
+        parser.printer.indent();
         if(parser.tok.getTok().equals(TCscanner.Tokens.WHILE))
         {
             //consume while
@@ -27,6 +29,7 @@ public class WhileStatement extends GrammarDef
             //consume lparen
             parser.getNextToken();
             new Expression(parser);
+            parser.printer.println(",");
         }
         else
         {
@@ -43,6 +46,8 @@ public class WhileStatement extends GrammarDef
         {
             logError(") expected");
         }
+        parser.printer.outdent();
+        parser.printer.print(")");
     }
 
     @Override

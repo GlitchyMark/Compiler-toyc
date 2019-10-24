@@ -15,7 +15,7 @@ public class BreakStatement extends GrammarDef
         if(parser.tok.getTok().equals(TCscanner.Tokens.BREAK))
         {
             //consume break
-            parser.printer.println("breakState()");
+            parser.printer.print("breakState()");
             parser.getNextToken();
         }
         else

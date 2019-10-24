@@ -14,28 +14,33 @@ public class Primary extends GrammarDef
     {
         if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
         {
+            String ident = parser.tok.getLex();
             //consumes identifier
             parser.getNextToken();
             //TODO: finish this loose thread
             if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
             {
                 new FunctionCall(parser);
-            }
+            }else
+                parser.printer.print(ident);
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.NUMBER))
         {
+            parser.printer.print(parser.tok.getLex());
             //consume number
             parser.getNextToken();
             return;
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.STRING))
         {
+            parser.printer.print(parser.tok.getLex());
             //consume string
             parser.getNextToken();
             return;
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.CHARLITERAL))
         {
+            parser.printer.print(parser.tok.getLex());
             //consume char
             parser.getNextToken();
             return;
@@ -54,7 +59,7 @@ public class Primary extends GrammarDef
             }
             else
             {
-                logError("expected )");
+                logError("expected ')'");
             }
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.ADDOP))

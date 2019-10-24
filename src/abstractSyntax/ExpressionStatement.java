@@ -17,6 +17,7 @@ public class ExpressionStatement extends GrammarDef
         if(parser.tokPrimaryCheck())
         {
             new Expression(parser);
+            parser.printer.println("");
         }
         else
         {
@@ -33,8 +34,9 @@ public class ExpressionStatement extends GrammarDef
         {
             logError("semicolon expected");
         }
+        parser.printer.println("");
         parser.printer.outdent();
-        parser.printer.println(")");
+        parser.printer.print(")");
     }
 
     @Override

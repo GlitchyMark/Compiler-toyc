@@ -21,6 +21,7 @@ public class ActualParameters extends GrammarDef
                 parser.getNextToken();
                 if(parser.tokPrimaryCheck())
                 {
+                    parser.printer.println(",");
                     new Expression(parser);
                 }
                 else

@@ -12,7 +12,6 @@ public class Expression extends GrammarDef
     @Override
     void parseDefinition()
     {
-        //TODO: figure out how the fuck this printing work
         if(parser.tokPrimaryCheck())
         {
             new RelopExpression(parser);
