@@ -50,7 +50,7 @@ public class SymTable{
             System.out.println("Symbol with ID: " + id + " does not exist in symbol table");
             sym = new Symbol();
         }
-            
+
         return sym;
     }
 
