@@ -4,4 +4,11 @@
 package codeGen.JVM;
 
 public class JVMcodeGenerator {
+    public JVMcodeGenerator()
+    {
+    }
+    void insert(String s)
+    {
+
+    }
 }

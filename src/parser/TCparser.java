@@ -3,6 +3,7 @@ package parser;
 import java.util.List;
 import abstractSyntax.Printer;
 import abstractSyntax.Program;
+import symTable.SymTable;
 
 public class TCparser
 {

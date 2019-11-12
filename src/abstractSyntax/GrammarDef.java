@@ -3,6 +3,7 @@
  */
 package abstractSyntax;
 
+import symTable.SymTable;
 import compiler.TCGlobals;
 import parser.*;
 
