@@ -4,6 +4,7 @@
 package abstractSyntax;
 
 import parser.*;
+import codeGen.JVM.*;
 
 public class Program extends GrammarDef{
     public Program(TCparser tcp) {
@@ -28,6 +29,7 @@ public class Program extends GrammarDef{
         parser.printer.print(")");
         if(parser.tok.getTok().equals(TCscanner.Tokens.EOF))
         {
+            parser.codegenerator.insert(new CGEnd());
             parser.getNextToken();
             return;
         }

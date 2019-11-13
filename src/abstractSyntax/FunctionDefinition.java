@@ -4,6 +4,7 @@
 package abstractSyntax;
 
 import parser.*;
+import codeGen.JVM.*;
 
 public class FunctionDefinition extends GrammarDef {
     public FunctionDefinition(TCparser tcp) {

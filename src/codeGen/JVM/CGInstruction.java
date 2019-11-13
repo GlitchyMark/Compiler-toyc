@@ -10,17 +10,14 @@ public class CGInstruction {
 
     }
 
-    void codeGen()
-    {
-
-    }
-
     void processinst(JVMtargetCode target)
     {
         this.target = target;
+        codeGen();
     }
 
-    void codeGen(String s)
+    void codeGen()
     {
+
     }
 }
