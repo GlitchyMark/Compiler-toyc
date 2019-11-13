@@ -3,14 +3,18 @@
  */
 package codeGen.JVM;
 
+import symTable.SymTable;
+
 import java.util.List;
 
 public class JVMtargetCode {
+    public SymTable symtable;
     List<String> code;
     List<CGInstruction> instructions;
     public JVMtargetCode()
     {
         instructions.add(new CGVar(this));
+        initCodeLines();
     }
     void initCodeLines()
     {
