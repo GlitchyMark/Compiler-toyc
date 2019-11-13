@@ -9,10 +9,12 @@ public class CGVar extends CGInstruction{
         varname = s;
     }
 
-    void codeGen(String s)
+    void codeGen()
     {
         try {
-            target.symtable.insert(varname);
+            Symbol sym = target.symtable.insert(varname);
+            target.code.add("iconst_0");
+            target.code.add("istore " + sym.getOffset());
         } catch(SymbolAlreadyDeclared sad)
         {
             //TODO: Better error msg

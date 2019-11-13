@@ -4,6 +4,7 @@
 package abstractSyntax;
 
 import parser.TCparser;
+import codeGen.JVM.*;
 
 public class Type extends GrammarDef {
     public Type(TCparser tcp) {
