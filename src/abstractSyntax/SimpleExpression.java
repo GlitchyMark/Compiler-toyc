@@ -33,6 +33,14 @@ public class SimpleExpression extends GrammarDef
                 parser.printer.print(" " + parser.tok.getLex() + ", ");
                 parser.getNextToken();
                 new Term(parser);
+                if(parser.tok.getLex() == "+")
+                {
+                    parser.codegenerator.insert(new CGAdd());
+                }
+                if(parser.tok.getLex() == "-")
+                {
+                    parser.codegenerator.insert(new CGSub());
+                }
             }
             else
             {
