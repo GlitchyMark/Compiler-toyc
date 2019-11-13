@@ -3,7 +3,7 @@ package codeGen.JVM;
 import symTable.SymTable;
 
 public class CGInstruction {
-    public JVMtargetCode target;
+    public JVMtargetCode target = new JVMtargetCode();
 
     public CGInstruction()
     {
