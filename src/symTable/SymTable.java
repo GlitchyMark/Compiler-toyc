@@ -50,8 +50,13 @@ public class SymTable{
             System.out.println("Symbol with ID: " + id + " does not exist in symbol table");
             sym = new Symbol();
         }
-
         return sym;
+    }
+
+    public SymTable addScope()
+    {
+        SymTable local = new SymTable(this);
+        return local;
     }
 
     public String toString()
