@@ -11,16 +11,19 @@ public class SymTable{
 
     SymTable owner;
     boolean hasOwner;
+    String labelName;
 
     // Constructor
     public SymTable()
     {
+        labelName = "main";
         hasOwner = false;
     }
 
-    public SymTable(SymTable owner)
+    public SymTable(SymTable owner, String labelName)
     {
         this.owner = owner;
+        this.labelName = labelName;
         hasOwner = true;
     }
 
@@ -53,10 +56,15 @@ public class SymTable{
         return sym;
     }
 
-    public SymTable addScope()
+    public SymTable addScope(String labelName)
     {
-        SymTable local = new SymTable(this);
+        SymTable local = new SymTable(this, labelName);
         return local;
+    }
+
+    public SymTable goDown()
+    {
+        return owner;
     }
 
     public String toString()
