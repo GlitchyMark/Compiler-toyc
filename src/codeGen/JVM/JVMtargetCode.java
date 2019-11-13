@@ -33,8 +33,8 @@ public class JVMtargetCode {
         code.add(".end method");
         code.add("; >> METHOD 2 <<");
         code.add(".method public static main([Ljava/lang/String;)V");
-        code.add(".limit stack 2");
-        code.add(".limit locals 2");
+        code.add(".limit stack 100");
+        code.add(".limit locals 100");
     }
     void insert(CGInstruction cgi)
     {

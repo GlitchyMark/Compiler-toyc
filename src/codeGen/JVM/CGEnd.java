@@ -5,7 +5,7 @@ import symTable.SymbolAlreadyDeclared;
 
 public class CGEnd extends CGInstruction {
 
-    void codeGen(String s)
+    void codeGen()
     {
         target.code.add("return");
         target.code.add(".end method");
