@@ -28,8 +28,12 @@ public class Primary extends GrammarDef
                 parser.printer.print(thing);
                 new FunctionCall(parser);
                 parser.printer.print(")");
-            }else
-                parser.printer.print(" " + thing +", ");
+            }
+            else
+            {
+
+                parser.printer.print(" " + thing + ", ");
+            }
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.NUMBER))
         {

@@ -33,6 +33,7 @@ public class WriteStatement extends GrammarDef
             parser.getNextToken();
             new ActualParameters(parser);
         }
+
         else
         {
             logError("( expected");

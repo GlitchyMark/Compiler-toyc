@@ -12,7 +12,7 @@ public class SymTable{
     SymTable owner;
     boolean hasOwner;
     String labelName;
-    Integer offsetCount = 0;
+    Integer offsetCount = 1;
 
     // Constructor
     public SymTable()
