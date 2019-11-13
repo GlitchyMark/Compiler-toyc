@@ -9,7 +9,6 @@ public class CGInstruction {
     public CGInstruction(JVMtargetCode target)
     {
         this.target = target;
-
     }
 
     void codeGen()
