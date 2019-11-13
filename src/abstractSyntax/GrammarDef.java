@@ -6,6 +6,7 @@ package abstractSyntax;
 import symTable.SymTable;
 import compiler.TCGlobals;
 import parser.*;
+import codeGen.JVM.*;
 
 public abstract class GrammarDef {
     TCparser parser;

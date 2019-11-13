@@ -3,6 +3,7 @@ package parser;
 import java.util.List;
 import abstractSyntax.Printer;
 import abstractSyntax.Program;
+import codeGen.JVM.JVMcodeGenerator;
 import symTable.SymTable;
 
 public class TCparser
@@ -13,6 +14,7 @@ public class TCparser
     public TCscanner tok;
     public TCscanner prevTok;
     public Printer printer = new Printer();
+    public JVMcodeGenerator codegenerator = new JVMcodeGenerator();
 
     public TCparser(TCtoken tct)
     {

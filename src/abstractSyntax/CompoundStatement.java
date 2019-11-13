@@ -4,6 +4,7 @@
 package abstractSyntax;
 
 import parser.*;
+import codeGen.JVM.*;
 
 public class CompoundStatement extends GrammarDef
 {
@@ -47,6 +48,7 @@ public class CompoundStatement extends GrammarDef
 
             if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
             {
+                parser.codegenerator.insert(CGVar.class, parser.tok.getLex());
                 buffer = parser.tok.getLex() + ", " + buffer;
                 parser.printer.print("varDef(" + buffer + ")");
                 //consume ID

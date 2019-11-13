@@ -6,6 +6,8 @@ public class Symbol
     private String type;
     private int offset;
 
+    //enum TYPES{INT, FUNC };
+
     public Symbol(){}
 
     public Symbol(String name)

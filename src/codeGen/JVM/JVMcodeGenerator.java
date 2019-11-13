@@ -5,12 +5,13 @@ package codeGen.JVM;
 
 public class JVMcodeGenerator
 {
+    JVMtargetCode target;
     public JVMcodeGenerator()
     {
 
     }
-    void insert(String s)
+    public void insert(CGInstruction cgi)
     {
-
+        target.insert(cgi);
     }
 }

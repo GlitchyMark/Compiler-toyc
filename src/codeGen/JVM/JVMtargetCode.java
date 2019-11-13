@@ -13,7 +13,7 @@ public class JVMtargetCode {
     List<CGInstruction> instructions;
     public JVMtargetCode()
     {
-        instructions.add(new CGVar(this));
+        //instructions.add(new CGVar(this));
         initCodeLines();
     }
     void initCodeLines()
@@ -36,20 +36,8 @@ public class JVMtargetCode {
         code.add(".limit stack 2");
         code.add(".limit locals 2");
     }
-    void insert(CGInstruction cgi, String s)
-    {
-        for(CGInstruction inst : instructions)
-            if(inst.getClass().isInstance(cgi))
-            {
-                inst.codeGen(s);
-            }
-    }
     void insert(CGInstruction cgi)
     {
-        for(CGInstruction inst : instructions)
-            if(inst.getClass().isInstance(cgi))
-            {
-                inst.codeGen();
-            }
+        cgi.processinst(this);
     }
 }

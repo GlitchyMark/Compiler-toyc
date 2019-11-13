@@ -5,14 +5,19 @@ import symTable.SymTable;
 public class CGInstruction {
     public JVMtargetCode target;
 
-    public CGInstruction(JVMtargetCode target)
+    public CGInstruction()
     {
-        this.target = target;
+
     }
 
     void codeGen()
     {
 
+    }
+
+    void processinst(JVMtargetCode target)
+    {
+        this.target = target;
     }
 
     void codeGen(String s)
