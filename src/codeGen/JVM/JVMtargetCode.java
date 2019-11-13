@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JVMtargetCode {
-    public SymTable symtable;
+    public SymTable symtable = new SymTable();
     List<String> code = new ArrayList<>();
     List<CGInstruction> instructions = new ArrayList<>();
     public JVMtargetCode()
@@ -45,5 +45,10 @@ public class JVMtargetCode {
     public SymTable getSymtable()
     {
         return symtable;
+    }
+
+    public List<String> getCode()
+    {
+        return code;
     }
 }

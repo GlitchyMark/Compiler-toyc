@@ -4,6 +4,8 @@
 package parser;
 
 import java.util.List;
+import java.util.Optional;
+
 import compiler.TCGlobals;
 
 public class tc
@@ -21,7 +23,7 @@ public class tc
         parse.toyCProgram();
         parse.printer.printStack();
 
-        //fileMan.writeListOfTokens(testin.getTokens().getStringList(), Optional.empty());
+        fileMan.writeListOfTokens(parse.codegenerator.getTarget().getCode(), Optional.of("a.j"));
     }
 
     private static void handleArgs(String[] args)
