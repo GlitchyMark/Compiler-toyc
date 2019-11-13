@@ -1,7 +1,5 @@
 package codeGen.JVM;
 
-import symTable.Symbol;
-import symTable.SymbolAlreadyDeclared;
 
 public class CGAdd extends CGInstruction
 {

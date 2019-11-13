@@ -27,25 +27,24 @@ public class SimpleExpression extends GrammarDef
 
         while(parser.tok.getTok().equals(TCscanner.Tokens.ADDOP))
         {
+            String temp = "";
             if(parser.tok.getTok().equals(TCscanner.Tokens.ADDOP))
             {
                 //consume addop
                 parser.printer.print(" " + parser.tok.getLex() + ", ");
+                temp = parser.tok.getLex();
                 parser.getNextToken();
                 new Term(parser);
-                if(parser.tok.getLex() == "+")
-                {
-                    parser.codegenerator.insert(new CGAdd());
-                }
-                if(parser.tok.getLex() == "-")
-                {
-                    parser.codegenerator.insert(new CGSub());
-                }
             }
             else
             {
                 logError("addop expected");
             }
+            if(temp == "+")
+                parser.codegenerator.insert(new CGAdd());
+
+            if(temp == "-")
+                parser.codegenerator.insert(new CGSub());
         }
         return;
     }
