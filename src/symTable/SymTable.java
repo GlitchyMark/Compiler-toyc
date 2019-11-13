@@ -13,7 +13,7 @@ public class SymTable{
     boolean hasOwner;
     String labelName;
     Integer offsetCount = 1;
-
+    Symbol lastaccessedsym;
     // Constructor
     public SymTable()
     {
@@ -34,10 +34,10 @@ public class SymTable{
 
         if(!localSymTable.containsKey(id))
         {
-            Symbol sym = new Symbol(id, offsetCount, type);
-            localSymTable.put(sym.getName(), sym);
+            lastaccessedsym = new Symbol(id, offsetCount, type);
+            localSymTable.put(lastaccessedsym.getName(), lastaccessedsym);
             offsetCount++;
-            return sym;
+            return lastaccessedsym;
         }
         else
             {
@@ -51,10 +51,10 @@ public class SymTable{
     {
         if(!localSymTable.containsKey(id))
         {
-            Symbol sym = new Symbol(id, offsetCount);
-            localSymTable.put(sym.getName(), sym);
+            lastaccessedsym = new Symbol(id, offsetCount);
+            localSymTable.put(lastaccessedsym.getName(), lastaccessedsym);
             offsetCount++;
-            return sym;
+            return lastaccessedsym;
         }
         else
         {
@@ -66,18 +66,21 @@ public class SymTable{
 
     public Symbol find(String id) throws SymbolNotFound
     {
-        Symbol sym;
         if(localSymTable.containsKey(id))
-            sym = localSymTable.get(id);
+            lastaccessedsym = localSymTable.get(id);
         else if(hasOwner)
-            sym = owner.find(id);
+            lastaccessedsym = owner.find(id);
         else {
             System.out.println("Symbol with ID: " + id + " does not exist in symbol table");
-            sym = new Symbol();
+            lastaccessedsym = new Symbol();
         }
-        return sym;
+        return lastaccessedsym;
     }
 
+    public Symbol getLastAccessedSym()
+    {
+        return lastaccessedsym;
+    }
     public SymTable addScope(String labelName)
     {
         SymTable local = new SymTable(this, labelName);

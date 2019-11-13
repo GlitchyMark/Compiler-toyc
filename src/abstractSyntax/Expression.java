@@ -5,6 +5,7 @@ package abstractSyntax;
 
 import parser.*;
 import codeGen.JVM.*;
+import symTable.Symbol;
 
 public class Expression extends GrammarDef
 {
@@ -27,6 +28,7 @@ public class Expression extends GrammarDef
 
         while(parser.tok.getTok().equals(TCscanner.Tokens.ASSIGNOP))
         {
+            CGAssign cga = new CGAssign();
             if(parser.tok.getTok().equals(TCscanner.Tokens.ASSIGNOP))
             {
                 //consume assignop
@@ -40,6 +42,7 @@ public class Expression extends GrammarDef
             {
                 logError("'=' expected");
             }
+            parser.codegenerator.insert(cga);
         }
         return;
     }

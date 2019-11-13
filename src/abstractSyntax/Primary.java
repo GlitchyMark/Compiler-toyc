@@ -35,12 +35,12 @@ public class Primary extends GrammarDef
             }
             else
             {
-
                 parser.printer.print(" " + thing + ", ");
             }
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.NUMBER))
         {
+            parser.codegenerator.insert(new CGLiteral(parser.tok.getLex()));
             parser.printer.print(" " + parser.tok.getLex() +", ");
             //consume number
             parser.getNextToken();
