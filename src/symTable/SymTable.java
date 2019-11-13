@@ -30,16 +30,35 @@ public class SymTable{
     // Instance Methods
     public Symbol insert(String id, String type) throws SymbolAlreadyDeclared
     {
-        Symbol sym = new Symbol(id, type);
-        localSymTable.put(sym.getName(), sym);
-        return sym;
+
+        if(!localSymTable.containsKey(id))
+        {
+            Symbol sym = new Symbol(id, type);
+            localSymTable.put(sym.getName(), sym);
+            return sym;
+        }
+        else
+            {
+            String error = "SYMBOL ALREADY DECLARED";
+            System.out.println(error);
+            throw new SymbolAlreadyDeclared(error);
+        }
     }
 
     public Symbol insert(String id) throws SymbolAlreadyDeclared
     {
-        Symbol sym = new Symbol(id);
-        localSymTable.put(sym.getName(), sym);
-        return sym;
+        if(!localSymTable.containsKey(id))
+        {
+            Symbol sym = new Symbol(id);
+            localSymTable.put(sym.getName(), sym);
+            return sym;
+        }
+        else
+        {
+            String error = "SYMBOL ALREADY DECLARED";
+            System.out.println(error);
+            throw new SymbolAlreadyDeclared(error);
+        }
     }
 
     public Symbol find(String id) throws SymbolNotFound
