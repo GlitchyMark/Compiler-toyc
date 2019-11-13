@@ -6,7 +6,7 @@ import symTable.SymbolNotFound;
 public class CGVarGet extends CGInstruction
 {
     String id;
-    CGVarGet(String id)
+    public CGVarGet(String id)
     {
         this.id = id;
     }
@@ -17,7 +17,6 @@ public class CGVarGet extends CGInstruction
         {
             Symbol sym = target.symtable.find(id);
             target.code.add("iload " + sym.getOffset());
-            //TODO: Figure out what code goes here lmao
         }
         catch(SymbolNotFound e)
         {

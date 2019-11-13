@@ -5,6 +5,7 @@ package abstractSyntax;
 
 import parser.*;
 import codeGen.JVM.*;
+import symTable.SymbolNotFound;
 
 public class Primary extends GrammarDef
 {
@@ -20,6 +21,9 @@ public class Primary extends GrammarDef
         {
             String thing = parser.tok.getLex();
             //consumes identifier
+            try {
+                parser.codegenerator.insert(new CGVarGet(parser.codegenerator.getTarget().getSymtable().find(thing).getName()));
+            } catch(SymbolNotFound e) {e.printStackTrace();}
             parser.getNextToken();
             //TODO: finish this loose thread
             if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))

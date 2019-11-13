@@ -5,12 +5,13 @@ package codeGen.JVM;
 
 import symTable.SymTable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JVMtargetCode {
     public SymTable symtable;
-    List<String> code;
-    List<CGInstruction> instructions;
+    List<String> code = new ArrayList<>();
+    List<CGInstruction> instructions = new ArrayList<>();
     public JVMtargetCode()
     {
         //instructions.add(new CGVar(this));
@@ -39,5 +40,10 @@ public class JVMtargetCode {
     void insert(CGInstruction cgi)
     {
         cgi.processinst(this);
+    }
+
+    public SymTable getSymtable()
+    {
+        return symtable;
     }
 }

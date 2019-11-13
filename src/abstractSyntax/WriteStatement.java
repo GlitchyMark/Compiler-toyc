@@ -20,6 +20,7 @@ public class WriteStatement extends GrammarDef
         if(parser.tok.getTok().equals(TCscanner.Tokens.WRITE))
         {
             //consume write
+            parser.codegenerator.insert(new CGWriteEnter());
             parser.getNextToken();
         }
         else
@@ -52,6 +53,7 @@ public class WriteStatement extends GrammarDef
         if(parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
         {
             //consume semicolon
+            parser.codegenerator.insert(new CGWriteOut());
             parser.getNextToken();
             //return;
         }
