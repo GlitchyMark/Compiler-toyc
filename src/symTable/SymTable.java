@@ -12,6 +12,7 @@ public class SymTable{
     SymTable owner;
     boolean hasOwner;
     String labelName;
+    Integer offsetCount = 0;
 
     // Constructor
     public SymTable()
@@ -33,8 +34,9 @@ public class SymTable{
 
         if(!localSymTable.containsKey(id))
         {
-            Symbol sym = new Symbol(id, type);
+            Symbol sym = new Symbol(id, offsetCount, type);
             localSymTable.put(sym.getName(), sym);
+            offsetCount++;
             return sym;
         }
         else
@@ -49,8 +51,9 @@ public class SymTable{
     {
         if(!localSymTable.containsKey(id))
         {
-            Symbol sym = new Symbol(id);
+            Symbol sym = new Symbol(id, offsetCount);
             localSymTable.put(sym.getName(), sym);
+            offsetCount++;
             return sym;
         }
         else
