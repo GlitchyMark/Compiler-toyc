@@ -48,7 +48,7 @@ public class CompoundStatement extends GrammarDef
 
             if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
             {
-                parser.codegenerator.insert(CGVar.class, parser.tok.getLex());
+                parser.codegenerator.insert(new CGVar(parser.tok.getLex()));
                 buffer = parser.tok.getLex() + ", " + buffer;
                 parser.printer.print("varDef(" + buffer + ")");
                 //consume ID
