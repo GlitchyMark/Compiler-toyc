@@ -29,6 +29,7 @@ public class Expression extends GrammarDef
         while(parser.tok.getTok().equals(TCscanner.Tokens.ASSIGNOP))
         {
             CGAssign cga = new CGAssign();
+            parser.codegenerator.insert(cga);
             if(parser.tok.getTok().equals(TCscanner.Tokens.ASSIGNOP))
             {
                 //consume assignop

@@ -13,7 +13,7 @@ public class SymTable{
     boolean hasOwner;
     String labelName;
     Integer offsetCount = 1;
-    Symbol lastaccessedsym;
+    private Symbol lastaccessedsym;
     // Constructor
     public SymTable()
     {
@@ -87,7 +87,7 @@ public class SymTable{
         return local;
     }
 
-    public SymTable goDown()
+    public SymTable goUp()
     {
         return owner;
     }

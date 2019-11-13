@@ -5,13 +5,18 @@ import symTable.SymbolAlreadyDeclared;
 
 public class CGAssign extends CGInstruction {
     Symbol LAS;
+    boolean gottenSym = false;
     public CGAssign()
     {
-        LAS = target.symtable.getLastAccessedSym();
+
     }
     void codeGen()
     {
-        target.code.add("return");
-        target.code.add(".end method");
+        if(!gottenSym) {
+            LAS = target.symtable.getLastAccessedSym();
+        }
+        else {
+            target.code.add("istore " + LAS.getOffset());
+        }
     }
 }
