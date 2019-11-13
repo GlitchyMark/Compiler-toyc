@@ -14,6 +14,7 @@ public class CGAssign extends CGInstruction {
     {
         if(!gottenSym) {
             LAS = target.symtable.getLastAccessedSym();
+            gottenSym = true;
         }
         else {
             target.code.add("istore " + LAS.getOffset());
