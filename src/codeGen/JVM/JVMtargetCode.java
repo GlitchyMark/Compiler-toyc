@@ -12,6 +12,9 @@ public class JVMtargetCode {
     public SymTable symtable = new SymTable();
     List<String> code = new ArrayList<>();
     List<CGInstruction> instructions = new ArrayList<>();
+    LabelManager labelMan = new LabelManager();
+
+
     public JVMtargetCode()
     {
         //instructions.add(new CGVar(this));
@@ -50,5 +53,10 @@ public class JVMtargetCode {
     public List<String> getCode()
     {
         return code;
+    }
+
+    public String addLabel()
+    {
+        return labelMan.addString();
     }
 }

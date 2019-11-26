@@ -28,9 +28,11 @@ public class RelopExpression extends GrammarDef
 
         while(parser.tok.getTok().equals(TCscanner.Tokens.RELOP))
         {
+            String temp = "";
             if(parser.tok.getTok().equals(TCscanner.Tokens.RELOP))
             {
                 //consume relop
+                temp = parser.tok.getLex();
                 parser.printer.print(" " + parser.tok.getLex() + ", ");
                 parser.getNextToken();
                 new SimpleExpression(parser);
@@ -38,6 +40,31 @@ public class RelopExpression extends GrammarDef
             else
             {
                 logError("relop expected");
+            }
+
+            if(temp.equals("<"))
+            {
+                parser.codegenerator.insert(new CGRelopLT());
+            }
+            else if(temp.equals("<="))
+            {
+                parser.codegenerator.insert(new CGRelopLTE());
+            }
+            else if(temp.equals(">"))
+            {
+                parser.codegenerator.insert(new CGRelopGT());
+            }
+            else if(temp.equals(">="))
+            {
+                parser.codegenerator.insert(new CGRelopGTE());
+            }
+            else if(temp.equals("=="))
+            {
+                parser.codegenerator.insert(new CGRelopEQ());
+            }
+            else if(temp.equals("!="))
+            {
+                parser.codegenerator.insert(new CGRelopNE());
             }
         }
         return;

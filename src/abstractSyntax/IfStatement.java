@@ -27,6 +27,7 @@ public class IfStatement extends GrammarDef
             logError("");
         }
 
+        CGIfCmp ifCmp = new CGIfCmp();
         if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
         {
             //consume lparen
@@ -34,6 +35,7 @@ public class IfStatement extends GrammarDef
             parser.printer.print("expr(");
             new Expression(parser);
             parser.printer.print("),");
+            parser.codegenerator.insert(ifCmp);
         }
         else
         {
@@ -45,11 +47,17 @@ public class IfStatement extends GrammarDef
             //consume rparen
             parser.getNextToken();
             new Statement(parser);
+            parser.codegenerator.insert(new CGIfGoto(ifCmp.getLabelY()));
+            //goto LabelY here
+
+            parser.codegenerator.insert(new CGIfLabelX(ifCmp.getLabelX()));
+            //LabelX goes here
         }
         else
         {
             logError("')' expected");
         }
+        //or here, doesn't super matter
 
         if(parser.tok.getTok().equals(TCscanner.Tokens.ELSE))
             parser.printer.print(",");
@@ -66,6 +74,8 @@ public class IfStatement extends GrammarDef
             }
         }
         parser.printer.print(")");
+        parser.codegenerator.insert(new CGIfLabelY(ifCmp.getLabelY()));
+        //LabelY goes here
 
         return;
     }

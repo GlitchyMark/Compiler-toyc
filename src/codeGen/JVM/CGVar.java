@@ -18,6 +18,7 @@ public class CGVar extends CGInstruction{
         } catch(SymbolAlreadyDeclared sad)
         {
             //TODO: Better error msg
+            //TODO: don't rename sad, its sad
             sad.printStackTrace();
         }
     }
