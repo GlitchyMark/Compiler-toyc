@@ -40,10 +40,10 @@ public class SimpleExpression extends GrammarDef
             {
                 logError("addop expected");
             }
-            if(temp == "+")
+            if(temp.equals("+"))
                 parser.codegenerator.insert(new CGAdd());
 
-            if(temp == "-")
+            if(temp.equals("-"))
                 parser.codegenerator.insert(new CGSub());
         }
         return;

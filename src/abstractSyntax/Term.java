@@ -27,10 +27,12 @@ public class Term extends GrammarDef
 
         while(parser.tok.getTok().equals(TCscanner.Tokens.MULOP))
         {
+            String temp = "";
             if(parser.tok.getTok().equals(TCscanner.Tokens.MULOP))
             {
                 //consume mulop
                 parser.printer.print(" " + parser.tok.getLex() + ", ");
+                temp = parser.tok.getLex();
                 parser.getNextToken();
                 new Primary(parser);
             }
@@ -38,6 +40,11 @@ public class Term extends GrammarDef
             {
                 logError("mulop expected");
             }
+            if(temp.equals("%"))
+            {
+                parser.codegenerator.insert(new CGModulo());
+            }
+
         }
         return;
     }
