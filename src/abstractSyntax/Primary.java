@@ -95,6 +95,7 @@ public class Primary extends GrammarDef
             parser.getNextToken();
             parser.printer.print("not(");
             new Primary(parser);
+            parser.codegenerator.insert(new CGNot());
             parser.printer.print(")");
             return;
         }
