@@ -3,6 +3,7 @@
  */
 package abstractSyntax;
 
+import compiler.TCGlobals;
 import parser.*;
 import codeGen.JVM.*;
 
@@ -33,6 +34,7 @@ public class IfStatement extends GrammarDef
             //consume lparen
             parser.getNextToken();
             parser.printer.print("expr(");
+            TCGlobals.lazyCheck = true;
             new Expression(parser);
             parser.printer.print("),");
             parser.codegenerator.insert(ifCmp);
@@ -46,6 +48,7 @@ public class IfStatement extends GrammarDef
         {
             //consume rparen
             parser.getNextToken();
+            TCGlobals.lazyCheck = false;
             new Statement(parser);
             parser.codegenerator.insert(new CGIfGoto(ifCmp.getLabelY()));
             //goto LabelY here

@@ -3,6 +3,7 @@
  */
 package abstractSyntax;
 
+import compiler.TCGlobals;
 import parser.*;
 import codeGen.JVM.*;
 
@@ -30,6 +31,7 @@ public class WhileStatement extends GrammarDef
         CGWhileEnter cgWhile = new CGWhileEnter();
         if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
         {
+            TCGlobals.lazyCheck = true;
             //consume lparen
             parser.getNextToken();
             parser.printer.print("expr(");
@@ -52,11 +54,13 @@ public class WhileStatement extends GrammarDef
         {
             //consume rparen
             parser.getNextToken();
+            TCGlobals.lazyCheck = false;
             new Statement(parser);
 
             parser.codegenerator.insert(new CGWhileExit(cgWhile.getLabelX(), cgWhile.getLabelY()));
             //goto label1 here
             //label2 here, for exit
+
         }
         else
         {

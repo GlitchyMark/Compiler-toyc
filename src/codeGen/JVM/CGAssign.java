@@ -1,5 +1,6 @@
 package codeGen.JVM;
 
+import compiler.TCGlobals;
 import symTable.Symbol;
 import symTable.SymbolAlreadyDeclared;
 
@@ -15,7 +16,8 @@ public class CGAssign extends CGInstruction {
         if(!gottenSym) {
             LAS = target.symtable.getLastAccessedSym();
             gottenSym = true;
-            target.code.add("pop");
+            if(!TCGlobals.lazyCheck)
+                target.code.add("pop");
         }
         else {
             target.code.add("istore " + LAS.getOffset());

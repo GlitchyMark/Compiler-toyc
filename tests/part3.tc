@@ -4,7 +4,7 @@ int main(){
 	i = 4 + 2;
 	j = 41;
 	
-	/*if(i == 4)
+	if(i = (100 / 5))
 	{
 		i = i + 20;
 	}
@@ -19,12 +19,11 @@ int main(){
 			i = i - 3;
 		}
 	}
-	write(i);*/
+	write(i);
 	
-	while(j > 0)
+	while(j = j - 1)
 	{
-		j = j - 1;
-		if(j % 2 == 0)
+		if(j % 2 == 0 || (j == 11) || (j == 9)) 
 		{
 			write(j);
 		}

@@ -44,6 +44,14 @@ public class Term extends GrammarDef
             {
                 parser.codegenerator.insert(new CGModulo());
             }
+            if(temp.equals("*") || temp.equals("&&"))
+            {
+                parser.codegenerator.insert(new CGMul());
+            }
+            if(temp.equals("/"))
+            {
+                parser.codegenerator.insert(new CGDiv());
+            }
 
         }
         return;

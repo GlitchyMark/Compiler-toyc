@@ -40,7 +40,7 @@ public class SimpleExpression extends GrammarDef
             {
                 logError("addop expected");
             }
-            if(temp.equals("+"))
+            if(temp.equals("+") || temp.equals("||"))
                 parser.codegenerator.insert(new CGAdd());
 
             if(temp.equals("-"))
