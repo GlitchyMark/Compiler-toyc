@@ -2,7 +2,7 @@ int test(int x, int y)
 {
     int hello;
     hello = x + y;
-    print(hello);
+    //print(hello);
 }
 
 int main(){

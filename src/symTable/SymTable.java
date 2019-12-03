@@ -4,6 +4,7 @@
 package symTable;
 
 import javax.swing.plaf.synth.SynthButtonUI;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,7 @@ public class SymTable{
 
     HashMap<String, Symbol> localSymTable = new HashMap<>();
 
-    static List<SymTable> symbolTables;
+    public static List<SymTable> symbolTables = new ArrayList<SymTable>();
 
     SymTable owner;
     boolean hasOwner;

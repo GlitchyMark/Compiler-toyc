@@ -8,6 +8,7 @@ public class CGFunctionCall extends CGInstruction{
     {
         //TODO: Store current address in register 0
         label = function;
+        target.symtable = target.symtable;
         try {
             target.symtable = target.symtable.getSymTable(function);
         }
@@ -16,7 +17,7 @@ public class CGFunctionCall extends CGInstruction{
 
     void codeGen()
     {
-        target.code.add("goto " + label);
+        target.code.add("jsr " + label);
     }
 
 }
