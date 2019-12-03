@@ -29,6 +29,8 @@ String buffer;
             logError("");
         }
 
+        CGFunction cgfun = new CGFunction(parser.tok.getLex());
+
         if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
         {
             buffer = parser.tok.getLex() + ", " + buffer;
@@ -44,6 +46,7 @@ String buffer;
         if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
         {
             parser.printer.print("funcDef(" + buffer + ", ");
+            parser.codegenerator.insert(cgfun);
             new FunctionDefinition(parser);
             parser.printer.print(")");
         }

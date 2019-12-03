@@ -3,22 +3,30 @@
  */
 package symTable;
 
+import javax.swing.plaf.synth.SynthButtonUI;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SymTable{
 
     HashMap<String, Symbol> localSymTable = new HashMap<>();
 
+    static List<SymTable> symbolTables;
+
     SymTable owner;
     boolean hasOwner;
     String labelName;
-    Integer offsetCount = 1;
+    static Integer offsetCount = 1;
+    static SymTable previousTable;
+    Integer localOffset;
     private Symbol lastaccessedsym;
     // Constructor
     public SymTable()
     {
         labelName = "main";
         hasOwner = false;
+        localOffset = offsetCount;
     }
 
     public SymTable(SymTable owner, String labelName)
@@ -27,7 +35,10 @@ public class SymTable{
         this.labelName = labelName;
         hasOwner = true;
     }
-
+    public SymTable getPreviousTable()
+    {
+        return previousTable;
+    }
     // Instance Methods
     public Symbol insert(String id, String type) throws SymbolAlreadyDeclared
     {
@@ -64,6 +75,29 @@ public class SymTable{
         }
     }
 
+    public SymTable getSymTable(String lbl) throws SymbolNotFound
+    {
+        previousTable = this;
+        for(SymTable symt : symbolTables)
+        {
+            if(symt.equals(lbl))
+            {
+                return symt;
+            }
+        }
+        throw new SymbolNotFound("Table not found!");
+    }
+
+    public Symbol getFuncParam(int i) throws SymbolNotFound
+    {
+        for(Map.Entry<String, Symbol> sym : localSymTable.entrySet())
+        {
+            if(sym.getValue().getOffset() - localOffset == i)
+                return sym.getValue();
+        }
+        throw new SymbolNotFound("SYMBOL NOT FOUND");
+    }
+
     public Symbol find(String id) throws SymbolNotFound
     {
         if(localSymTable.containsKey(id))
@@ -84,6 +118,7 @@ public class SymTable{
     public SymTable addScope(String labelName)
     {
         SymTable local = new SymTable(this, labelName);
+        symbolTables.add(local);
         return local;
     }
 

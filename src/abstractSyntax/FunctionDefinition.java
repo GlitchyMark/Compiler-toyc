@@ -25,6 +25,7 @@ public class FunctionDefinition extends GrammarDef {
         if(parser.tok.getTok().equals(TCscanner.Tokens.LCURLY))
         {
             new FunctionBody(parser);
+            //TODO: return to address in register 0
             return;
         }
         else

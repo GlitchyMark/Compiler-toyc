@@ -5,6 +5,7 @@ package codeGen.JVM;
 
 public class JVMcodeGenerator
 {
+    public String buffer;
     JVMtargetCode target = new JVMtargetCode();
     public JVMcodeGenerator()
     {
