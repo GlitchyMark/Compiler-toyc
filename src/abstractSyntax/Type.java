@@ -13,7 +13,6 @@ public class Type extends GrammarDef {
 
     @Override
     void parseDefinition() {
-
         parser.getNextToken();
     }
 

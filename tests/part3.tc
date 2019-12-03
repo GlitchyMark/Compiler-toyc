@@ -1,10 +1,19 @@
+int test(int x, int y)
+{
+    int hello;
+    hello = x + y;
+    print(hello);
+}
+
 int main(){
 	int i;
 	int j;
 	i = 4 + 2;
 	j = 41;
-	
-	if(!(i = (100 / 5)))
+
+    test(i, j);
+
+	/*if(i == 4)
 	{
 		i = i + 20;
 	}
@@ -19,16 +28,17 @@ int main(){
 			i = i - 3;
 		}
 	}
-	write(i);
-	
-	while(j = j - 1)
+	write(i);*/
+
+	/*while(j > 0)
 	{
-		if(j % 2 == 0 || (j == 11) || (j == 9)) 
+		j = j - 1;
+		if(j % 2 == 0)
 		{
 			write(j);
 		}
-		
-	}
+
+	}*/
 	
 	
 	
