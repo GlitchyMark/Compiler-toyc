@@ -1,3 +1,10 @@
+int test(int x, int y)
+{
+    int hello;
+    hello = x + y;
+    //print(hello);
+}
+
 int main(){
 	int i;
 	int j;

@@ -8,7 +8,7 @@ public class CGFunctionExit extends CGInstruction{
     }
     void codeGen()
     {
-        target.code.add("goto " + register);
+        target.code.add("ret 0");
         target.symtable = target.symtable.getPreviousTable();
     }
 }
