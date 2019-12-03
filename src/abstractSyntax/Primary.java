@@ -30,6 +30,7 @@ public class Primary extends GrammarDef
             {
                 parser.printer.print("funcCall(");
                 parser.printer.print(thing);
+                parser.codegenerator.buffer = thing;
                 new FunctionCall(parser);
                 parser.printer.print(")");
             }

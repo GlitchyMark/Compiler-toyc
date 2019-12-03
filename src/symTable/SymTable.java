@@ -35,7 +35,10 @@ public class SymTable{
         this.labelName = labelName;
         hasOwner = true;
     }
-
+    public SymTable getPreviousTable()
+    {
+        return previousTable;
+    }
     // Instance Methods
     public Symbol insert(String id, String type) throws SymbolAlreadyDeclared
     {
