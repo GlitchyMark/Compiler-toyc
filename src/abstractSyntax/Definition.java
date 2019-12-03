@@ -3,6 +3,7 @@
  */
 package abstractSyntax;
 
+import compiler.TCGlobals;
 import parser.*;
 import codeGen.JVM.*;
 
@@ -10,7 +11,8 @@ public class Definition extends GrammarDef {
     public Definition(TCparser tcp) {
         super(tcp);
     }
-String buffer;
+    String buffer;
+    String name;
     @Override
     void parseDefinition() {
         if(parser.tok.getTok().equals(TCscanner.Tokens.INT))
@@ -28,8 +30,8 @@ String buffer;
             buffer = "NULL";
             logError("");
         }
-
-        CGFunction cgfun = new CGFunction(parser.tok.getLex());
+        TCGlobals.sorryMark = parser.tok.getLex();
+        name = parser.tok.getLex();
 
         if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
         {
@@ -46,13 +48,13 @@ String buffer;
         if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
         {
             parser.printer.print("funcDef(" + buffer + ", ");
-            parser.codegenerator.insert(cgfun);
             new FunctionDefinition(parser);
             parser.printer.print(")");
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
         {
             parser.printer.print("varDef(" + buffer + ")");
+            parser.codegenerator.insert(new CGGlobalVar(name));
             //Consumes semicolon
             parser.getNextToken();
             return;

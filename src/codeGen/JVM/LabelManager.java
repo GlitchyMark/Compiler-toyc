@@ -22,6 +22,16 @@ public class LabelManager
         return label;
     }
 
+    boolean labelExists(String find)
+    {
+        return listOfLabels.contains(find);
+    }
+
+    void addNamed(String labelName)
+    {
+        listOfLabels.add(labelName);
+    }
+
     String getMostRecent()
     {
         return listOfLabels.get(listOfLabels.size());

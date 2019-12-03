@@ -3,6 +3,7 @@
  */
 package abstractSyntax;
 
+import compiler.TCGlobals;
 import parser.*;
 import codeGen.JVM.*;
 
@@ -16,6 +17,7 @@ public class FunctionHeader extends GrammarDef{
         if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
         {
             parser.getNextToken();
+            parser.codegenerator.insert(new CGnothin(TCGlobals.sorryMark));
         }
         else
         {
@@ -25,6 +27,8 @@ public class FunctionHeader extends GrammarDef{
         if(parser.tok.getTok().equals(TCscanner.Tokens.INT))
         {
             new FormalParamList(parser);
+            CGFunction cgfun = new CGFunction(TCGlobals.sorryMark);
+            parser.codegenerator.insert(cgfun);
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.CHAR))
         {
@@ -33,6 +37,8 @@ public class FunctionHeader extends GrammarDef{
         else if(parser.tok.getTok().equals(TCscanner.Tokens.RPAREN))
         {
             //consumes r paren
+            CGFunction cgfun = new CGFunction(TCGlobals.sorryMark);
+            parser.codegenerator.insert(cgfun);
             parser.getNextToken();
             return;
         }

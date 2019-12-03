@@ -1,11 +1,13 @@
 package codeGen.JVM;
 
+import compiler.TCGlobals;
 import symTable.Symbol;
 import symTable.SymbolAlreadyDeclared;
 
-public class CGVar extends CGInstruction{
+public class CGParamVar extends CGInstruction
+{
     String varname;
-    public CGVar(String s) {
+    public CGParamVar(String s) {
         varname = s;
     }
 
@@ -13,8 +15,7 @@ public class CGVar extends CGInstruction{
     {
         try {
             Symbol sym = target.symtable.getCurrentScope().insert(varname);
-            target.code.add("iconst_0");
-            target.code.add("istore " + sym.getOffset());
+            TCGlobals.funcCount++;
         } catch(SymbolAlreadyDeclared sad)
         {
             //TODO: Better error msg

@@ -1,109 +1,29 @@
+int ga;
+
 int test(int x, int y)
 {
     int hello;
+	int another;
+	
     hello = x + y;
-    //print(hello);
+	ga = 54;
+	another = ga + 1;
+    write(hello);
+	return hello;
 }
 
-int main(){
-	int i;
-	int j;
-	i = 4 + 2;
-	j = 41;
-	
-	if(!(i = (100 / 5)))
-	{
-		i = i + 20;
-	}
-	else
-	{
-		if(j==40)
-		{
-			i = i + j;
-		}
-		else
-		{
-			i = i - 3;
-		}
-	}
-	write("Just a test: ", i, " did it work?\n");
-	
-	
-	while(j = j - 1)
-	{
-		if(j % 2 == 0 || (j == 11) || (j == 9)) 
-		{
-			write(j, "\n");
-		}
-		
-	}
-	/*if(1)
-	{
-		write(1);
-	}
-	else
-	{
-		write(0);
-	}
-	
-	if(5 < 6)
-	{
-		write(11);
-	}
-	else
-	{
-		write(10);
-	}
-	if(7 > 6)
-	{
-		write(21);
-	}
-	else
-	{
-		write(20);
-	}
-	if(6 <= 6 && 5 <= 6)
-	{
-		write(31);
-	}
-	else
-	{
-		write(30);
-	}
-	if((6 >= 6) && (7 >= 6))
-	{
-		write(41);
-	}
-	else
-	{
-		write(40);
-	}
-	if(5 == 5)
-	{
-		write(51);
-	}
-	else
-	{
-		write(50);
-	}
-	if(5 != 6)
-	{
-		write(61);
-	}
-	else
-	{
-		write(60);
-	}*/
-	
-	
-	/*if(i < 3)
-	{
-		i = i + 100;
-	}
-	else
-	{
-		i = i - 5;
-	}
-	
-	write(i);*/
+int testTwo(int l, int m, int a, int o)
+{
+	int teset;
+	teset = l+m+a+o;
+	return teset;
+}
+
+int main()
+{
+	int x;
+	test(1, 2);
+	x = testTwo(1,2,3,4);
+	write(x);
+	write("\n", ga);
 }

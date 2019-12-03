@@ -3,6 +3,8 @@
  */
 package symTable;
 
+import compiler.TCGlobals;
+
 import javax.swing.plaf.synth.SynthButtonUI;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,11 +18,13 @@ public class SymTable{
     public static List<SymTable> symbolTables = new ArrayList<SymTable>();
 
     SymTable owner;
+    String name = "";
     boolean hasOwner;
     String labelName;
-    static Integer offsetCount = 1;
+    Integer offsetCount = 0;
     static SymTable previousTable;
     Integer localOffset;
+    Integer loc;
     private Symbol lastaccessedsym;
     // Constructor
     public SymTable()
@@ -28,12 +32,15 @@ public class SymTable{
         labelName = "main";
         hasOwner = false;
         localOffset = offsetCount;
+        loc = 0;
     }
 
     public SymTable(SymTable owner, String labelName)
     {
         this.owner = owner;
         this.labelName = labelName;
+        localOffset = offsetCount;
+        loc = 0;
         hasOwner = true;
     }
     public SymTable getPreviousTable()
@@ -46,9 +53,10 @@ public class SymTable{
 
         if(!localSymTable.containsKey(id))
         {
-            lastaccessedsym = new Symbol(id, offsetCount, type);
+            lastaccessedsym = new Symbol(id, offsetCount, type, this);
             localSymTable.put(lastaccessedsym.getName(), lastaccessedsym);
             offsetCount++;
+            loc++;
             return lastaccessedsym;
         }
         else
@@ -63,9 +71,10 @@ public class SymTable{
     {
         if(!localSymTable.containsKey(id))
         {
-            lastaccessedsym = new Symbol(id, offsetCount);
+            lastaccessedsym = new Symbol(id, offsetCount, this);
             localSymTable.put(lastaccessedsym.getName(), lastaccessedsym);
             offsetCount++;
+            loc++;
             return lastaccessedsym;
         }
         else
@@ -107,7 +116,7 @@ public class SymTable{
             lastaccessedsym = owner.find(id);
         else {
             System.out.println("Symbol with ID: " + id + " does not exist in symbol table");
-            lastaccessedsym = new Symbol();
+            lastaccessedsym = new Symbol(this);
         }
         return lastaccessedsym;
     }
@@ -126,6 +135,16 @@ public class SymTable{
     public SymTable goUp()
     {
         return owner;
+    }
+
+    public int getLocalOffset()
+    {
+        return loc;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
     }
 
     public String toString()

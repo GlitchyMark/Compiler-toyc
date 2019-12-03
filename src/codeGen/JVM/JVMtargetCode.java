@@ -3,13 +3,16 @@
  */
 package codeGen.JVM;
 
+import symTable.SymManager;
 import symTable.SymTable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class JVMtargetCode {
-    public SymTable symtable = new SymTable();
+    //public SymTable symtable = new SymTable();
+    static SymManager symtable = new SymManager();
+    public JVMFuncManager funcMan = new JVMFuncManager();
     List<String> code = new ArrayList<>();
     List<CGInstruction> instructions = new ArrayList<>();
     LabelManager labelMan = new LabelManager();
@@ -39,6 +42,9 @@ public class JVMtargetCode {
         code.add(".method public static main([Ljava/lang/String;)V");
         code.add(".limit stack 100");
         code.add(".limit locals 100");
+        code.add("invokestatic test/main()I");
+        code.add("return");
+        code.add(".end method");
     }
     void insert(CGInstruction cgi)
     {
@@ -47,7 +53,7 @@ public class JVMtargetCode {
 
     public SymTable getSymtable()
     {
-        return symtable;
+        return symtable.getCurrentScope();
     }
 
     public List<String> getCode()
@@ -58,5 +64,15 @@ public class JVMtargetCode {
     public String addLabel()
     {
         return labelMan.addString();
+    }
+
+    public void addNamedLabel(String name)
+    {
+        labelMan.addNamed(name);
+    }
+
+    public boolean labelExists(String name)
+    {
+        return labelMan.labelExists(name);
     }
 }
