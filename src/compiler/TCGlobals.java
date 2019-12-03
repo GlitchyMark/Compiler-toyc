@@ -8,4 +8,5 @@ public class TCGlobals
     public static int debugLevel = 5;
     public static String loadFilename;
     public static boolean lazyCheck = false;
+    public static boolean isWrite = false;
 }

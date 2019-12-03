@@ -3,6 +3,7 @@
  */
 package abstractSyntax;
 
+import compiler.TCGlobals;
 import parser.*;
 import codeGen.JVM.*;
 
@@ -19,8 +20,10 @@ public class WriteStatement extends GrammarDef
         parser.printer.print("writeState(");
         if(parser.tok.getTok().equals(TCscanner.Tokens.WRITE))
         {
+            TCGlobals.isWrite = true;
             //consume write
             parser.codegenerator.insert(new CGWriteEnter());
+            parser.codegenerator.insert(new CGWriteString());
             parser.getNextToken();
         }
         else
@@ -55,7 +58,7 @@ public class WriteStatement extends GrammarDef
             //consume semicolon
             parser.codegenerator.insert(new CGWriteOut());
             parser.getNextToken();
-            //return;
+            TCGlobals.isWrite = false;
         }
         else
         {

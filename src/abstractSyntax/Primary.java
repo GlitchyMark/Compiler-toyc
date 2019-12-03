@@ -48,6 +48,7 @@ public class Primary extends GrammarDef
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.STRING))
         {
+            parser.codegenerator.insert(new CGStringExp(parser.tok.getLex()));
             parser.printer.print(" \"" + parser.tok.getLex().replace(")", "\u2001").replace("(", "\u2002") +"\", ");
             //consume string
             parser.getNextToken();
