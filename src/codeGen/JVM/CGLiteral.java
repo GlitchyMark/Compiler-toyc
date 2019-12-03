@@ -12,5 +12,6 @@ public class CGLiteral extends CGInstruction{
     void codeGen()
     {
         target.code.add("sipush " + varname);
+        target.lastLiteral = varname;
     }
 }

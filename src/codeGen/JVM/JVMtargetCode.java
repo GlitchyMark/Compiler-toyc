@@ -13,7 +13,7 @@ public class JVMtargetCode {
     List<String> code = new ArrayList<>();
     List<CGInstruction> instructions = new ArrayList<>();
     LabelManager labelMan = new LabelManager();
-
+    String lastLiteral = "";
 
     public JVMtargetCode()
     {
