@@ -35,6 +35,7 @@ public class TCFileManipulator
 
     //Regex used for finding file name in file inputFile, used for file creation and consistency
     String regex = "(.+\\\\)*(.+)[.](.+)";
+    String otherReg = "()";
     Pattern nameRegex = Pattern.compile(regex);
     Matcher matcher;
 
@@ -150,6 +151,59 @@ public class TCFileManipulator
     {
         fileName = getFileNameFromCurrentPath().concat(".lxl");
         return fileName;
+    }
+
+    List<String> preTokens;
+    Integer currentListLoc = 0;
+    Integer currentLineLoc = 0;
+    Integer prevPosition[] = {0, 0};
+    Integer errorPos[] = {0, 0};
+    Character charBuff = ' ';
+
+    public List<String> checkForErrors(List<String> unedited)
+    {
+        int size = unedited.size();
+        int i = size;
+        while(i<size)
+        {
+            while((Character.isWhitespace(charBuff)) && (charBuff!= '\0'))
+            {
+                charBuff = getChar();
+            }
+            if(charBuff.equals(':'))
+            {
+                charBuff = getChar();
+                if(charBuff.equals('.'))
+                {
+
+                }
+            }
+
+            i--;
+        }
+
+        return unedited;
+    }
+
+
+    public char getChar()
+    {
+        prevPosition[0] = currentListLoc;
+        prevPosition[1] = currentLineLoc;
+        if(preTokens.get(currentListLoc).length() == currentLineLoc && ((preTokens.size() - 1) == currentListLoc))
+        {
+            return '\0';
+        }
+        if(preTokens.get(currentListLoc).length() == currentLineLoc)
+        {
+            currentListLoc++;
+            currentLineLoc = 0;
+            return '\n';
+        }
+
+        char c = preTokens.get(currentListLoc).charAt(currentLineLoc);
+        currentLineLoc++;
+        return c;
     }
 
     public Path getInputFile()

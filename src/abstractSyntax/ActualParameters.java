@@ -23,6 +23,7 @@ public class ActualParameters extends GrammarDef
             parser.printer.print(",");
             parser.printer.print("expr(");
             new Expression(parser);
+            //TODO: redo how this works, it causes jank with function calls in a write statement
             if(TCGlobals.isWrite && temp.equals(TCscanner.Tokens.STRING))
             {
                 parser.codegenerator.insert(new CGStringBuildOne());

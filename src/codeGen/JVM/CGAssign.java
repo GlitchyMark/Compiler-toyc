@@ -21,12 +21,16 @@ public class CGAssign extends CGInstruction {
                 target.code.add("pop");
         }
         else {
-            if(LAS.getName().contains("GLOBAL"))
-            {
-                target.code.add("putstatic test/" + LAS.getName().replace("GLOBAL", "") + " I");
+            try {
+                if (LAS.getName().contains("GLOBAL")) {
+                    target.code.add("putstatic test/" + LAS.getName().replace("GLOBAL", "") + " I");
+                } else
+                    target.code.add("istore " + LAS.getOffset());
             }
-            else
+            catch(NullPointerException e)
+            {
                 target.code.add("istore " + LAS.getOffset());
+            }
         }
     }
 }

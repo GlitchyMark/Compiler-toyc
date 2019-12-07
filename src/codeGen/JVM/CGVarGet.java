@@ -13,12 +13,14 @@ public class CGVarGet extends CGInstruction
 
     void codeGen()
     {
-        System.out.println("asdf");
         try
         {
             if(target.symtable.isGlobal(id))
             {
+
                 target.code.add("getstatic test/" + id + " I");
+                Symbol sym = target.symtable.getCurrentScope().find(id);
+                //target.symtable.getCurrentScope().mostRecentlyAccessed(id);
             }
             else
             {

@@ -110,6 +110,10 @@ public class SymTable{
 
     public Symbol find(String id) throws SymbolNotFound
     {
+        if(TCGlobals.sorryAgain.contains(id)) {
+            lastaccessedsym = new Symbol("GLOBAL" + id, this);
+            return lastaccessedsym;
+        }
         if(localSymTable.containsKey(id))
             lastaccessedsym = localSymTable.get(id);
         else if(hasOwner)
@@ -145,6 +149,14 @@ public class SymTable{
     public void setName(String name)
     {
         this.name = name;
+    }
+
+    public void mostRecentlyAccessed(String id)
+    {
+        try {
+            find(id);
+        }
+        catch(SymbolNotFound e) {}
     }
 
     public String toString()

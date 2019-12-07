@@ -19,6 +19,7 @@ public class TCtoken
     char charBuff = ' ';
     TCscanner tok;
     boolean endFile = true;
+    List<TCscanner> toks = new ArrayList<>();
 
     public TCtoken(List<String> preTokens)
     {
@@ -398,6 +399,7 @@ public class TCtoken
             if(TCGlobals.debugLevel <= 1)
                 System.out.println("[SCANNER] " + formattedTkn);
         }
+        //toks.add(tok);
         return tok;
     }
 

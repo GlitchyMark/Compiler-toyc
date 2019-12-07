@@ -15,6 +15,7 @@ public class FunctionBody extends GrammarDef{
     void parseDefinition() {
         if (parser.tok.getTok().equals(TCscanner.Tokens.LCURLY)) {
             new CompoundStatement(parser);
+            parser.codegenerator.insert(new CGEndMethod());
             return;
         } else {
             logError("missing '{'");

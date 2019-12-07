@@ -1,29 +1,18 @@
-int ga;
-
-int test(int x, int y)
+int factorial(int n)
 {
-    int hello;
-	int another;
-	
-    hello = x + y;
-	ga = 54;
-	another = ga + 1;
-    write(hello);
-	return hello;
+	if(n >= 1)
+	{
+		return n * factorial(n-1);
+	}
+	else
+	{
+		return 1;
+	}
 }
-
-int testTwo(int l, int m, int a, int o)
-{
-	int teset;
-	teset = l+m+a+o;
-	return teset;
-}
-
 int main()
 {
-	int x;
-	test(1, 2);
-	x = testTwo(1,2,3,4);
-	write(x);
-	write("\n", ga);
+    int i;
+    i = factorial(7);
+	write("\n\nFACTORIAL: ", i);
+	return 0;
 }

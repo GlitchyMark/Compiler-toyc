@@ -17,6 +17,8 @@ public class Primary extends GrammarDef
     @Override
     void parseDefinition()
     {
+        //TODO: figure out why CGVarGet is being called when it shouldn't
+        //TODO: make a check in CGVarGet that prevents uninitialized vars from being called
         if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
         {
             String thing = parser.tok.getLex();
