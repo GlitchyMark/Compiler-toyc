@@ -12,6 +12,7 @@ public class CGFunction extends CGInstruction{
     {
         target.symtable = target.symtable.addScope(label);
         target.code.add(label + ":");
+        target.code.add("astore_0");
     }
 
 }

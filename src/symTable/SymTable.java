@@ -35,10 +35,14 @@ public class SymTable{
         this.owner = owner;
         this.labelName = labelName;
         hasOwner = true;
+        localOffset = offsetCount;
     }
-    public SymTable getPreviousTable()
+    public String getLabel() {
+        return labelName;
+    }
+    public SymTable getOwner()
     {
-        return previousTable;
+        return owner;
     }
     // Instance Methods
     public Symbol insert(String id, String type) throws SymbolAlreadyDeclared
@@ -81,7 +85,7 @@ public class SymTable{
         previousTable = this;
         for(SymTable symt : symbolTables)
         {
-            if(symt.equals(lbl))
+            if(symt.labelName.equals(lbl))
             {
                 return symt;
             }
@@ -91,11 +95,12 @@ public class SymTable{
 
     public Symbol getFuncParam(int i) throws SymbolNotFound
     {
-        for(Map.Entry<String, Symbol> sym : localSymTable.entrySet())
-        {
-            if(sym.getValue().getOffset() - localOffset == i)
-                return sym.getValue();
-        }
+        if(localSymTable.size() > 0)
+            for(Map.Entry<String, Symbol> sym : localSymTable.entrySet())
+            {
+                if ((sym.getValue().getOffset() - localOffset) == i)
+                    return sym.getValue();
+            }
         throw new SymbolNotFound("SYMBOL NOT FOUND");
     }
 

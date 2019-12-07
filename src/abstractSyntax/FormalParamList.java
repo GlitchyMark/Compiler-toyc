@@ -25,6 +25,7 @@ public class FormalParamList extends GrammarDef {
 
         if (parser.tok.getTok().equals(TCscanner.Tokens.ID)) {
             buffer = parser.tok.getLex() + ", " + buffer;
+            parser.codegenerator.insert(new CGVarDef(parser.tok.getLex()));
             //consumes identifier
             parser.getNextToken();
         } else {
@@ -53,6 +54,7 @@ public class FormalParamList extends GrammarDef {
 
             if (parser.tok.getTok().equals(TCscanner.Tokens.ID)) {
                 buffer = parser.tok.getLex() + ", " + buffer;
+                parser.codegenerator.insert(new CGVarDef(parser.tok.getLex()));
                 //consume ID
                parser. getNextToken();
             }

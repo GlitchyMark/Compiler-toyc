@@ -39,6 +39,7 @@ public class JVMtargetCode {
         code.add(".method public static main([Ljava/lang/String;)V");
         code.add(".limit stack 100");
         code.add(".limit locals 100");
+        code.add("goto main");
     }
     void insert(CGInstruction cgi)
     {

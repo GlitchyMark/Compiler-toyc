@@ -16,7 +16,7 @@ public class FunctionCall extends GrammarDef
     @Override
     void parseDefinition()
     {
-        CGFunctionCall fc = new CGFunctionCall(parser.codegenerator.buffer);
+        parser.codegenerator.insert(new CGFunctionCall(parser.codegenerator.buffer));
         if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
         {
             //consume lparen
@@ -29,9 +29,11 @@ public class FunctionCall extends GrammarDef
 
         if(parser.tokPrimaryCheck())
         {
+            parser.codegenerator.isFunction = true;
             new ActualParameters(parser);
+            parser.codegenerator.isFunction = false;
         }
-        parser.codegenerator.insert(fc);
+        parser.codegenerator.insert(new CGFunctionJump(parser.codegenerator.buffer));
         if(parser.tok.getTok().equals(TCscanner.Tokens.RPAREN))
         {
             //consume rparen

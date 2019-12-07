@@ -1,15 +1,11 @@
 int test(int x, int y)
 {
-    int hello;
-    hello = x + y;
-    write(hello);
 }
+
 
 int main(){
 	int i;
 	int j;
-	int k;
-	i = 4 + 2;
-	j = 41;
-	k = j / 0;
+	test(i, j);
 }
+

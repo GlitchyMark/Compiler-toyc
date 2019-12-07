@@ -6,6 +6,8 @@ package abstractSyntax;
 import compiler.TCGlobals;
 import parser.*;
 import codeGen.JVM.*;
+import symTable.Symbol;
+import symTable.SymbolNotFound;
 
 public class ActualParameters extends GrammarDef
 {
@@ -17,12 +19,18 @@ public class ActualParameters extends GrammarDef
     @Override
     void parseDefinition()
     {
+        int fi = 0;
         if(parser.tokPrimaryCheck())
         {
             TCscanner.Tokens temp = parser.tok.getTok();
             parser.printer.print(",");
             parser.printer.print("expr(");
             new Expression(parser);
+            if(parser.codegenerator.isFunction)
+            {
+                parser.codegenerator.insert(new CGFunctionArgument(fi));
+                fi++;
+            }
             if(TCGlobals.isWrite && temp.equals(TCscanner.Tokens.STRING))
             {
                 parser.codegenerator.insert(new CGStringBuildOne());
@@ -43,6 +51,11 @@ public class ActualParameters extends GrammarDef
                     parser.printer.print(",");
                     parser.printer.print("expr(");
                     new Expression(parser);
+                    if(parser.codegenerator.isFunction)
+                    {
+                        parser.codegenerator.insert(new CGFunctionArgument(fi));
+                        fi++;
+                    }
                     if(TCGlobals.isWrite && temp1.equals(TCscanner.Tokens.STRING))
                     {
                         parser.codegenerator.insert(new CGStringBuildOne());

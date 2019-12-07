@@ -48,6 +48,7 @@ String buffer;
             parser.printer.print("funcDef(" + buffer + ", ");
             parser.codegenerator.insert(cgfun);
             new FunctionDefinition(parser);
+            parser.codegenerator.insert(new CGFunctionExit());
             parser.printer.print(")");
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))

@@ -3,12 +3,13 @@ package codeGen.JVM;
 import symTable.SymbolNotFound;
 
 public class CGFunctionExit extends CGInstruction{
-    public CGFunctionExit(String function)
+    public CGFunctionExit()
     {
     }
     void codeGen()
     {
-        target.code.add("ret 0");
-        target.symtable = target.symtable.getPreviousTable();
+        if(!target.symtable.getLabel().equals("main"))
+            target.code.add("ret 0");
+        target.symtable = target.symtable.getOwner();
     }
 }
