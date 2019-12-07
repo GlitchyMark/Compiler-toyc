@@ -1,18 +1,46 @@
 int factorial(int n)
 {
-if(n >= 1)
+	if(n >= 1)
+	{
+		return n * factorial(n-1);
+	}
+	else
+	{
+		return 1;
+	}
+}
+
+int square(int base, int power)
 {
-    return n * factorial(n-1);
+	int retVal;
+	int i;
+	i = power;
+	retVal = 1;
+	while(i > 0)
+	{
+		retVal = retVal * base;
+		i = i - 1;
+	}
+	
+	return retVal;
 }
-else
-{
-    return 1;
-}
-}
+
 int main()
 {
-   int i;
-   i = factorial(7);
-write("\n\nFACTORIAL: ", i);
-return 0;
+    int i;
+	int base;
+	int pow;
+    i = factorial(7);
+	
+	write("\n\nFACTORIAL: ", i);
+	write("\n\nEnter in a base: ");
+	newline;
+	read(base);
+	write("\nenter a power: ");
+	read(pow);
+	
+	i = square(base, pow);
+	write("\nResult: ", i);
+	
+	return 0;
 }

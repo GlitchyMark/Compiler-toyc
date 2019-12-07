@@ -42,6 +42,7 @@ public class ReadStatement extends GrammarDef
         {
             parser.printer.print(parser.tok.getLex());
             //consume ID
+            parser.codegenerator.insert(new CGReadIn(parser.tok.getLex()));
             parser.getNextToken();
             while(parser.tok.getTok().equals(TCscanner.Tokens.COMMA))
             {
@@ -51,6 +52,7 @@ public class ReadStatement extends GrammarDef
                 if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
                 {
                     parser.printer.print(parser.tok.getLex());
+                    parser.codegenerator.insert(new CGReadIn(parser.tok.getLex()));
                     //consume ID
                     parser.getNextToken();
                 }

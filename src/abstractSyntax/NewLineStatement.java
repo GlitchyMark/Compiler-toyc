@@ -20,6 +20,7 @@ public class NewLineStatement extends GrammarDef
         {
             parser.printer.print("newLineState()");
             //consume new line
+            parser.codegenerator.insert(new CGNewline());
             parser.getNextToken();
         }
         else

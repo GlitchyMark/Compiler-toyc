@@ -85,6 +85,11 @@ public class SymTable{
         }
     }
 
+    public int getOffset()
+    {
+        return offsetCount;
+    }
+
     public SymTable getSymTable(String lbl) throws SymbolNotFound
     {
         previousTable = this;

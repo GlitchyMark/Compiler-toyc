@@ -21,6 +21,11 @@ public class SymManager
         return currentScope;
     }
 
+    public int getOffset()
+    {
+        return currentScope.getOffset();
+    }
+
     public boolean isGlobal(String varName)
     {
         for(String s: TCGlobals.sorryAgain)
