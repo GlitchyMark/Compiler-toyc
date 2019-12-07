@@ -4,13 +4,14 @@ import symTable.Symbol;
 import symTable.SymbolAlreadyDeclared;
 
 public class CGLiteral extends CGInstruction{
-    String varname;
+    String litname;
     public CGLiteral(String s) {
-        varname = s;
+        litname = s;
     }
 
     void codeGen()
     {
-        target.code.add("sipush " + varname);
+        target.code.add("sipush " + litname);
+        target.lastLiteral = litname;
     }
 }

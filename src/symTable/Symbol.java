@@ -1,7 +1,5 @@
 package symTable;
 
-import codeGenerator.SymbolTable;
-
 public class Symbol
 {
     // Public Instance Variables

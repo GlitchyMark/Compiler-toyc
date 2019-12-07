@@ -22,8 +22,12 @@ public class tc
         TCparser parse = new TCparser(testin);
         parse.toyCProgram();
         parse.printer.printStack();
-
-        fileMan.writeListOfTokens(parse.codegenerator.getTarget().getCode(), Optional.of("a.j"));
+        String writestring = TCGlobals.loadFilename;
+        int lastI = writestring.lastIndexOf(".");
+        if(writestring.endsWith(".tc"))
+            writestring = writestring.substring(0, lastI);
+        writestring = writestring + ".j";
+        fileMan.writeListOfTokens(parse.codegenerator.getTarget().getCode(), Optional.of(writestring));
     }
 
     private static void handleArgs(String[] args)
