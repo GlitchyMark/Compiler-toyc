@@ -16,14 +16,14 @@ public class CGAssign extends CGInstruction {
         if(!gottenSym) {
             LAS = target.symtable.getCurrentScope().getLastAccessedSym();
             gottenSym = true;
-
-            if(!TCGlobals.lazyCheck)
-                target.code.add("pop");
+            target.code.remove(target.code.size()-1);
+            //if(!TCGlobals.lazyCheck)
+            //    target.code.add("pop");
         }
         else {
             try {
                 if (LAS.getName().contains("GLOBAL")) {
-                    target.code.add("putstatic test/" + LAS.getName().replace("GLOBAL", "") + " I");
+                    target.code.add("putstatic " + TCGlobals.className + "/" + LAS.getName().replace("GLOBAL", "") + " I");
                 } else
                     target.code.add("istore " + LAS.getOffset());
             }

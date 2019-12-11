@@ -26,6 +26,7 @@ public class CGVarGet extends CGInstruction
             else if(!target.funcMan.isFunc(id))
             {
                 Symbol sym = target.symtable.getCurrentScope().find(id);
+                //if(!TCGlobals.lazyCheck)
                 target.code.add("iload " + sym.getOffset());
             }
 
