@@ -20,7 +20,7 @@ ant -Dflags="-verbose" -Dsource="some_dir/[fileName].tc" test
 Move the compiled .j file to the directory where jasmin is stored, and run the following commands to execute the .j file. [fileName] is just the name of the original compiled .tc file
 ```
 java -jar jasmin.jar [fileName].j
-java [filename]
+java [fileName]
 ```
 
 ## Program operands
