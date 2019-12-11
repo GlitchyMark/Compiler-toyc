@@ -16,13 +16,6 @@ ant compile
 ant -Dflags="-verbose" -Dsource="some_dir/[fileName].tc" test
 ```
 
-## Running the .j files
-Move the compiled .j file to the directory where jasmin is stored, and run the following commands to execute the .j file. [fileName] is just the name of the original compiled .tc file
-```
-java -jar jasmin.jar [fileName].j
-java [fileName]
-```
-
 ## Program operands
 ```
 Usage: java [classpath] parser.tc [options] [toyc_source_file]
@@ -36,4 +29,11 @@ where options include:
 -verbose display all information
 Note: path to toyc_source_file is defaultly set to [project]/tests. 
 Add full directory for external file access.
+```
+
+## Running the .j files
+Move the compiled .j file to the directory where jasmin is stored, and run the following commands to execute the .j file. [fileName] is just the name of the original compiled .tc file
+```
+java -jar jasmin.jar [fileName].j
+java [fileName]
 ```
