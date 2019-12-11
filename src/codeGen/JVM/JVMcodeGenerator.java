@@ -13,6 +13,8 @@ import java.util.ListIterator;
 public class JVMcodeGenerator
 {
     public String buffer;
+    public boolean statementStarting;
+    public boolean statementStartingAssign;
     JVMtargetCode target = new JVMtargetCode();
     public JVMcodeGenerator()
     {

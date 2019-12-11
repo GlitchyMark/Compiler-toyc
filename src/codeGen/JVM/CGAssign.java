@@ -7,9 +7,10 @@ import symTable.SymbolAlreadyDeclared;
 public class CGAssign extends CGInstruction {
     Symbol LAS;
     boolean gottenSym = false;
-    public CGAssign()
+    boolean firstexp;
+    public CGAssign(boolean firstexp)
     {
-
+        this.firstexp = firstexp;
     }
     void codeGen()
     {
@@ -24,8 +25,11 @@ public class CGAssign extends CGInstruction {
             try {
                 if (LAS.getName().contains("GLOBAL")) {
                     target.code.add("putstatic " + TCGlobals.className + "/" + LAS.getName().replace("GLOBAL", "") + " I");
-                } else
+                } else {
                     target.code.add("istore " + LAS.getOffset());
+                    if(!firstexp)
+                        target.code.add("iload " + LAS.getOffset());
+                }
             }
             catch(NullPointerException e)
             {

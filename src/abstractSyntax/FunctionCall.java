@@ -16,7 +16,7 @@ public class FunctionCall extends GrammarDef
     @Override
     void parseDefinition()
     {
-        CGFunctionCall fc = new CGFunctionCall(parser.codegenerator.buffer);
+        CGFunctionCall fc = new CGFunctionCall(parser.codegenerator.buffer, parser.codegenerator.statementStarting);
         if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
         {
             //consume lparen

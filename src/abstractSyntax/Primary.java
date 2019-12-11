@@ -21,25 +21,26 @@ public class Primary extends GrammarDef
         //TODO: make a check in CGVarGet that prevents uninitialized vars from being called
         if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
         {
-            String thing = parser.tok.getLex();
+            String identifier = parser.tok.getLex();
             //consumes identifier
             //try {
-            parser.codegenerator.insert(new CGVarGet(thing));
+            parser.codegenerator.insert(new CGVarGet(identifier));
             //} //catch(SymbolNotFound e) {e.printStackTrace();}
             parser.getNextToken();
             //TODO: finish this loose thread
             if(parser.tok.getTok().equals(TCscanner.Tokens.LPAREN))
             {
                 parser.printer.print("funcCall(");
-                parser.printer.print(thing);
-                parser.codegenerator.buffer = thing;
+                parser.printer.print(identifier);
+                parser.codegenerator.buffer = identifier;
                 new FunctionCall(parser);
                 parser.printer.print(")");
             }
             else
             {
-                parser.printer.print(" " + thing + ", ");
+                parser.printer.print(" " + identifier + ", ");
             }
+            parser.codegenerator.statementStarting = false;
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.NUMBER))
         {

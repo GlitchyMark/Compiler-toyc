@@ -4,7 +4,6 @@
 package abstractSyntax;
 
 import parser.*;
-import codeGen.JVM.*;
 
 public class Statement extends GrammarDef
 {
@@ -22,6 +21,8 @@ public class Statement extends GrammarDef
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
         {
+            parser.codegenerator.statementStarting = true;
+            parser.codegenerator.statementStartingAssign = true;
             new ExpressionStatement(parser);
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.LCURLY) )

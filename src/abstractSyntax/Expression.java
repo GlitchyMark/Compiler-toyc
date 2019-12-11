@@ -28,7 +28,7 @@ public class Expression extends GrammarDef
 
         while(parser.tok.getTok().equals(TCscanner.Tokens.ASSIGNOP))
         {
-            CGAssign cga = new CGAssign();
+            CGAssign cga = new CGAssign(parser.codegenerator.statementStartingAssign);
             parser.codegenerator.insert(cga);
             if(parser.tok.getTok().equals(TCscanner.Tokens.ASSIGNOP))
             {
@@ -44,6 +44,7 @@ public class Expression extends GrammarDef
                 logError("'=' expected");
             }
             parser.codegenerator.insert(cga);
+            parser.codegenerator.statementStartingAssign = false;
         }
         return;
     }
