@@ -19,6 +19,18 @@ public class JVMFuncManager
         return funcs.contains(f);
     }
 
+    public boolean isFunc(String name)
+    {
+        for(JVMFunc j : funcs)
+        {
+            if(j.getFuncName().equals(name))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public JVMFunc getFunc(String label)
     {
         JVMFunc f = new JVMFunc("",0);

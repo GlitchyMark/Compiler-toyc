@@ -76,8 +76,8 @@ public class IfStatement extends GrammarDef
                 new Statement(parser);
             }
         }
-        parser.printer.print(")");
         parser.codegenerator.insert(new CGIfLabelY(ifCmp.getLabelY()));
+        parser.printer.print(")");
         //LabelY goes here
 
         return;

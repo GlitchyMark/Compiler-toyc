@@ -22,7 +22,7 @@ public class CGVarGet extends CGInstruction
                 Symbol sym = target.symtable.getCurrentScope().find(id);
                 //target.symtable.getCurrentScope().mostRecentlyAccessed(id);
             }
-            else
+            else if(!target.funcMan.isFunc(id))
             {
                 Symbol sym = target.symtable.getCurrentScope().find(id);
                 target.code.add("iload " + sym.getOffset());

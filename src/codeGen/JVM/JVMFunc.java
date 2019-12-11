@@ -20,4 +20,9 @@ public class JVMFunc
     {
         return formatted;
     }
+
+    public String getFuncName()
+    {
+        return funcName;
+    }
 }
