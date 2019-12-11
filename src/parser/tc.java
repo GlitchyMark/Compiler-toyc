@@ -28,6 +28,7 @@ public class tc
         if(writestring.endsWith(".tc"))
             writestring = writestring.substring(0, lastI);
         writestring = writestring + ".j";
+        parse.codegenerator.getTarget().testEmptyFile();
         fileMan.writeListOfTokens(parse.codegenerator.getTarget().getCode(), Optional.of(writestring));
     }
 

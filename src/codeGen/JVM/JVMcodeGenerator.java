@@ -23,7 +23,6 @@ public class JVMcodeGenerator
     {
         target.insert(cgi);
     }
-
     public JVMtargetCode getTarget()
     {
         return target;

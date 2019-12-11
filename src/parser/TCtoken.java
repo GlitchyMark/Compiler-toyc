@@ -28,6 +28,8 @@ public class TCtoken
 
     public char getChar()
     {
+        if(preTokens.isEmpty())
+            return '\0';
         prevPosition[0] = currentListLoc;
         prevPosition[1] = currentLineLoc;
         if(preTokens.get(currentListLoc).length() == currentLineLoc && ((preTokens.size() - 1) == currentListLoc))

@@ -14,6 +14,7 @@ public class JVMtargetCode {
     //public SymTable symtable = new SymTable();
     static SymManager symtable = new SymManager();
     public JVMFuncManager funcMan = new JVMFuncManager();
+    int emptySize;
     List<String> code = new ArrayList<>();
     List<CGInstruction> instructions = new ArrayList<>();
     LabelManager labelMan = new LabelManager();
@@ -25,7 +26,7 @@ public class JVMtargetCode {
         //instructions.add(new CGVar(this));
         initCodeLines();
     }
-    void initCodeLines()
+    public void initCodeLines()
     {
         code.add(".source "+ TCGlobals.className + ".java");
         code.add(".class "+ TCGlobals.className);
@@ -47,6 +48,13 @@ public class JVMtargetCode {
         code.add("invokestatic " + TCGlobals.className + "/main()I");
         code.add("return");
         code.add(".end method");
+        emptySize = code.size();
+    }
+
+    public void testEmptyFile()
+    {
+        if(emptySize == code.size())
+            code.remove(code.size()-3);
     }
     void insert(CGInstruction cgi)
     {
