@@ -1,4 +1,4 @@
-int global1;
+int globe;
 
 int factorial(int n)
 {
@@ -30,8 +30,9 @@ int square(int base, int power)
 int printGlobal(int modifier)
 {
     int result;
-    result = global1 - modifier;
+    result = globe - modifier;
     write(result);
+	return 0;
 }
 int main()
 {
