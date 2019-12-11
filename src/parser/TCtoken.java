@@ -308,8 +308,8 @@ public class TCtoken
             if(charBuff == '=')
             {
                 lex+= charBuff;
+                charBuff = getChar();
             }
-            charBuff = getChar();
             tok = new TCscanner(TCscanner.Tokens.RELOP, lex);
         }
 

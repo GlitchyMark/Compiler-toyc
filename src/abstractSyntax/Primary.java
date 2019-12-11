@@ -91,6 +91,7 @@ public class Primary extends GrammarDef
             parser.getNextToken();
             parser.printer.print("minus( ");
             new Primary(parser);
+            parser.codegenerator.insert(new CGNegative());
             parser.printer.print(")");
             return;
         }
