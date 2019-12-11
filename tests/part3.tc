@@ -32,7 +32,7 @@ int printGlobal(int modifier)
     int result;
     result = globe - modifier;
     write(result);
-	return 0;
+	return;
 }
 int main()
 {

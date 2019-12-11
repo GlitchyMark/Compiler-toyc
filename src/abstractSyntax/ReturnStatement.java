@@ -31,8 +31,12 @@ public class ReturnStatement extends GrammarDef
         {
             parser.printer.print("expr(");
             new Expression(parser);
-            parser.codegenerator.insert(new CGReturn());
+            parser.codegenerator.insert(new CGReturn(true));
             parser.printer.print("),");
+        }
+        else
+        {
+            parser.codegenerator.insert(new CGReturn(false));
         }
         if (parser.tok.getTok().equals(TCscanner.Tokens.SEMICOLON))
         {
