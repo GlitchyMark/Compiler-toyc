@@ -13,7 +13,14 @@ To build this program run these commands at the root of the program(assuming you
 ```
 ant clean
 ant compile
-ant -Dflags="-verbose" -Dsource="some_dir/tests.tc" test
+ant -Dflags="-verbose" -Dsource="some_dir/[fileName].tc" test
+```
+
+## Running the .j files
+Move the compiled .j file to the directory where jasmin is stored, and run the following commands to execute the .j file. [fileName] is just the name of the original compiled .tc file
+```
+java -jar jasmin.jar [fileName].j
+java [filename]
 ```
 
 ## Program operands
