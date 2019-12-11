@@ -27,5 +27,6 @@ where options include:
     2 - parser and compiler messages only
     3 - compiler messages only(unused)
 -verbose display all information
-Note: path to toyc_source_file is defaultly set to [project]/tests. Add full directory for external file access.
+Note: path to toyc_source_file is defaultly set to [project]/tests. 
+Add full directory for external file access.
 ```
