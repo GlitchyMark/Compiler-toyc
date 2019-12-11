@@ -1,7 +1,24 @@
 int globe;
 
+int check(int isNeg)
+{
+	if(isNeg<0)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
 int factorial(int n)
 {
+	if(check(n))
+	{
+		write("No negative values in factorial ya dingus: ", n);
+		return -1;
+	}
 	if(n >= 1)
 	{
 		return n * factorial(n-1);
@@ -39,7 +56,7 @@ int main()
     int i;
 	int base;
 	int pow;
-    i = factorial(7);
+    i = factorial(-7);
 
 	write("\n\nFACTORIAL: ", i);
 	write("\n\nEnter in a base: ");
