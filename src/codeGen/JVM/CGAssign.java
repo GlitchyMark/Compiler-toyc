@@ -23,7 +23,7 @@ public class CGAssign extends CGInstruction {
         else {
             try {
                 if (LAS.getName().contains("GLOBAL")) {
-                    target.code.add("putstatic test/" + LAS.getName().replace("GLOBAL", "") + " I");
+                    target.code.add("putstatic " + TCGlobals.className + "/" + LAS.getName().replace("GLOBAL", "") + " I");
                 } else
                     target.code.add("istore " + LAS.getOffset());
             }
