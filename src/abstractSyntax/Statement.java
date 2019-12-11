@@ -15,6 +15,7 @@ public class Statement extends GrammarDef
     @Override
     void parseDefinition()
     {
+        parser.codegenerator.statementStartingAssign = true;
         if(parser.tok.getTok().equals(TCscanner.Tokens.BREAK))
         {
             new BreakStatement(parser);
@@ -22,7 +23,7 @@ public class Statement extends GrammarDef
         else if(parser.tok.getTok().equals(TCscanner.Tokens.ID))
         {
             parser.codegenerator.statementStarting = true;
-            parser.codegenerator.statementStartingAssign = true;
+            parser.codegenerator.statementStartingAssign = false;
             new ExpressionStatement(parser);
         }
         else if(parser.tok.getTok().equals(TCscanner.Tokens.LCURLY) )
