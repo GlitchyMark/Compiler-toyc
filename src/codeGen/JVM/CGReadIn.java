@@ -1,5 +1,6 @@
 package codeGen.JVM;
 
+import compiler.TCGlobals;
 import symTable.Symbol;
 import symTable.SymbolAlreadyDeclared;
 import symTable.SymbolNotFound;
@@ -38,7 +39,7 @@ public class CGReadIn extends CGInstruction
             if(target.symtable.isGlobal(id))
             {
 
-                target.code.add("putstatic test/" + id + " I");
+                target.code.add("putstatic " + TCGlobals.className + "/" + id + " I");
                 Symbol sym = target.symtable.getCurrentScope().find(id);
                 //target.symtable.getCurrentScope().mostRecentlyAccessed(id);
             }

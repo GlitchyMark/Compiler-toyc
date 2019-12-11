@@ -1,5 +1,6 @@
 package codeGen.JVM;
 
+import compiler.TCGlobals;
 import symTable.Symbol;
 import symTable.SymbolNotFound;
 
@@ -18,7 +19,7 @@ public class CGVarGet extends CGInstruction
             if(target.symtable.isGlobal(id))
             {
 
-                target.code.add("getstatic test/" + id + " I");
+                target.code.add("getstatic " + TCGlobals.className + "/" + id + " I");
                 Symbol sym = target.symtable.getCurrentScope().find(id);
                 //target.symtable.getCurrentScope().mostRecentlyAccessed(id);
             }
