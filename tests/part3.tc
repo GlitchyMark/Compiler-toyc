@@ -1,224 +1,74 @@
-/*
- *	TIC TAC TOE
- *
- *	Written by Xander Will 12/2/19
- *
- */
+int globe;
 
-//*****************
-// Helper Functions
-//*****************
-
-int randseed;
-int srand(int seed) {
-	randseed = seed;
-	return;
-}
-int rand() {
-	int x;
-	x = randseed;
-	randseed = x * 2 + 4 - x / 3 + 50;
-
-	return x * 4 + 7 - x / 2 + 20;
-}
-
-//******************
-// Drawing Functions
-//******************
-
-// board (0 for empty, 1 for x, 2 for 0)
-int ul; int uc; int ur;	// upper
-int cl; int cc; int cr;	// middle
-int ll; int lc; int lr; // right
-
-int DrawTile(int tile) {
-	if (tile == 0)
-		write(" ");
-	else if (tile == 1)
-		write("X");
-	else
-		write("O");
-	return;
-}
-
-int DrawRow(int l, int m, int r) {
-	write(" ");
-	DrawTile(l);
-	write("|");
-	DrawTile(m);
-	write("|");
-	DrawTile(r);
-	newline;
-	return;
-}
-
-int DrawBoard() {
-	DrawRow(ul, uc, ur);
-	DrawRow(cl, cc, cr);
-	DrawRow(ll, lc, lr);
-	newline;
-	return;
-}
-
-//****************
-// Logic Functions
-//****************
-
-int GetMove() {
-	int x;
-
-	write("Enter a number from 1 - 9 (upper-left is 1, lower-right is 9)");
-	newline; write(">> "); read(x);
-	while(!(1 <= x && x <= 9)) {
-		write("Invalid choice, please try again");
-		newline; write(">> "); read(x);
+int factorial(int n)
+{
+	if(n >= 1)
+	{
+		return n * factorial(n-1);
 	}
-
-	return x;
-}
-
-int CheckLine(int x, int y, int z) {
-	if ((x == y) && (y == z) && (x == z))
-		return z;
 	else
-		return 0;
-}
-
-int CheckHoriz() {
-	int result;
-	result = CheckLine(ul, uc, ur); if (result) return result;
-	result = CheckLine(cl, cc, cr); if (result) return result;
-	result = CheckLine(ll, lc, lr); if (result) return result;
-	return 0;
-}
-
-int CheckVert() {
-	int result;
-	result = CheckLine(ul, cl, ll); if (result) return result;
-	result = CheckLine(uc, cc, lc); if (result) return result;
-	result = CheckLine(ur, cr, lr); if (result) return result;
-	return 0;
-}
-
-int CheckDiag() {
-	int result;
-	result = CheckLine(ul, cc, lr); if (result) return result;
-	result = CheckLine(ur, cc, ll); if (result) return result;
-	return 0;
-}
-
-int CheckAll() {
-	int result;
-	result = CheckHoriz(); if (result) return result;
-	result = CheckVert(); if (result) return result;
-	result = CheckDiag(); if (result) return result;
-	return 0;
-}
-
-int ChangeTile(int tile, int num) {
-	if (tile == 1)
-		ul = num;
-	else if (tile == 2)
-		uc = num;
-	else if (tile == 3)
-		ur = num;
-	else if (tile == 4)
-		cl = num;
-	else if (tile == 5)
-		cc = num;
-	else if (tile == 6)
-		cr = num;
-	else if (tile == 7)
-		ll = num;
-	else if (tile == 8)
-		lc = num;
-	else if (tile == 9)
-		lr = num;
-	return;
-}
-
-int Cat() {
-	if (ul && uc && ur && cl && cc
-		&& cr && ll && lc && lr) {
+	{
 		return 1;
 	}
-	else return 0;
 }
 
-int CheckTile(int tile) {
-	if (tile == 1)
-		return ul;
-	else if (tile == 2)
-		return uc;
-	else if (tile == 3)
-		return ur;
-	else if (tile == 4)
-		return cl;
-	else if (tile == 5)
-		return cc;
-	else if (tile == 6)
-		return cr;
-	else if (tile == 7)
-		return ll;
-	else if (tile == 8)
-		return lc;
-	else if (tile == 9)
-		return lr;
-	return 0;
-}
+int square(int base, int power)
+{
+    int retVal;
+    int i;
+    int j;
+    int k;
+    i = power;
+    retVal = 1;
+    while(i > 0)
+    {
+        retVal = retVal * base;
+        i = i - 1;
+    }
 
-int ReportPlayer(int id) {
-	if (id == 1)
-		write("PLAYER");
-	else
-		write("COMPUTER");
+    if(i = 1)
+    {
+        write("YEEEEEE");
+        newline;
+        newline;
+        //i = j = k = 10;
+        //write("i: ", i, "\nj:", j, "k: ", k);
+    }
+
+    return retVal;
+}
+int printGlobal(int modifier)
+{
+    int result;
+    result = globe - modifier;
+    write(result);
 	return;
 }
+int main()
+{
+    int i;
+	int base;
+	int pow;
+    i = factorial(7);
 
-int Game() {
-	int turn;
-	int move;
-	turn = 1; // player starts
+	write("\n\nFACTORIAL: ", i);
+	write("\n\nEnter in a base: ");
+	newline;
+	read(base);
+	write("\nenter a power: ");
+	read(pow);
 
-	while(!CheckAll()) {
-		DrawBoard();
-		if ( Cat() ) {
-				write("Cat!");
-				return;
-		}
-		ReportPlayer(turn); write("'s turn"); newline;
-
-		if (turn == 1) {
-			while (CheckTile(move = GetMove())) {
-				write("Tile is already full. Choose another tile.");
-				newline;
-			}
-			ChangeTile(move, 1);
-			turn = 2;
-		}
-		else if (turn == 2) {
-			while (CheckTile(move = rand() % 9 + 1));
-			ChangeTile(move, 2);
-			turn = 1;
-		}
+	i = square(base, pow);
+	write("\nResult: ", i);
+	if(base > 5)
+	{
+	write("\nthat a high base.");
 	}
-
-	DrawBoard();
-	if (turn == 2)
-		write("Player has won!!");
-	else
-		write("Computer has won :(");
-
-	return;
-}
-
-int main() {
-	int seed;
-
-	write("Enter seed: "); read(seed);
-	srand(seed);
-
-	Game();
-
-	return;
+	else if (base < 3)
+	{
+	write("\nthat a low base.");
+	}
+	globe = 4;
+	printGlobal(6);
+	return 0;
 }

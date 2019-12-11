@@ -1,5 +1,6 @@
 /*EGRE 591 -- Compiler Construction
- *By Mark Johnston and George Constantine
+ * By Mark Johnston and George Constantine
+ * All functionally works, including extra credit functions.
  */
 package parser;
 
