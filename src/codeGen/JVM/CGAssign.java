@@ -16,9 +16,9 @@ public class CGAssign extends CGInstruction {
         if(!gottenSym) {
             LAS = target.symtable.getCurrentScope().getLastAccessedSym();
             gottenSym = true;
-
-            if(!TCGlobals.lazyCheck)
-                target.code.add("pop");
+            target.code.remove(target.code.size()-1);
+            //if(!TCGlobals.lazyCheck)
+            //    target.code.add("pop");
         }
         else {
             try {

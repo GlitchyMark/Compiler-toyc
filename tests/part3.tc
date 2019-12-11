@@ -58,7 +58,7 @@ int main()
 	{
 	write("\nthat a low base.");
 	}
-	global1 = 4;
+	globe = 4;
 	printGlobal(6);
 	return 0;
 }
