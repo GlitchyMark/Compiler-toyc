@@ -12,6 +12,7 @@ public class TCGlobals
 {
     public static int debugLevel = 5;
     public static String loadFilename;
+    public static String className;
 
     //What the hell are these.
     public static boolean lazyCheck = false;

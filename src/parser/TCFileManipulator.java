@@ -3,6 +3,8 @@
  */
 package parser;
 
+import compiler.TCGlobals;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -58,14 +60,16 @@ public class TCFileManipulator
         //filePath = System.getProperty("user.dir")+"\\tests\\"+filetoload;
 
         filePath = filetoload;
-
-        if(!(new File(filetoload)).exists())
-            filePath = Paths.get(System.getProperty("user.dir"),"tests", filetoload).toString();
+        if(!(new File(filetoload)).exists()) {
+            filePath = Paths.get(System.getProperty("user.dir"), "tests", filetoload).toString();
+            TCGlobals.className = Paths.get(System.getProperty("user.dir"), "tests", filetoload).getFileName().toString();
+        }
         System.out.println("Getting file: " + filePath);
         try
         {
             inputFile = Paths.get(filePath);
             fileScan = new Scanner(inputFile);
+            TCGlobals.className = Paths.get(filePath).getFileName().toString();
             //System.out.println("Loaded file");
         }
         catch (IOException e)
@@ -75,6 +79,8 @@ public class TCFileManipulator
             System.exit(1);
             invalidPath = true;
         }
+        int seperator = TCGlobals.className.indexOf('.');
+        TCGlobals.className = TCGlobals.className.substring(0, seperator);
     }
 
     public List<String> getListOfTokensWhitespaceDelimited()

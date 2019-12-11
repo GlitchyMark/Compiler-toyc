@@ -3,6 +3,7 @@
  */
 package codeGen.JVM;
 
+import compiler.TCGlobals;
 import symTable.SymManager;
 import symTable.SymTable;
 
@@ -26,8 +27,8 @@ public class JVMtargetCode {
     }
     void initCodeLines()
     {
-        code.add(".source test.java");
-        code.add(".class test");
+        code.add(".source "+ TCGlobals.className + ".java");
+        code.add(".class "+ TCGlobals.className);
         code.add("; ACC_SUPER bit is set");
         code.add(".super java/lang/Object");
         code.add("; >> METHOD 1 <<");
@@ -43,7 +44,7 @@ public class JVMtargetCode {
         code.add(".method public static main([Ljava/lang/String;)V");
         code.add(".limit stack 100");
         code.add(".limit locals 100");
-        code.add("invokestatic test/main()I");
+        code.add("invokestatic " + TCGlobals.className + "/main()I");
         code.add("return");
         code.add(".end method");
     }
