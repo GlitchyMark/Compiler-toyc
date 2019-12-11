@@ -29,7 +29,8 @@ public class CGAssign extends CGInstruction {
             }
             catch(NullPointerException e)
             {
-                target.code.add("istore " + LAS.getOffset());
+                e.printStackTrace();
+                //target.code.add("istore " + LAS.getOffset());
             }
         }
     }

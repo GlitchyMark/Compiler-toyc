@@ -1,3 +1,5 @@
+int global1;
+
 int factorial(int n)
 {
 	if(n >= 1)
@@ -21,26 +23,41 @@ int square(int base, int power)
 		retVal = retVal * base;
 		i = i - 1;
 	}
-	
+
 	return retVal;
 }
 
+int printGlobal(int modifier)
+{
+    int result;
+    result = global1 - modifier;
+    write(result);
+}
 int main()
 {
     int i;
 	int base;
 	int pow;
     i = factorial(7);
-	
+
 	write("\n\nFACTORIAL: ", i);
 	write("\n\nEnter in a base: ");
 	newline;
 	read(base);
 	write("\nenter a power: ");
 	read(pow);
-	
+
 	i = square(base, pow);
 	write("\nResult: ", i);
-	
+	if(base > 5)
+	{
+	write("\nthat a high base.");
+	}
+	else if (base < 3)
+	{
+	write("\nthat a low base.");
+	}
+	global1 = 4;
+	printGlobal(6);
 	return 0;
 }

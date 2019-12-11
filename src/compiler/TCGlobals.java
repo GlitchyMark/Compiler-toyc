@@ -12,6 +12,8 @@ public class TCGlobals
 {
     public static int debugLevel = 5;
     public static String loadFilename;
+
+    //What the hell are these.
     public static boolean lazyCheck = false;
     public static boolean isWrite = false;
     public static int funcCount = 0;
